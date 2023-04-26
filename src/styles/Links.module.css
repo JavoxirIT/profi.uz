@@ -1,0 +1,9 @@
+.link {
+  font-size: 1.5rem;
+  text-decoration: none;
+  color: #fff;
+  text-align: center;
+}
+.link:nth-child(2) {
+  margin: 0 10px;
+}

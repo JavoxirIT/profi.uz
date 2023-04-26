@@ -1,0 +1,16 @@
+.masterWrapper {
+  display: grid;
+  grid-template-columns: 20% 75%;
+  grid-template-rows: auto;
+  column-gap: 60px;
+}
+
+@media (min-width: 220px) and (max-width: 1175px) {
+  .masterWrapper {
+    display: flex;
+    flex-direction: column;
+  }
+  .MasterTab {
+    margin-top: 15px;
+  }
+}

@@ -1,0 +1,158 @@
+.layout {
+  min-height: 100vh !important;
+  width: 100%;
+  display: flex !important;
+  flex-direction: column !important;
+}
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between !important;
+  align-items: center;
+  padding: 15px 15px;
+  background: inherit !important;
+}
+
+.headerBlock1 {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 10% 10% 70% 10%;
+  grid-template-rows: auto;
+  padding-left: 40px;
+  align-items: center;
+  justify-content: center;
+}
+.headerLogo {
+  font-weight: 700;
+  font-size: 24px !important;
+  line-height: 140%;
+  /* identical to box height, or 34px */
+  letter-spacing: 0.3px;
+  color: #f4d201;
+  text-transform: uppercase;
+  text-decoration: navajowhite;
+}
+
+.headerMobileMenu {
+  display: none;
+}
+.headerCategoryBlock {
+  display: flex;
+  align-items: center;
+}
+.headerCategoryIcons {
+  width: 18px;
+  height: 18px;
+  color: #ffffff;
+}
+.headerCategoryText {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  color: #ffffff;
+  padding-left: 9px;
+}
+.headerKondidatText {
+  display: none;
+}
+.headerNav {
+  width: calc(100vw - 200px);
+  padding: 10px;
+}
+/* .headerNotificationIconBlock {
+} */
+/* antd layaut */
+.content {
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  /* margin-top: 10px;
+  padding-bottom: 10px; */
+}
+.section {
+  width: 100% !important;
+  max-width: calc(100vw - 400px);
+  display: flex;
+  flex-direction: column;
+  /* margin-top: 20px; */
+}
+.footer {
+  display: none;
+}
+@media (min-width: 220px) and (max-width: 1175px) {
+  .layout {
+    height: 100%;
+  }
+  .header {
+    height: min-content !important;
+    display: flex;
+    justify-content: space-between !important;
+    align-items: center;
+    padding: 0 15px 0 15px !important;
+  }
+
+  .headerBlock1 {
+    width: 100%;
+    max-width: calc(100vw - 30px);
+    padding-left: 0;
+    display: grid;
+    grid-template-columns: 50px 1fr 1fr;
+    grid-template-rows: repeat(2, 50px);
+  }
+
+  .headerLogo {
+    display: none;
+  }
+
+  .headerMobileMenu {
+    display: block;
+  }
+  .headerMobileMenuIcon {
+    color: #f4d201;
+    width: 22px;
+    height: 18px;
+    font-size: 22px;
+  }
+  .headerCategoryBlock {
+    display: none;
+  }
+  .headerKondidatText {
+    display: block;
+    font-weight: 700;
+    font-size: 18px;
+    color: #ffffff;
+  }
+  .headerSerchMobile {
+    width: 100%;
+    max-width: calc(100vw - 30px);
+    grid-column-start: 1;
+    grid-column-end: 4;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    margin-top: 10px;
+  }
+  .content {
+    margin-top: 0;
+    margin-bottom: 50px;
+    /* min-height: 100vh !important; */
+    height: 100% !important;
+    /* overflow-y: scroll; */
+  }
+  .section {
+    width: 100%;
+    max-width: calc(100vw - 30px);
+    justify-content: flex-start;
+  }
+  .footer {
+    display: block;
+    position: fixed;
+    bottom: 0px;
+    z-index: 1;
+    width: 100%;
+    height: 60px;
+    padding: 10px 0 !important;
+  }
+}

@@ -1,0 +1,50 @@
+.StatisticsWrapperCard {
+  margin-top: 30px !important;
+  height: calc(100% - 80px) !important;
+}
+
+.StatisticBlock {
+  flex: 1 2 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 20px;
+}
+.StatisticBlocItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5px;
+}
+.StatisticBlockIcon {
+  width: 40px !important;
+  height: 40px !important;
+  color: #f0ce00;
+  font-weight: bold;
+}
+.StatisticBlockData {
+  font-weight: 700;
+  font-size: 36px;
+  color: #ef4444;
+  margin: 5px 0;
+}
+.StatisticBlockTitle {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+/*  */
+.StatisticsChart {
+  flex: 2 1 auto;
+  margin-top: 40px;
+  border-radius: 16px !important;
+}
+.StatisticsChartVanvas {
+}
+
+@media (min-width: 220px) and (max-width: 1175px) {
+  .StatisticsWrapperCard {
+    margin-top: 10px !important;
+    height: calc(100% - 140px) !important;
+  }
+}

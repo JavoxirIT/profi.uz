@@ -1,0 +1,62 @@
+import { useState, useEffect } from "react";
+import { Bar } from "react-chartjs-2";
+import {
+  Chart as ChartJS,
+  BarElement,
+  Title,
+  LinearScale,
+  CategoryScale,
+  Tooltip,
+  Legend,
+} from "chart.js";
+
+ChartJS.register(
+  BarElement,
+  Title,
+  LinearScale,
+  CategoryScale,
+  Tooltip,
+  Legend
+);
+import css from "../../styles/Statistics.module.css";
+import { Layout } from "antd";
+const StatisticsChart = () => {
+  const [chartData, setChartData] = useState({
+    datasets: [],
+  });
+  const [chartOptions, setChartOptions] = useState({});
+
+  useEffect(() => {
+    setChartData({
+      labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+      datasets: [
+        {
+          label: "Sales $",
+          data: [8514, 11255, 9885, 15554, 28551, 26318, 21579],
+          borderColor: "#F1F5F9",
+          backgroundColor: "#E0893A",
+        },
+      ],
+    });
+    setChartOptions({
+      plugins: {
+        legend: {
+          position: "top",
+        },
+        title: {
+          display: true,
+          text: "Daily Revenue",
+        },
+      },
+      maintainAspectRatio: false,
+      responsive: true,
+    });
+  }, []);
+  return (
+    <Layout className={css.StatisticsChart}>
+      <Bar data={chartData} options={chartOptions} />
+    </Layout>
+  );
+};
+
+export default StatisticsChart;

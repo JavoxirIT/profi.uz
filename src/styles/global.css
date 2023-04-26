@@ -1,0 +1,165 @@
+/* @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"); */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@font-face {
+  font-family: "Inter", sans-serif;
+  font-display: swap;
+  font-style: normal;
+  font-weight: 400;
+  src: url("/fonts/Inter-VariableFont_slnt\,wght.ttf") format("ttf");
+}
+
+:root {
+  --scroll-color: #f0ce00;
+  --antd-tab-border-color: #334155;
+  --antd-tab-border: 2px solid;
+  --antd-tab-border-radius: 16px;
+}
+::-webkit-scrollbar-track {
+  background-color: var(--antd-tab-border-color); /*Цвет скролла*/
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 5px; /*Закругление ползунка*/
+  background-color: var(--scroll-color); /*Цвет ползунка*/
+}
+::-webkit-scrollbar {
+  width: 6px; /*Толщина скролла*/
+}
+/* @media (prefers-color-scheme: dark) {
+  :root {
+  }
+} */
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  height: 100%;
+  padding: 0;
+  margin: 0 auto;
+}
+
+/* body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+label,
+h1,
+h2,
+.ant-form-text,
+.ant-divider-inner-text,
+a {
+  color: rgb(var(--foreground-rgb)) !important;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+} */
+.ant-tabs-nav-wrap {
+  margin-bottom: 10px !important;
+}
+.ant-tabs-nav .ant-tabs-tab {
+  border: var(--antd-tab-border) !important;
+  border-radius: var(--antd-tab-border-radius) !important;
+  padding: 5px 10px !important;
+}
+.ant-tabs-card > .ant-tabs-tab.ant-tabs-tab-active {
+  border: var(--antd-tab-border) !important;
+  border-radius: 16px !important;
+  padding: 5px 10px !important;
+  border-color: #f0ce00 !important;
+}
+.ant-tabs-nav::before {
+  border: none !important;
+}
+.ant-tabs-card > .ant-tabs-nav .ant-tabs-tab {
+  /* For tabs border */
+  border-color: #0c0d15 !important;
+}
+
+.ant-tabs-top > .ant-tabs-nav::before {
+  /* For the line to the right and close to the tabs */
+  border-color: var(--antd-tab-border-color) !important;
+}
+
+.ant-tabs > .ant-tabs-nav {
+  /* So that there is no gap between the content and tabs */
+  margin-bottom: 0 !important;
+}
+
+.ant-tabs-content-holder {
+  padding: 15px !important;
+  border: 1px solid !important; /* Border for the content part */
+  border-color: var(--antd-tab-border-color) !important;
+  border-top: transparent !important; /* Remove the top border so that there is no overlap*/
+  background: #0e1926;
+  border-radius: 16px !important;
+}
+
+.language-switch {
+  position: fixed !important;
+  bottom: 20px !important;
+  right: 20px !important;
+  z-index: 9999 !important;
+  font-size: 20px !important;
+}
+.ant-input-clear-icon {
+  font-size: 20px !important;
+}
+/* anketa form upload */
+.ant-upload.ant-upload-select {
+  width: 100% !important;
+}
+.ant-upload-list-item-container {
+  width: 100% !important;
+}
+.ant-upload-list-item-actions {
+  display: flex !important;
+  justify-content: space-evenly !important;
+}
+@media (min-width: 220px) and (max-width: 1175px) {
+  .ant-card-body {
+    padding: 18px !important;
+  }
+  .language-switch {
+    bottom: 65px !important;
+    right: 10px !important;
+    font-size: 20px !important;
+  }
+  .ant-upload.ant-upload-select {
+    width: 100% !important;
+  }
+  .ant-upload-list-item-container {
+    width: 100% !important;
+  }
+}
+
+/* header logo */
+.headerLogo2 {
+  font-weight: 700;
+  font-size: 24px !important;
+  line-height: 140%;
+  /* identical to box height, or 34px */
+  letter-spacing: 0.3px;
+  color: #f4d201;
+  text-transform: uppercase;
+  text-decoration: navajowhite;
+}

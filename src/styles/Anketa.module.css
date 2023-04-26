@@ -1,0 +1,28 @@
+.AnketaFormBlock {
+  width: 100%;
+  max-width: calc(100vw - 400px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.AnketaForm {
+  width: 50%;
+}
+.AnketaFormInput {
+  height: 56px;
+  font-size: 18px !important;
+}
+.AnketaFormTextArea {
+  font-size: 18px !important;
+}
+.AnketaNavigateBlock {
+  margin-top: 30px;
+}
+@media (min-width: 220px) and (max-width: 1175px) {
+  .AnketaFormBlock {
+    max-width: calc(100vw - 40px);
+  }
+  .AnketaForm {
+    width: 100%;
+  }
+}
