@@ -2,39 +2,40 @@ import { Tag } from "antd";
 import Link from "next/link";
 import { eraseCookie } from "utils/setCookie";
 import css from "../../styles/Cabinet.module.css";
-const data = [
-  {
-    id: 1,
-    link: "/anketa",
-    title: "Shaxsiy ma’lumotlar",
-  },
-  {
-    id: 2,
-    link: "/myworks",
-    title: "Bajarilgan ishlar",
-  },
-  {
-    id: 3,
-    link: "/statistics",
-    title: "Statistika",
-  },
-  {
-    id: 4,
-    link: "",
-    title: "Xabarlar",
-  },
-  {
-    id: 5,
-    link: "/asdasd",
-    title: "Taxrirlash",
-  },
-  {
-    id: 6,
-    link: "",
-    title: "Chiqish",
-  },
-];
-const CabinetNavigateList = () => {
+
+const CabinetNavigateList = ({ t }) => {
+  const data = [
+    {
+      id: 1,
+      link: "/anketa",
+      title: t.anketa,
+    },
+    {
+      id: 2,
+      link: "/myworks",
+      title: t.mywork,
+    },
+    {
+      id: 3,
+      link: "/statistics",
+      title: t.statistics,
+    },
+    {
+      id: 4,
+      link: "",
+      title: t.news,
+    },
+    {
+      id: 5,
+      link: "/asdasd",
+      title: t.edit,
+    },
+    {
+      id: 6,
+      link: "",
+      title: t.exit,
+    },
+  ];
   // функцыя для выхода
   const handleLink = (e) => {
     if (e.id === 6) {

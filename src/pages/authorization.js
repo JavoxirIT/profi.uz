@@ -20,13 +20,14 @@ const customer = process.env.NEXT_PUBLIC_USER_CUSTOMER;
 const spesialist = process.env.NEXT_PUBLIC_USER_SPECIALIST;
 
 function Authorization({ t }) {
+  const router = useRouter();
+  const [form] = Form.useForm();
+  const [api, contextHolder] = notification.useNotification();
   // иницыализацыя session storage
   const [isuser, setUser] = useSessionStorage([], "user");
   // loder
   const [loder, setLoader] = useState(false);
-  const router = useRouter();
-  const [api, contextHolder] = notification.useNotification();
-
+  // натификацыя
   const openNotificationWithIcon = (type, code, message) => {
     api[type]({
       message: code,
@@ -111,6 +112,7 @@ function Authorization({ t }) {
           <Preloader />
         ) : (
           <Form
+            form={form}
             name="basic"
             onFinish={AuthorizationPost}
             onFinishFailed={onFinishFailed}

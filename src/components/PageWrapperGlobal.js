@@ -15,7 +15,12 @@ import { Layout } from "antd";
 import FooterMenu from "./Footer/FooterMenu";
 
 const { Header, Footer, Sider, Content } = Layout;
-export const PageWrapperGlobal = ({ children, title = "Профи", pageTitle }) => {
+export const PageWrapperGlobal = ({
+  children,
+  title = "Профи",
+  pageTitle,
+  t,
+}) => {
   return (
     <>
       <Head>
@@ -54,9 +59,11 @@ export const PageWrapperGlobal = ({ children, title = "Профи", pageTitle })
             <div className={css.headerSerchMobile}>
               <SerchInp />
             </div>
-            <NotificationIconBlock />
-            {/* <div className={css.headerNotificationIconBlock}>
-            </div> */}
+
+            <div className={css.headerNotificationIconBlock}>
+              {" "}
+              <NotificationIconBlock t={t} />{" "}
+            </div>
           </div>
 
           {/* <nav className={css.headerNav}>
@@ -67,7 +74,7 @@ export const PageWrapperGlobal = ({ children, title = "Профи", pageTitle })
           <div className={css.section}> {children}</div>
         </Content>
         <Footer className={css.footer}>
-          <FooterMenu />
+          <FooterMenu t={t} />
         </Footer>
       </Layout>
     </>

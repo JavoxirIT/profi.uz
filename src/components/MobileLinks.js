@@ -8,7 +8,7 @@ import { RiArrowGoBackLine } from "react-icons/ri";
 import css from "../styles/Links.module.css";
 import { useRouter } from "next/router";
 
-function MobileLinks() {
+function MobileLinks({ t }) {
   const router = useRouter();
 
   const goBack = (e) => router.back();
@@ -17,23 +17,23 @@ function MobileLinks() {
     <div style={{ display: "flex", justifyContent: "space-around" }}>
       <Link className={css.link} href={"/"}>
         <CgHomeAlt />
-        <p style={{ fontSize: 10 }}>Asosiy</p>
+        <p style={{ fontSize: 10 }}>{t.home}</p>
       </Link>
       <Link className={css.link} href={""}>
         <TbCategory />
-        <p style={{ fontSize: 10 }}>Kategoriyalar</p>
+        <p style={{ fontSize: 10 }}>{t.category}</p>
       </Link>
       <Link className={css.link} href={""}>
         <AiOutlineHeart />
-        <p style={{ fontSize: 10 }}>Sevimlilar</p>
+        <p style={{ fontSize: 10 }}>{t.live}</p>
       </Link>
       <Link className={css.link} href={"/cabinet"}>
         <FiUser />
-        <p style={{ fontSize: 10 }}>Kabinet</p>
+        <p style={{ fontSize: 10 }}>{t.cabinet}</p>
       </Link>
       <div className={css.link} onClick={goBack}>
         <RiArrowGoBackLine />
-        <p style={{ fontSize: 10 }}>Qaytish</p>
+        <p style={{ fontSize: 10 }}>{t.back}</p>
       </div>
     </div>
   );

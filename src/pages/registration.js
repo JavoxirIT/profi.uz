@@ -7,7 +7,7 @@ import style from "../styles/Authorization.module.css";
 import { NumberStr } from "utils/NumberString";
 import { postFetch } from "request/Fetch";
 import { setCookie } from "utils/setCookie";
-import { useRouter } from "next/router";
+import Router from "next/Router";
 import useSessionStorage from "hooks/useSessionStorage";
 
 const { Text } = Typography;
@@ -17,7 +17,6 @@ const customer = process.env.NEXT_PUBLIC_USER_CUSTOMER;
 const spesialist = process.env.NEXT_PUBLIC_USER_SPECIALIST;
 
 function Registration({ t }) {
-  const router = useRouter();
   const [api, contextHolder] = notification.useNotification();
 
   const openNotificationWithIcon = (type, code, message) => {
@@ -50,11 +49,11 @@ function Registration({ t }) {
           setUser(res.data.user);
           //   распридиляем по ролям
           res.data.user.role_id === Number(spesialist)
-            ? router.push("/cabinet")
+            ? Router.push("/cabinet")
             : res.data.user.role_id === Number(admin)
-            ? router.push("/admin")
+            ? Router.push("/admin")
             : res.data.user.role_id === Number(customer)
-            ? router.push("/")
+            ? Router.push("/")
             : null;
         } else if (res.code === "ERR_BAD_REQUEST") {
           openNotificationWithIcon(
@@ -68,8 +67,8 @@ function Registration({ t }) {
   };
 
   useEffect(() => {
-    router.prefetch("/cabonet");
-  }, [router]);
+    Router.prefetch("/cabonet");
+  }, []);
 
   return (
     <PageWrapperAuthorization

@@ -25,7 +25,7 @@ const { Title, Text } = Typography;
 
 const isType = typeof window !== undefined;
 
-export default function MyWorks() {
+export default function MyWorks({ t }) {
   // сообщение об успешном изминения данных
   const [api, contextHolder] = notification.useNotification();
   const openNotificationWithIcon = (type, code, message) => {
@@ -90,7 +90,7 @@ export default function MyWorks() {
     </div>
   );
   return (
-    <PageWrapperAuthorization title="Bajarilgan ishlar">
+    <PageWrapperAuthorization title="Bajarilgan ishlar" t={t}>
       {contextHolder}
       <div className={css.MyWorkBlock}>
         <Title level={4}>Bajarilgan ishlar</Title>
@@ -207,10 +207,10 @@ export default function MyWorks() {
         </Modal>
         <div className={css.MayWorkNavigateBlock}>
           <Button type="link" size="large" onClick={handleCabinet}>
-            <FiUser style={{ marginRight: 10 }} /> Kabinet
+            <FiUser style={{ marginRight: 10 }} /> {t.cabinet}
           </Button>
           <Button type="link" size="large" onClick={handleHome}>
-            <CgHomeAlt style={{ marginRight: 10 }} /> Bosh sahifa
+            <CgHomeAlt style={{ marginRight: 10 }} /> {t.home}
           </Button>
         </div>
       </div>

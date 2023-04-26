@@ -9,4 +9,18 @@ export const uz = {
   linkHome: "BOSH SAHIFA",
   //   PAGE
   pageTitleAuth: "Kirish",
+  //   cabinet
+  cabinet: "Kabinet",
+  anketa: "Shaxsiy ma’lumotlar",
+  mywork: "Bajarilgan ishlar",
+  statistics: "Statistika",
+  news: "Xabarlar",
+  edit: "Taxrirlash",
+  exit: "Chiqish",
+  //   footer mobile link
+  home: "Asosi",
+  category: "Kategoriyalar",
+  live: "Sevimlilar",
+  cabinet: "Kabinet",
+  back: "Qaytish",
 };

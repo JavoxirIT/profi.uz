@@ -5,9 +5,9 @@ import StatisticsBlock from "components/Statistics/StatisticsBlock";
 import StatisticsChart from "components/Statistics/StatisticsChart";
 import css from "../styles/Statistics.module.css";
 
-export default function Statistics() {
+export default function Statistics({ t }) {
   return (
-    <PageWrapperSingle title="Statistika" pageTitle={"Statistika"}>
+    <PageWrapperSingle title="Statistika" pageTitle={"Statistika"} t={t}>
       <Card
         className={css.StatisticsWrapperCard}
         bodyStyle={{
@@ -17,8 +17,8 @@ export default function Statistics() {
           alignContent: "space-between",
         }}
       >
-        <StatisticsBlock />
-        <StatisticsChart />
+        <StatisticsBlock t={t} />
+        <StatisticsChart t={t} />
       </Card>
     </PageWrapperSingle>
   );

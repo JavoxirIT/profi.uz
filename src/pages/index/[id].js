@@ -7,7 +7,8 @@ import css from "../../styles/Master.module.css";
 import MasterCard from "../../components/Master/MasterCard";
 const { Text, Title } = Typography;
 
-const Master = ({ data }) => {
+const Master = ({ data, t }) => {
+  console.log(t);
   return (
     <PageWrapperSingle title={data.name} pageTitle="Portfolio">
       <main className={css.masterWrapper}>
@@ -25,13 +26,13 @@ const Master = ({ data }) => {
   );
 };
 // Это вызывается при каждом запросе
-export async function getServerSideProps({ query }) {
+Master.getInitialProps = async ({ query }) => {
   // Получить данные из внешнего API
   const res = await fetch(`http://localhost:4200/master_data/${query.id}`);
   const data = await res.json();
 
   // Передать данные на страницу через реквизит
-  return { props: { data } };
-}
+  return { data };
+};
 
 export default Master;

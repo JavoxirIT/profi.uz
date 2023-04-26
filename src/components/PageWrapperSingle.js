@@ -15,6 +15,7 @@ export const PageWrapperSingle = ({
   children,
   title,
   pageTitle = "Sahifa",
+  t,
 }) => {
   return (
     <>
@@ -32,19 +33,19 @@ export const PageWrapperSingle = ({
       <Layout className={css.layout}>
         <Header className={css.header}>
           <div className={css.headerMobileMenu}>
-            <MenuOutlined className={css.headerMobileMenuIcon} />
+            <MenuOutlined className={css.headerMobileMenuIcon} t={t} />
           </div>
           <Link className={css.headerLogo} href="/">
             profi.uz
           </Link>
           <Title level={4}>{pageTitle}</Title>
-          <NotificationIconBlock />
+          <NotificationIconBlock t={t} />
         </Header>
         <Content className={css.content}>
           <div className={css.section}> {children}</div>
         </Content>
         <Footer className={css.footer}>
-          <FooterMenu />
+          <FooterMenu t={t} />
         </Footer>
       </Layout>
     </>

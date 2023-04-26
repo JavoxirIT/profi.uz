@@ -17,7 +17,7 @@
 }
 @media (min-width: 220px) and (max-width: 1175px) {
   .TabCard {
-    height: 250px;
+    height: auto;
   }
   .TabCardText {
     font-size: 14px;

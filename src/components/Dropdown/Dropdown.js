@@ -1,30 +1,46 @@
+import { useEffect, useState } from "react";
 import { Dropdown, Space, Switch, Typography } from "antd";
 import { RiEarthFill } from "react-icons/ri";
 import { Segmented } from "antd";
 import css from "../../styles/NotificationIconBlock.module.css";
-import { useState } from "react";
 import { uz } from "../language/uz";
 import { ru } from "../language/ru";
+
+import useLang from "store/store";
+
 const DropDown = () => {
-  const [value, setValue] = useState(uz);
+  const lang = useLang((state) => state.lang);
+
+  const addLanguage = useLang((state) => state.addLanguage);
+  const removeLanguage = useLang((state) => state.removeLanguage);
+  const [myLang, setLang] = useState();
+
+  useEffect(() => {
+    setLang(lang);
+  }, [lang]);
+
   const items = [
     {
       key: "1",
       label: (
         <Segmented
           options={["uz", "ru"]}
-          value={value}
-          onChange={(e) => setValue(e === "uz" ? ru : uz)}
+          value={myLang}
+          onChange={(e) =>
+            e === "uz"
+              ? addLanguage({ state: uz })
+              : removeLanguage({ state: ru })
+          }
         />
       ),
     },
     {
       key: "2",
-      label: <Switch checkedChildren="uz" unCheckedChildren="ru" />,
+      label: "",
     },
     {
       key: "3",
-      label: "Item 3",
+      label: "",
     },
   ];
   return (

@@ -1,20 +1,65 @@
 import { useRouter } from "next/router";
 import { PageWrapperGlobal } from "../components/PageWrapperGlobal";
-import MasterWrapper from "../components/Master/MasterWrapper";
-import { Typography, Checkbox, Card, Space } from "antd";
-import css from "../styles/Index.module.css";
+import { HiOutlineLocationMarker } from "react-icons/hi";
+import { AiFillHeart } from "react-icons/ai";
+import Link from "next/link";
+import Image from "next/image";
+import { Typography, Card, Tag, Rate, Checkbox, Space } from "antd";
 
-// import {
-//   HeartTwoTone,
-//   ArrowDownOutlined,
-//   HeartOutlined,
-// } from "@ant-design/icons";
+import css from "../styles/Index.module.css";
+import { useEffect, useState } from "react";
 
 const { Text, Title } = Typography;
 
 function HomePage({ data, t }) {
+  const [loding, setLoding] = useState(false);
+  useEffect(() => {
+    if (data) {
+      setLoding(true);
+    }
+  }, [data]);
+
+  const masterData = data.map((i) => (
+    <Card
+      key={i.id}
+      style={{
+        marginBottom: 15,
+      }}
+    >
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Image src={i.image} alt="avatar" width={40} height={40} />
+          <div style={{ paddingLeft: 10 }}>
+            <Text style={{ fontSize: 12 }}>{i.type[0].type}</Text>
+            <br />
+
+            <Link href={"/index/[id]"} as={`/index/${i.id}`}>
+              <Title level={5}> {i.name} </Title>
+            </Link>
+          </div>
+        </div>
+        <Rate count={1} character={<AiFillHeart aria-labelledby="like" />} />
+      </div>
+      <div>
+        <p style={{ marginBottom: 10 }}>
+          <HiOutlineLocationMarker />
+          <Text style={{ paddingLeft: 10 }}>{i.location}</Text>
+        </p>
+        {i.type.map((e) => (
+          <Tag key={e.id}>{e.type}</Tag>
+        ))}
+      </div>
+    </Card>
+  ));
+
   return (
-    <PageWrapperGlobal title="Asosi" pageTitle="Kategoriyalar">
+    <PageWrapperGlobal title="Asosi" pageTitle="Kategoriyalar" t={t}>
       <main className={css.indexContainer}>
         <div>
           <Title level={4} className={css.indexTitltFilter}>
@@ -112,16 +157,7 @@ function HomePage({ data, t }) {
         </div>
         <div>
           <Title level={4}>Eng Ommaboplari</Title>
-          {data.map((i) => (
-            <MasterWrapper
-              key={i.id}
-              id={i.id}
-              image={i.image}
-              location={i.location}
-              name={i.name}
-              type={i.type}
-            />
-          ))}
+          {loding && masterData}
         </div>
       </main>
     </PageWrapperGlobal>

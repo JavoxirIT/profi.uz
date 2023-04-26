@@ -98,8 +98,9 @@
     width: 100%;
     max-width: calc(100vw - 30px);
     padding-left: 0;
+    padding-top: 5px;
     display: grid;
-    grid-template-columns: 50px 1fr 1fr;
+    grid-template-columns: 20% 1fr 1fr;
     grid-template-rows: repeat(2, 50px);
   }
 
@@ -133,6 +134,11 @@
     grid-row-start: 2;
     grid-row-end: 3;
     margin-top: 10px;
+  }
+  .headerNotificationIconBlock {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
   }
   .content {
     margin-top: 0;

@@ -14,11 +14,12 @@ export default function PageWrapperAuthorization({
   pageTitle,
 }) {
   const { route } = useRouter();
-  console.log("router:", route);
-
   let style;
-
-  if (route === "/authorization" || route === "/registration") {
+  if (
+    route === "/authorization" ||
+    route === "/registration" ||
+    route === "/anketa"
+  ) {
     style = "headerLogo2";
   } else {
     style = "css.headerLogo";

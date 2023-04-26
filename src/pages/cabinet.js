@@ -10,7 +10,7 @@ import CabinetNavigateList from "components/Cabinet/CabinetNavigateList";
 
 const { Title, Text } = Typography;
 const spesialist = process.env.NEXT_PUBLIC_USER_SPECIALIST;
-export default function Cabinet({ data }) {
+export default function Cabinet({ data, t }) {
   const [isChecked, setChecked] = useState(false);
   const router = useRouter();
   const user =
@@ -18,8 +18,6 @@ export default function Cabinet({ data }) {
 
   useEffect(() => {
     const userData = JSON.parse(user) ?? 0;
-    console.log(typeof Number(userData.role_id));
-    console.log(typeof Number(spesialist));
     if (!getCookie("access_token")) {
       router.push("/authorization").then(() => {
         setChecked(false);
@@ -43,7 +41,7 @@ export default function Cabinet({ data }) {
     })
   );
   return (
-    <PageWrapperSingle title="Kabinet" pageTitle="Kabinet">
+    <PageWrapperSingle title="Kabinet" pageTitle={t.cabinet} t={t}>
       {isChecked && (
         <div className={css.cabinetCardBlock}>
           <Card className={css.cabinetCardUserInfo}>
@@ -70,7 +68,7 @@ export default function Cabinet({ data }) {
           </Card>
           <Card className={css.cabinetCardUserNavigate}>
             <div className={css.CardUserNavigateLinkBlock}>
-              <CabinetNavigateList />
+              <CabinetNavigateList t={t} />
             </div>
           </Card>
         </div>

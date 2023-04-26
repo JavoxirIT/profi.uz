@@ -5,14 +5,18 @@ import { Avatar, Button, Form, Input, List } from "antd";
 import moment from "moment";
 import { PageWrapperSingle } from "components/PageWrapperSingle";
 
-export const CommentList = ({ comments }) => (
-  <List
-    dataSource={comments}
-    header={`${comments.length} ${comments.length > 1 ? "replies" : "reply"}`}
-    itemLayout="horizontal"
-    renderItem={(props) => <Editor {...props} />}
-  />
-);
+export const CommentList = ({ comments }) => {
+  console.log("com:", comments);
+  return (
+    <List
+      dataSource={comments}
+      header={`${comments.length} ${comments.length > 1 ? "replies" : "reply"}`}
+      itemLayout="horizontal"
+      renderItem={({ content }) => console.log("props", content)}
+    />
+  );
+};
+
 export const Editor = ({ onChange, onSubmit, submitting, value }) => (
   <>
     <Form.Item>
@@ -34,6 +38,7 @@ export const Editor = ({ onChange, onSubmit, submitting, value }) => (
 const Chat = () => {
   const router = useRouter();
   const { query } = router;
+
   const [comments, setComments] = useState([]);
   const [submitting, setSubmitting] = useState(false);
   const [value, setValue] = useState("");
@@ -49,7 +54,7 @@ const Chat = () => {
           author: "Han Solo",
           avatar: "https://joeschmoe.io/api/v1/random",
           content: <p>{value}</p>,
-          datetime: moment("2016-11-22").fromNow(),
+          datetime: moment(Date.now()).fromNow(),
         },
       ]);
     }, 1000);
@@ -58,7 +63,7 @@ const Chat = () => {
     setValue(e.target.value);
   };
   return (
-    <PageWrapperSingle title="Chat">
+    <PageWrapperSingle title="Chat" pageTitle={query.name}>
       {comments.length > 0 && <CommentList comments={comments} />}
 
       <Avatar src="https://joeschmoe.io/api/v1/random" alt="Han Solo" />

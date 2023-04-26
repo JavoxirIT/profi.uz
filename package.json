@@ -8,7 +8,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "mock": "json-server -w db.json -p 4200 -d 100 ",
+    "mock": "json-server -w db.json -p 4200 ",
     "serve": "concurrently \"npm run dev\" \"npm run mock\" ",
     "predev": "ts-node --project ./tsconfig.node.json ./src/scripts/genAntdCss.tsx",
     "prebuild": "cross-env NODE_ENV=production ts-node --project ./tsconfig.node.json ./src/scripts/genAntdCss.tsx"
@@ -23,7 +23,7 @@
     "antd": "^5.4.2",
     "antd-img-crop": "^4.12.2",
     "axios": "^1.3.5",
-    "chart.js": "^4.2.1",
+    "chart.js": "^2.9.4",
     "concurrently": "^8.0.1",
     "cross-env": "^7.0.3",
     "next": "^13.2.4",

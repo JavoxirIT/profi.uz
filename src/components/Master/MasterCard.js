@@ -9,7 +9,7 @@ export default function TabCard({ data }) {
   const router = useRouter();
 
   const [isType] = useState(
-    data.type.slice(0, 1).map((i) => {
+    data?.type.slice(0, 1).map((i) => {
       return i.type;
     })
   );
@@ -21,14 +21,22 @@ export default function TabCard({ data }) {
     <>
       <Card className={css.TabCard}>
         <div className={css.UserTabCard}>
-          <Image src={data.image} width={90} height={90} alt="avatar" />
+          <Image
+            priority
+            src={data.image}
+            width={90}
+            height={90}
+            alt="avatar"
+            placeholder="blur"
+            blurDataURL="url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN88MDjPQAHqQL56h3ziQAAAABJRU5ErkJggg==)"
+          />
           <Title level={3} style={{ paddingTop: 16 }}>
             {data.name}
           </Title>
           <Text className={css.TabCardText}>{isType}</Text>
           <div style={{ paddingTop: 16 }}>
             {data.type.map((i) => (
-              <Tag color="default" key={i.id}>
+              <Tag color="default" key={i.id} style={{ margin: 5 }}>
                 {i.type}
               </Tag>
             ))}
@@ -39,7 +47,7 @@ export default function TabCard({ data }) {
         onClick={() => {
           router.push({
             pathname: "/chat",
-            query: { id: data.id },
+            query: { id: data.id, name: data.name },
           });
         }}
         type="primary"
