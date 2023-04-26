@@ -1,6 +1,7 @@
 import React from "react";
 import { Button, Result } from "antd";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 const Error500 = () => {
   const router = useRouter();

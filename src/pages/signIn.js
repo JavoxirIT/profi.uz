@@ -1,10 +1,10 @@
-import { PageWrapper } from "../components/PageWrapperGlobal";
+import { PageWrapperGlobal } from "../components/PageWrapperGlobal";
 
 function SignIn() {
   return (
-    <PageWrapper title="Войти">
+    <PageWrapperGlobal title="Войти">
       <h1>Sign in</h1>
-    </PageWrapper>
+    </PageWrapperGlobal>
   );
 }
 export default SignIn;

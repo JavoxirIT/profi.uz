@@ -1,6 +1,5 @@
 import { useRouter } from "next/router";
 import { PageWrapperGlobal } from "../components/PageWrapperGlobal";
-
 import MasterWrapper from "../components/Master/MasterWrapper";
 import { Typography, Checkbox, Card, Space } from "antd";
 import css from "../styles/Index.module.css";
@@ -14,17 +13,6 @@ import css from "../styles/Index.module.css";
 const { Text, Title } = Typography;
 
 function HomePage({ data, t }) {
-  const masterData = data.map((i) => (
-    <MasterWrapper
-      key={i.id}
-      id={i.id}
-      image={i.image}
-      location={i.location}
-      name={i.name}
-      type={i.type}
-    />
-  ));
-
   return (
     <PageWrapperGlobal title="Asosi" pageTitle="Kategoriyalar">
       <main className={css.indexContainer}>
@@ -124,7 +112,16 @@ function HomePage({ data, t }) {
         </div>
         <div>
           <Title level={4}>Eng Ommaboplari</Title>
-          {masterData}
+          {data.map((i) => (
+            <MasterWrapper
+              key={i.id}
+              id={i.id}
+              image={i.image}
+              location={i.location}
+              name={i.name}
+              type={i.type}
+            />
+          ))}
         </div>
       </main>
     </PageWrapperGlobal>

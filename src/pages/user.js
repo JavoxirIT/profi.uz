@@ -1,10 +1,10 @@
 import React from "react";
-import { SinglePageWrapper } from "../components/PageWrapperSingle";
+import { PageWrapperSingle } from "../components/PageWrapperSingle";
 function User() {
   return (
-    <SinglePageWrapper>
+    <PageWrapperSingle>
       <h1>user</h1>
-    </SinglePageWrapper>
+    </PageWrapperSingle>
   );
 }
 export default User;
