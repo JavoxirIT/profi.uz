@@ -25,13 +25,15 @@ export const PageWrapperGlobal = ({
     <>
       <Head>
         <meta charSet="utf-8" />
+        <meta httpEquiv="Content-Language" content="uz_UZ" />
+        <meta name="theme-color" content="#0c0d15" />
         <meta
           name="description"
           content="site for finding and hiring or using various services"
         />
         <meta name="keywords" content="" />
         <meta name="viewport" content="width=device-width" />
-        <meta httpEquiv="Content-Language" content="uz_UZ" />
+        <link rel="manifest" href="../../manifest.json" />
         <title>{title}</title>
       </Head>
       <Layout className={css.layout}>

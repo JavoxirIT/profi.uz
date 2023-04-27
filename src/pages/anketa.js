@@ -306,7 +306,7 @@ export default function Anketa({ viloyat, special }) {
                   body: formData,
                 };
 
-                fetch("http://4biz.uz/api/profile-img", config)
+                fetch("https://4biz.uz/api/profile-img", config)
                   .then((res) => res.json())
                   .then((json) => {
                     console.log("json", json.status);
