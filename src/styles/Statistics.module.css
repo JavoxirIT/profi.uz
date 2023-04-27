@@ -45,6 +45,6 @@
 @media (min-width: 220px) and (max-width: 1175px) {
   .StatisticsWrapperCard {
     margin-top: 10px !important;
-    height: calc(100% - 140px) !important;
+    height: 100% !important;
   }
 }

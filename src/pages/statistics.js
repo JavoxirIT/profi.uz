@@ -12,9 +12,10 @@ export default function Statistics({ t }) {
         className={css.StatisticsWrapperCard}
         bodyStyle={{
           height: "100%",
+          flex: "1 1 auto",
           display: "flex",
           flexDirection: "column",
-          alignContent: "space-between",
+          alignItems: "stretch",
         }}
       >
         <StatisticsBlock t={t} />

@@ -59,20 +59,20 @@ function StatisticsChart() {
             {
               //   display: false,
               //   stacked: true,
-              scaleLabel: {
-                display: true,
-                labelString: "Xafta Kunlari",
-              },
+              //   scaleLabel: {
+              //     display: true,
+              //     labelString: "Xafta Kunlari",
+              //   },
             },
           ],
           yAxes: [
             {
               //   display: false,
               //   stacked: true,
-              scaleLabel: {
-                display: true,
-                labelString: "Farq",
-              },
+              //   scaleLabel: {
+              //     display: true,
+              //     labelString: "Farq",
+              //   },
             },
           ],
         },

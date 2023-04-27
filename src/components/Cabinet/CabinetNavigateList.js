@@ -53,7 +53,11 @@ const CabinetNavigateList = ({ t }) => {
       onClick={() => handleLink(i)}
       className={css.CabinetNavigateBlockList}
     >
-      <Link className={css.NavigateLinkBlockItem} href={i.link}>
+      <Link
+        className={css.NavigateLinkBlockItem}
+        href={i.link}
+        style={{ display: "block", width: "100%" }}
+      >
         {i.title}
       </Link>
     </Tag>
