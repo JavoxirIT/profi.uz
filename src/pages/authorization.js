@@ -45,7 +45,7 @@ function Authorization({ t }) {
     await postFetch({ path, method, value })
       .then((res) => {
         setLoader(false);
-        console.log(res);
+        //   console.log(res);
         if (res.status === 200) {
           setCookie("access_token", res.data.access_token, res.data.expires_in);
           setCookie("access_type", res.data.token_type);

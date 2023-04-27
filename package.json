@@ -8,8 +8,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "mock": "json-server -w db.json -p 4200 ",
-    "serve": "concurrently \"npm run dev\" \"npm run mock\" ",
+    "export": "next export",
     "predev": "ts-node --project ./tsconfig.node.json ./src/scripts/genAntdCss.tsx",
     "prebuild": "cross-env NODE_ENV=production ts-node --project ./tsconfig.node.json ./src/scripts/genAntdCss.tsx"
   },

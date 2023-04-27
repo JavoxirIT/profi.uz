@@ -1,15 +1,21 @@
 import { Tabs } from "antd";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import css from "../../styles/TabCard.module.css";
-const MasterTab = ({ data }) => {
-  const information = data.info.map((i) => {
+const MasterTab = ({ t }) => {
+  const [comm, setComm] = useState([]);
+
+  useEffect(() => {
+    fetch(`https://jsonplaceholder.typicode.com/comments?postId=1`)
+      .then((response) => response.json())
+      .then((json) => setComm(json));
+  }, []);
+  const information = comm.map((i) => {
     return {
-      label: `${i.title}`,
+      label: `${i.email}`,
       key: `${i.id}`,
-      children: `${i.info}`,
+      children: `${i.body}`,
     };
   });
-
   return (
     <Tabs
       defaultActiveKey="1"

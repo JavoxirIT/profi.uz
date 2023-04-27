@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Typography, Card, Tag, Rate, Checkbox, Space } from "antd";
 import css from "../styles/Index.module.css";
+import img from "../../public/assets/images/3.png";
 import { useEffect } from "react";
 
 const { Text, Title } = Typography;
@@ -25,9 +26,9 @@ function HomePage({ data, t }) {
             alignItems: "center",
           }}
         >
-          <Image src={i.image} alt="avatar" width={40} height={40} />
+          <Image src={img} alt="avatar" width={40} height={40} />
           <div style={{ paddingLeft: 10 }}>
-            <Text style={{ fontSize: 12 }}>{i.type[0].type}</Text>
+            <Text style={{ fontSize: 12 }}>{i.website}</Text>
             <br />
 
             <Link href={"/index/[id]"} as={`/index/${i.id}`}>
@@ -40,11 +41,11 @@ function HomePage({ data, t }) {
       <div>
         <p style={{ marginBottom: 10 }}>
           <HiOutlineLocationMarker />
-          <Text style={{ paddingLeft: 10 }}>{i.location}</Text>
+          <Text style={{ paddingLeft: 10 }}>{i.address.city}</Text>
         </p>
-        {i.type.map((e) => (
-          <Tag key={e.id}>{e.type}</Tag>
-        ))}
+
+        <Tag key={i.phone}>{i.phone}</Tag>
+        <Tag key={i.website}>{i.website}</Tag>
       </div>
     </Card>
   ));
@@ -157,7 +158,7 @@ function HomePage({ data, t }) {
 
 export async function getServerSideProps() {
   // Получить данные из внешнего API
-  const res = await fetch("http://localhost:4200/master");
+  const res = await fetch("https://jsonplaceholder.typicode.com/users");
   const data = await res.json();
 
   if (!data) {

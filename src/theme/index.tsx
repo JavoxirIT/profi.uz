@@ -58,7 +58,7 @@ const withTheme = (node: JSX.Element) => (
             Tag: {
               borderRadius: 10,
               colorBgContainer: "#000",
-              fontSizeSM: 20,
+              fontSizeSM: 16,
               lineHeight: 2,
               colorFillQuaternary: "#0c0d15",
               colorBorder: "#0c0d15",

@@ -5,11 +5,12 @@ import { useRouter } from "next/router";
 import { getCookie } from "utils/setCookie";
 import Image from "next/image";
 import css from "../styles/Cabinet.module.css";
-import Link from "next/link";
 import CabinetNavigateList from "components/Cabinet/CabinetNavigateList";
+import img from "../../public/assets/images/users1.png";
 
 const { Title, Text } = Typography;
 const spesialist = process.env.NEXT_PUBLIC_USER_SPECIALIST;
+
 export default function Cabinet({ data, t }) {
   const [isChecked, setChecked] = useState(false);
   const router = useRouter();
@@ -35,11 +36,6 @@ export default function Cabinet({ data, t }) {
     router.prefetch("/authorization");
   }, [router]);
 
-  const [isType] = useState(
-    data.type.slice(0, 1).map((i) => {
-      return i.type;
-    })
-  );
   return (
     <PageWrapperSingle title="Kabinet" pageTitle={t.cabinet} t={t}>
       {isChecked && (
@@ -47,7 +43,7 @@ export default function Cabinet({ data, t }) {
           <Card className={css.cabinetCardUserInfo}>
             <div className={css.cabinetCardUserInfoBody}>
               <Image
-                src={data.image}
+                src={img}
                 width={90}
                 height={90}
                 alt="avatar"
@@ -56,13 +52,11 @@ export default function Cabinet({ data, t }) {
               <Title level={3} style={{ paddingTop: 16 }}>
                 {data.name}
               </Title>
-              <Text>{isType}</Text>
+              <Text>{data.username}</Text>
               <div style={{ paddingTop: 16 }}>
-                {data.type.map((i) => (
-                  <Tag color="default" key={i.id}>
-                    {i.type}
-                  </Tag>
-                ))}
+                <Tag color="default" key={data.company.bs}>
+                  {data.company.bs}
+                </Tag>
               </div>
             </div>
           </Card>
@@ -79,9 +73,8 @@ export default function Cabinet({ data, t }) {
 // Это вызывается при каждом запросе
 export async function getServerSideProps({ query }) {
   // Получить данные из внешнего API
-  const res = await fetch(`http://localhost:4200/master_data/1`);
+  const res = await fetch(`https://jsonplaceholder.typicode.com/users/1`);
   const data = await res.json();
-
   // Передать данные на страницу через реквизит
   return { props: { data } };
 }

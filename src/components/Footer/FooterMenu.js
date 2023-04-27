@@ -1,6 +1,6 @@
 import React from "react";
-import Links from "../MobileLinks";
+import MobileLinks from "../MobileLinks";
 
 export default function FooterMenu({ t }) {
-  return <Links t={t} />;
+  return <MobileLinks t={t} />;
 }

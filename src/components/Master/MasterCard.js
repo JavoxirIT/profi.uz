@@ -1,45 +1,46 @@
-import { Button, Card, Tag, Typography } from "antd";
-import Image from "next/image";
+import { Button, Card, Tag, Typography, Image } from "antd";
+// import Image from "next/image";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import css from "../../styles/TabCard.module.css";
+import img from "../../../public/assets/images/2.png";
 const { Text, Title } = Typography;
 
-export default function TabCard({ data }) {
+export default function MasterCard({ data, t }) {
+  const [user, setUser] = useState([]);
   const router = useRouter();
-
-  const [isType] = useState(
-    data?.type.slice(0, 1).map((i) => {
-      return i.type;
-    })
-  );
 
   //   const goChat = () =>
   //     router.push({ pathname: "/chat", query: { pid: `${data.id}` } });
+
+  useEffect(() => {
+    fetch(`https://jsonplaceholder.typicode.com/photos/${router.query.id}`)
+      .then((response) => response.json())
+      .then((json) => setUser(json));
+  }, [router.query.id]);
 
   return (
     <>
       <Card className={css.TabCard}>
         <div className={css.UserTabCard}>
-          <Image
+          {/* <Image
             priority
-            src={data.image}
+            src={user.url}
             width={90}
             height={90}
             alt="avatar"
-            placeholder="blur"
-            blurDataURL="url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN88MDjPQAHqQL56h3ziQAAAABJRU5ErkJggg==)"
-          />
+            // placeholder="blur"
+            // blurDataURL={user.thumbnailUrl}
+          /> */}
+          <Image width={150} src={user.url} preview={user.thumbnailUrl} />
           <Title level={3} style={{ paddingTop: 16 }}>
             {data.name}
           </Title>
-          <Text className={css.TabCardText}>{isType}</Text>
+          <Text className={css.TabCardText}>{data.phone}</Text>
           <div style={{ paddingTop: 16 }}>
-            {data.type.map((i) => (
-              <Tag color="default" key={i.id} style={{ margin: 5 }}>
-                {i.type}
-              </Tag>
-            ))}
+            <Tag color="default" key={1} style={{ margin: 5 }}>
+              {data.address.city}
+            </Tag>
           </div>
         </div>
       </Card>
