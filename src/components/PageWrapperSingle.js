@@ -35,7 +35,7 @@ export const PageWrapperSingle = ({
           <div className={css.headerMobileMenu}>
             <MenuOutlined className={css.headerMobileMenuIcon} t={t} />
           </div>
-          <Link className={css.headerLogo} href="/">
+          <Link className={css.headerLogo} href={"/"}>
             profi.uz
           </Link>
           <Title level={4}>{pageTitle}</Title>

@@ -1,24 +1,15 @@
-import { useRouter } from "next/router";
 import { PageWrapperGlobal } from "../components/PageWrapperGlobal";
 import { HiOutlineLocationMarker } from "react-icons/hi";
 import { AiFillHeart } from "react-icons/ai";
 import Link from "next/link";
 import Image from "next/image";
 import { Typography, Card, Tag, Rate, Checkbox, Space } from "antd";
-
 import css from "../styles/Index.module.css";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 const { Text, Title } = Typography;
 
 function HomePage({ data, t }) {
-  const [loding, setLoding] = useState(false);
-  useEffect(() => {
-    if (data) {
-      setLoding(true);
-    }
-  }, [data]);
-
   const masterData = data.map((i) => (
     <Card
       key={i.id}
@@ -157,16 +148,16 @@ function HomePage({ data, t }) {
         </div>
         <div>
           <Title level={4}>Eng Ommaboplari</Title>
-          {loding && masterData}
+          {masterData}
         </div>
       </main>
     </PageWrapperGlobal>
   );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   // Получить данные из внешнего API
-  const res = await fetch(`http://localhost:4200/master`);
+  const res = await fetch("http://localhost:4200/master");
   const data = await res.json();
 
   if (!data) {

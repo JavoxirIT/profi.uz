@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 const ErrorPage = () => {
   const router = useRouter();
-  console.log("roter", router);
+ 
   const handleBack = (e) => {
     e.preventDefault();
     router.back();

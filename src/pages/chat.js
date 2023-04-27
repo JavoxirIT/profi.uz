@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import { useRouter } from "next/router";
-import { PageWrapperGlobal } from "components/PageWrapperGlobal";
 import { Avatar, Button, Form, Input, List } from "antd";
 import moment from "moment";
 import { PageWrapperSingle } from "components/PageWrapperSingle";
 
 export const CommentList = ({ comments }) => {
-  console.log("com:", comments);
   return (
     <List
       dataSource={comments}
@@ -35,7 +33,7 @@ export const Editor = ({ onChange, onSubmit, submitting, value }) => (
   </>
 );
 
-const Chat = () => {
+const Chat = ({ t }) => {
   const router = useRouter();
   const { query } = router;
 
@@ -52,7 +50,7 @@ const Chat = () => {
         ...comments,
         {
           author: "Han Solo",
-          avatar: "https://joeschmoe.io/api/v1/random",
+          avatar: "",
           content: <p>{value}</p>,
           datetime: moment(Date.now()).fromNow(),
         },
@@ -63,10 +61,10 @@ const Chat = () => {
     setValue(e.target.value);
   };
   return (
-    <PageWrapperSingle title="Chat" pageTitle={query.name}>
+    <PageWrapperSingle title="Chat" t={t}>
       {comments.length > 0 && <CommentList comments={comments} />}
 
-      <Avatar src="https://joeschmoe.io/api/v1/random" alt="Han Solo" />
+      <Avatar src="" alt="Han Solo" />
       <Editor
         onChange={handleChange}
         onSubmit={handleSubmit}

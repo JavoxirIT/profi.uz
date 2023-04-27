@@ -6,11 +6,11 @@ import "../styles/global.css"; //may-global style
 import withTheme from "../theme/index"; // antd theme
 import { uz } from "components/language/uz";
 import { postFetch } from "request/Fetch";
-import { useRouter } from "next/router";
 import Preloader from "components/Preloder/Preloader";
 import Preloade2 from "components/Preloder/Preloade2";
 import "../scripts/loding";
 import useLang from "../store/store";
+import { useRouter } from "next/router";
 export default function App({ Component, pageProps }) {
   const lang = useLang((state) => state.lang);
   const [viloyat, setViloyat] = useState([]);
@@ -62,7 +62,7 @@ export default function App({ Component, pageProps }) {
   useEffect(() => {
     setLanguage(lang);
   }, [lang]);
-  
+
   return withTheme(
     <StyleProvider hashPriority="high">
       {/* <Switch
