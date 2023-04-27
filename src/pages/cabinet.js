@@ -15,7 +15,7 @@ export default function Cabinet({ data, t }) {
   const [isChecked, setChecked] = useState(false);
   const router = useRouter();
   const user =
-    typeof window !== "undefined" ? sessionStorage.getItem("user") : null;
+    typeof window !== "undefined" ? localStorage.getItem("user") : null;
 
   useEffect(() => {
     const userData = JSON.parse(user) ?? 0;

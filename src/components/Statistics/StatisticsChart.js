@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Chart } from "chart.js";
+import { Chart } from "chart.js/auto";
 import { Layout } from "antd";
 import css from "../../styles/Statistics.module.css";
 function StatisticsChart() {

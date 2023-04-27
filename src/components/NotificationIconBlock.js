@@ -17,7 +17,7 @@ export default function NotificationIconBlock({ t }) {
   const goBack = (e) => {
     eraseCookie("access_token");
     eraseCookie("access_type");
-    sessionStorage.removeItem("user");
+    localStorage.removeItem("user");
     router.push("/authorization");
   };
 
