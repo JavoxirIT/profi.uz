@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
 // import NextNProgress from "nextjs-progressbar";
 import { StyleProvider } from "@ant-design/cssinjs";
-import "../../public/antd.min.css"; //antd theme global css
-import "../styles/global.css"; //may-global style
 import withTheme from "../theme/index"; // antd theme
 import { uz } from "components/language/uz";
 import { postFetch } from "request/Fetch";
 import Preloader from "components/Preloder/Preloader";
 import Preloade2 from "components/Preloder/Preloade2";
-import "../scripts/loding";
 import useLang from "../store/store";
 import { useRouter } from "next/router";
+import "../../public/antd.min.css"; //antd theme global css
+import "../styles/global.css"; //may-global style
+import "../scripts/loding";
 export default function App({ Component, pageProps }) {
   const lang = useLang((state) => state.lang);
   const [viloyat, setViloyat] = useState([]);

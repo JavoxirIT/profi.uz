@@ -50,15 +50,11 @@ const DropDown = () => {
       }}
       placement="bottomLeft"
     >
-      <Typography.Link>
-        <Space>
-          <RiEarthFill
-            className={css.NotificationIconBlockIcon}
-            title="dropdown"
-            aria-label="dropdown"
-          />
-        </Space>
-      </Typography.Link>
+      <RiEarthFill
+        className={css.NotificationIconBlockIcon}
+        title="dropdown"
+        aria-label="dropdown"
+      />
     </Dropdown>
   );
 };

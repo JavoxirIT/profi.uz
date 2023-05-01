@@ -197,7 +197,7 @@ export default function Anketa({ viloyat, special }) {
             ]}
             // hasFeedback
           >
-            <Select allowClear onSelect={onSpecialSelect}>
+            <Select allowClear onSelect={onSpecialSelect} virtual={false}>
               {special.map((i) => (
                 <Option key={i.id} value={i.id}>
                   {i.name}
@@ -216,7 +216,7 @@ export default function Anketa({ viloyat, special }) {
               },
             ]}
           >
-            <Select mode="multiple">
+            <Select mode="multiple" virtual={false}>
               {isspecial.map((i) => (
                 <Option key={i.id} value={i.id}>
                   {i.name}
@@ -235,7 +235,7 @@ export default function Anketa({ viloyat, special }) {
             ]}
             // hasFeedback
           >
-            <Select allowClear onSelect={onViloyatSelect}>
+            <Select allowClear onSelect={onViloyatSelect} virtual={false}>
               {viloyat.map((i) => (
                 <Option key={i.id} value={i.id}>
                   {i.vil_name}
@@ -254,7 +254,7 @@ export default function Anketa({ viloyat, special }) {
             ]}
             // hasFeedback
           >
-            <Select allowClear>
+            <Select allowClear virtual={false}>
               {tuman.map((i) => (
                 <Option key={i.id} value={i.id}>
                   {i.tuman_name}
@@ -309,8 +309,9 @@ export default function Anketa({ viloyat, special }) {
                 fetch("https://4biz.uz/api/profile-img", config)
                   .then((res) => res.json())
                   .then((json) => {
-                    console.log("json", json.status);
-                    console.log("image:", json.data.image);
+                    console.log("json", json);
+                    //   console.log("json", json.status);
+                    //   console.log("image:", json.data.image);
                     if (json.status === "success") {
                       form.setFieldsValue({
                         image: json.data.image,
