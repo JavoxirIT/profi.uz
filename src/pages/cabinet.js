@@ -7,7 +7,7 @@ import Image from "next/image";
 import css from "../styles/Cabinet.module.css";
 import CabinetNavigateList from "components/Cabinet/CabinetNavigateList";
 
-const { Title } = Typography;
+const { Title, Text } = Typography;
 const spesialist = process.env.NEXT_PUBLIC_USER_SPECIALIST;
 const url = process.env.NEXT_PUBLIC_ONE_USER;
 const urlImg = process.env.NEXT_PUBLIC_IMG_URL;
@@ -44,18 +44,18 @@ export default function Cabinet({ user, t }) {
           <Card className={css.cabinetCardUserInfo}>
             <div className={css.cabinetCardUserInfoBody}>
               <Image
-                src={`https://4biz.uz/${user?.image}`}
+                src={`${urlImg + user.image}`}
                 width={90}
                 height={90}
                 alt="avatar"
                 className={css.UserInfoBodyImg}
               />
               <Title level={3} style={{ paddingTop: 16 }}>
-                {user?.firstname} {user?.lastname}
+                {user.firstname} {user.lastname}
               </Title>
               <div style={{ paddingTop: 16 }}>
-                <Tag color="default" key={user?.special?.id}>
-                  {user?.special?.name}
+                <Tag color="default" key={user.special.id}>
+                  {user.special.name}
                 </Tag>
               </div>
             </div>

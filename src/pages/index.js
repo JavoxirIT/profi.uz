@@ -4,21 +4,21 @@ import { AiFillHeart } from "react-icons/ai";
 import Link from "next/link";
 import Image from "next/image";
 import { Typography, Card, Tag, Rate, Checkbox, Form, Button } from "antd";
+import css from "../styles/Index.module.css";
 import { useEffect, useState } from "react";
 import { getCookie } from "utils/setCookie";
 import axios from "axios";
-// import Preloader from "components/Preloder/Preloader";
+import Preloader from "components/Preloder/Preloader";
 import { postFetch } from "../request/Fetch";
-import css from "../styles/Index.module.css";
+import img from "../../public/assets/images/2.png";
 
 const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 const urlAlUser = process.env.NEXT_PUBLIC_ALL_USER;
-// const urlImg = process.env.NEXT_PUBLIC_IMG_URL;
+const urlImg = process.env.NEXT_PUBLIC_IMG_URL;
 const { Text, Title } = Typography;
 const isType = typeof window !== undefined;
 
-function HomePage({ data, t, viloyat, special }) {
-  const [filter, setFilter] = useState([]);
+function HomePage({ data, t }) {
   const [user, setUser] = useState(data);
   useEffect(() => {
     const config = {
@@ -45,7 +45,7 @@ function HomePage({ data, t, viloyat, special }) {
           console.log(error);
         });
     }
-  }, [data, filter]);
+  }, [data]);
   const [vil, setVil] = useState([]);
   useEffect(() => {
     const path = "viloyat";
@@ -81,13 +81,11 @@ function HomePage({ data, t, viloyat, special }) {
   }, []);
 
   const onFinish = async (value) => {
-    // setUser([])
     const config = {
       method: "POST",
       url: `${apiUrl}sorted-user`,
       headers: {
         "Content-Type": "application/json",
-        // Authorization: getCookie("access_type") + " " + getCookie("access_token"),
       },
       data: JSON.stringify(value),
     };
@@ -101,49 +99,10 @@ function HomePage({ data, t, viloyat, special }) {
         console.log(error);
       });
   };
-  const masterData = user.map((i) => (
-    <Card key={i.id} className={css.indexUserCard}>
-      <div className={css.indexUserCardInfo}>
-        <div className={css.indexUserCardInfo1}>
-          <Image
-            src={`https://4biz.uz/${i.image}`}
-            alt="avatar"
-            width={70}
-            height={70}
-            className={css.indexUserImage}
-            // priority={true}
-          />
-          <div style={{ paddingLeft: 20 }}>
-            <Text style={{ fontSize: 14 }} key={i.special?.id || null}>
-              {i.special?.name}
-            </Text>
-            <br />
 
-            <Link href={"/index/[id]"} as={`/index/${i.id}`}>
-              <Title level={4}>
-                {i.firstname} {i.lastname}
-              </Title>
-            </Link>
-          </div>
-        </div>
-        <Rate
-          count={i.like}
-          character={<AiFillHeart aria-labelledby="like" />}
-        />
-      </div>
-      <div>
-        <p style={{ marginBottom: 10, paddingTop: 10 }}>
-          <HiOutlineLocationMarker />
-          <Text style={{ paddingLeft: 10 }}>{i.distirct?.vil_name}</Text>
-        </p>
-
-        <Tag key={i.sub_special?.id}>{i.sub_special?.name || null}</Tag>
-      </div>
-    </Card>
-  ));
-  //   if (!data) {
-  //     return <Preloader />;
-  //   }
+  if (!user) {
+    return <Preloader />;
+  }
   return (
     <PageWrapperGlobal
       title="Asosi"
@@ -193,7 +152,60 @@ function HomePage({ data, t, viloyat, special }) {
         </div>
         <div>
           <Title level={4}>Eng Ommaboplari</Title>
-          {masterData}
+          {user.map((i) => (
+            <Card key={i.id} className={css.indexUserCard}>
+              <div className={css.indexUserCardInfo}>
+                <div className={css.indexUserCardInfo1}>
+                  {i.image !== null ? (
+                    <Image
+                      src={`${urlImg + i.image}`}
+                      alt="avatar"
+                      width={70}
+                      height={70}
+                      className={css.indexUserImage}
+                      priority={true}
+                    />
+                  ) : (
+                    <Image
+                      src={img}
+                      alt="avatar"
+                      width={70}
+                      height={70}
+                      className={css.indexUserImage}
+                      priority={true}
+                    />
+                  )}
+
+                  <div style={{ paddingLeft: 20 }}>
+                    <Text style={{ fontSize: 14 }} key={i.special?.id || null}>
+                      {i.special?.name}
+                    </Text>
+                    <br />
+
+                    <Link href={"/index/[id]"} as={`/index/${i.id}`}>
+                      <Title level={4}>
+                        {i.firstname} {i.lastname}
+                      </Title>
+                    </Link>
+                  </div>
+                </div>
+                <Rate
+                  count={i.like}
+                  character={<AiFillHeart aria-labelledby="like" />}
+                />
+              </div>
+              <div>
+                <p style={{ marginBottom: 10, paddingTop: 10 }}>
+                  <HiOutlineLocationMarker />
+                  <Text style={{ paddingLeft: 10 }}>
+                    {i.distirct?.vil_name}
+                  </Text>
+                </p>
+
+                <Tag key={i.sub_special?.id}>{i.sub_special?.name || null}</Tag>
+              </div>
+            </Card>
+          ))}
         </div>
       </main>
     </PageWrapperGlobal>
@@ -201,7 +213,7 @@ function HomePage({ data, t, viloyat, special }) {
 }
 
 export async function getServerSideProps(context) {
-  //   const { req } = context;
+  const { req } = context;
   const config = {
     method: "POST",
     headers: {

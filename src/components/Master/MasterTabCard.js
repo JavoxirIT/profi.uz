@@ -1,5 +1,5 @@
 import { Tabs, Typography } from "antd";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import css from "../../styles/TabCard.module.css";
 
 const { Text, Title, Paragraph } = Typography;
@@ -12,11 +12,11 @@ const MasterTab = ({ t, data }) => {
         <>
           <div>
             <Title level={4}>Batafsil</Title>
-            <Text>{data?.description}</Text>
+            <Text>{data.description}</Text>
           </div>
-          <div key={data?.sub_special.id}>
-            <Title level={4}>{data?.sub_special.name}</Title>
-            <Text>{data?.sub_special.desc}</Text>
+          <div key={data.sub_special.id}>
+            <Title level={4}>{data.sub_special.name}</Title>
+            <Text>{data.sub_special.desc}</Text>
           </div>
         </>
       ),
