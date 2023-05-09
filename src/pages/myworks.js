@@ -113,18 +113,7 @@ export default function MyWorks({ t }) {
           >
             <Input className={css.MyWorkormInput} />
           </Form.Item>
-          <Form.Item
-            name="image"
-            label="Rasm"
-            valuePropName="picture"
-
-            // rules={[
-            //   {
-            //     required: true,
-            //     message: "Rasm tanlang!",
-            //   },
-            // ]}
-          >
+          <Form.Item name="image" label="Rasm" valuePropName="picture">
             <ImgCrop
               showGrid
               rotationSlider
@@ -146,20 +135,20 @@ export default function MyWorks({ t }) {
                   },
                   body: formData,
                 };
-                //  fetch("", config)
-                //    .then((res) => res.json())
-                //    .then((json) => {
-                //      console.log("json", json.status);
-                //      console.log("image:", json.data.image);
-                //      if (json.status === "success") {
-                //        form.setFieldsValue({
-                //          image: json.data.image,
-                //        });
-                //      }
-                //    })
-                //    .catch((err) => {
-                //      console.log(err);
-                //    });
+                fetch("", config)
+                  .then((res) => res.json())
+                  .then((json) => {
+                    console.log("json", json.status);
+                    console.log("image:", json.data.image);
+                    if (json.status === "success") {
+                      form.setFieldsValue({
+                        image: json.data.image,
+                      });
+                    }
+                  })
+                  .catch((err) => {
+                    console.log(err);
+                  });
               }}
             >
               <Upload
@@ -197,14 +186,14 @@ export default function MyWorks({ t }) {
             </Button>
           </Form.Item>
         </Form>
-        <Modal
+        {/* <Modal
           open={previewOpen}
           title={previewTitle}
           footer={null}
           onCancel={handleCancel}
         >
           <Image src={previewImage} alt="image" width={330} height={350} />
-        </Modal>
+        </Modal> */}
         <div className={css.MayWorkNavigateBlock}>
           <Button type="link" size="large" onClick={handleCabinet}>
             <FiUser style={{ marginRight: 10 }} /> {t.cabinet}

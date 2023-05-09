@@ -377,14 +377,14 @@ export default function Anketa({}) {
             </Button>
           </Form.Item>
         </Form>
-        <Modal
+        {/* <Modal
           open={previewOpen}
           title={previewTitle}
           footer={null}
           onCancel={handleCancel}
         >
-          <Image src={previewImage} alt="image" width={330} height={350} />
-        </Modal>
+          <img src={previewImage} alt="image" width={330} height={350} />
+        </Modal> */}
         <div className={css.AnketaNavigateBlock}>
           <Button type="link" size="large" onClick={handleCabinet}>
             <FiUser style={{ marginRight: 10 }} /> Kabinet
