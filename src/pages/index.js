@@ -18,8 +18,8 @@ const urlImg = process.env.NEXT_PUBLIC_IMG_URL;
 const { Text, Title } = Typography;
 const isType = typeof window !== undefined;
 
-function HomePage({ data, t }) {
-  const [user, setUser] = useState(data);
+function HomePage({ newData, t }) {
+  const [user, setUser] = useState(newData);
   useEffect(() => {
     const config = {
       method: "POST",
@@ -31,7 +31,7 @@ function HomePage({ data, t }) {
           : null,
       },
     };
-    if (!data && !filter) {
+    if (!newData) {
       axios(config)
         .then((res) => {
           if (res.status === 200) {
@@ -45,7 +45,7 @@ function HomePage({ data, t }) {
           console.log(error);
         });
     }
-  }, [data]);
+  }, [newData]);
   const [vil, setVil] = useState([]);
   useEffect(() => {
     const path = "viloyat";
@@ -100,7 +100,6 @@ function HomePage({ data, t }) {
       });
   };
 
-  const newDate = user.filter((i) => i.image !== null);
   if (!user) {
     return <Preloader />;
   }
@@ -153,7 +152,7 @@ function HomePage({ data, t }) {
         </div>
         <div>
           <Title level={4}>Eng Ommaboplari</Title>
-          {newDate.map((i) => (
+          {user.map((i) => (
             <Card key={i.id} className={css.indexUserCard}>
               <div className={css.indexUserCardInfo}>
                 <div className={css.indexUserCardInfo1}>
@@ -213,8 +212,7 @@ function HomePage({ data, t }) {
   );
 }
 
-export async function getServerSideProps(context) {
-  const { req } = context;
+export async function getServerSideProps() {
   const config = {
     method: "POST",
     headers: {
@@ -223,9 +221,10 @@ export async function getServerSideProps(context) {
   };
   const response = await fetch(urlAlUser, config);
   const data = await response.json();
+  const newData = data.filter((i) => i.image !== null);
   return {
     props: {
-      data,
+      newData,
     },
   };
 }
