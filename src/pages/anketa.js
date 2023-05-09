@@ -8,11 +8,11 @@ import {
   Typography,
   Button,
   notification,
+  Image,
 } from "antd";
 import ImgCrop from "antd-img-crop";
 import PageWrapperAuthorization from "components/PageWrapperAuthorization";
 import { CloudUploadOutlined } from "@ant-design/icons";
-import Image from "next/image";
 import css from "../styles/Anketa.module.css";
 import { getCookie } from "utils/setCookie";
 import { useRouter } from "next/router";
@@ -25,7 +25,7 @@ const { Title, Text } = Typography;
 
 const isType = typeof window !== undefined;
 
-export default function Anketa({ }) {
+export default function Anketa({}) {
   const [viloyat, setViloyat] = useState([]);
   const [special, setSpecial] = useState([]);
   useEffect(() => {
@@ -33,28 +33,28 @@ export default function Anketa({ }) {
     const method = "GET";
 
     postFetch({ path, method, value: "" })
-        .then((res) => {
-          if (res.status === 200) {
-            setViloyat(res.data.viloyat);
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      .then((res) => {
+        if (res.status === 200) {
+          setViloyat(res.data.viloyat);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, [setViloyat]);
   //
   useEffect(() => {
     const path = "special";
     const method = "GET";
     postFetch({ path, method, value: "" })
-        .then((res) => {
-          if (res.status === 200) {
-            setSpecial(res.data.special);
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      .then((res) => {
+        if (res.status === 200) {
+          setSpecial(res.data.special);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
   // сообщение об успешном изминения данных
   const [api, contextHolder] = notification.useNotification();

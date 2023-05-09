@@ -8,16 +8,16 @@ import {
   Typography,
   Button,
   notification,
+  Image,
 } from "antd";
 import ImgCrop from "antd-img-crop";
 import PageWrapperAuthorization from "components/PageWrapperAuthorization";
 import { CloudUploadOutlined } from "@ant-design/icons";
-import Image from "next/image";
 import { getCookie } from "utils/setCookie";
 import { useRouter } from "next/router";
 import { FiUser } from "react-icons/fi";
 import { CgHomeAlt } from "react-icons/cg";
-import { postFetch } from "request/Fetch";
+// import { postFetch } from "request/Fetch";
 import css from "../styles/MyWorks.module.css";
 
 const { Option } = Select;
