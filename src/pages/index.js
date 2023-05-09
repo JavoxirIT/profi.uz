@@ -4,16 +4,16 @@ import { AiFillHeart } from "react-icons/ai";
 import Link from "next/link";
 import Image from "next/image";
 import { Typography, Card, Tag, Rate, Checkbox, Form, Button } from "antd";
-import css from "../styles/Index.module.css";
 import { useEffect, useState } from "react";
 import { getCookie } from "utils/setCookie";
 import axios from "axios";
 // import Preloader from "components/Preloder/Preloader";
 import { postFetch } from "../request/Fetch";
+import css from "../styles/Index.module.css";
 
 const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 const urlAlUser = process.env.NEXT_PUBLIC_ALL_USER;
-const urlImg = process.env.NEXT_PUBLIC_IMG_URL;
+// const urlImg = process.env.NEXT_PUBLIC_IMG_URL;
 const { Text, Title } = Typography;
 const isType = typeof window !== undefined;
 
@@ -106,7 +106,7 @@ function HomePage({ data, t, viloyat, special }) {
       <div className={css.indexUserCardInfo}>
         <div className={css.indexUserCardInfo1}>
           <Image
-            src={urlImg + i.image}
+            src={`https://4biz.uz/${i.image}`}
             alt="avatar"
             width={70}
             height={70}
@@ -201,7 +201,7 @@ function HomePage({ data, t, viloyat, special }) {
 }
 
 export async function getServerSideProps(context) {
-  const { req } = context;
+  //   const { req } = context;
   const config = {
     method: "POST",
     headers: {

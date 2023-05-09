@@ -302,17 +302,7 @@ export default function Anketa({}) {
             />
           </Form.Item>
 
-          <Form.Item
-            name="image"
-            label="Rasm"
-            valuePropName="picture"
-            // rules={[
-            //   {
-            //     required: true,
-            //     message: "Rasm tanlang!",
-            //   },
-            // ]}
-          >
+          <Form.Item name="image" label="Rasm" valuePropName="picture">
             <ImgCrop
               showGrid
               rotationSlider

@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { PageWrapperSingle } from "../components/PageWrapperSingle";
-import { Card, List, Tag, Typography } from "antd";
+import { Card, Tag, Typography } from "antd";
 import { useRouter } from "next/router";
 import { getCookie } from "utils/setCookie";
 import Image from "next/image";
 import css from "../styles/Cabinet.module.css";
 import CabinetNavigateList from "components/Cabinet/CabinetNavigateList";
 
-const { Title, Text } = Typography;
+const { Title } = Typography;
 const spesialist = process.env.NEXT_PUBLIC_USER_SPECIALIST;
 const url = process.env.NEXT_PUBLIC_ONE_USER;
 const urlImg = process.env.NEXT_PUBLIC_IMG_URL;
@@ -44,7 +44,7 @@ export default function Cabinet({ user, t }) {
           <Card className={css.cabinetCardUserInfo}>
             <div className={css.cabinetCardUserInfoBody}>
               <Image
-                src={urlImg + user?.image}
+                src={`https://4biz.uz/${user?.image}`}
                 width={90}
                 height={90}
                 alt="avatar"

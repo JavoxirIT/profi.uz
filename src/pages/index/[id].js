@@ -4,13 +4,13 @@ import React from "react";
 import MasterTabCard from "../../components/Master/MasterTabCard";
 import css from "../../styles/Master.module.css";
 import MasterCard from "../../components/Master/MasterCard";
-import { getCookie } from "utils/setCookie";
-import useSWR, { unstable_serialize } from "swr";
+// import { getCookie } from "utils/setCookie";
+// import useSWR, { unstable_serialize } from "swr";
 import { useRouter } from "next/router";
-import axios from "axios";
-import { postFetch } from "request/Fetch";
+// import axios from "axios";
+// import { postFetch } from "request/Fetch";
 
-const { Text, Title } = Typography;
+const { Title } = Typography;
 
 const url = process.env.NEXT_PUBLIC_ONE_USER;
 

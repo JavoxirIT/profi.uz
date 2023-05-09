@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import css from "../../styles/TabCard.module.css";
 const { Text, Title } = Typography;
 
-const urlImg = process.env.NEXT_PUBLIC_IMG_URL;
+// const urlImg = process.env.NEXT_PUBLIC_IMG_URL;
 
 export default function MasterCard({ data, t }) {
   const router = useRouter();
@@ -20,7 +20,7 @@ export default function MasterCard({ data, t }) {
           <Image
             className={css.UserTabCardImage}
             priority
-            src={urlImg + data.image}
+            src={`https://4biz.uz/${data.image}`}
             width={90}
             height={90}
             alt="avatar"
