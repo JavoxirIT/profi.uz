@@ -31,7 +31,12 @@ export default function MasterCard({ data, t }) {
               // blurDataURL={user.thumbnailUrl}
             />
           ) : (
-            <Image width={150} src={img} preview={user.thumbnailUrl} />
+            <Image
+              width={150}
+              src={img}
+              preview={user.thumbnailUrl}
+              alt="img"
+            />
           )}
           {/*  */}
 

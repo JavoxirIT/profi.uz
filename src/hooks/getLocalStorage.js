@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export default function getLocalStorage(key) {
+export default function useLocStrGetItem(key) {
   const storage =
     typeof window !== "undefined" ? localStorage.getItem(key) : null;
 
