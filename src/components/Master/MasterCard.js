@@ -1,15 +1,13 @@
-import { Button, Card, Tag, Typography, Image } from "antd";
-// import Image from "next/image";
+import React from "react";
+import { Button, Card, Tag, Typography } from "antd";
+import Image from "next/image";
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
 import css from "../../styles/TabCard.module.css";
-import img from "../../../public/assets/images/2.png";
 const { Text, Title } = Typography;
 
 const urlImg = process.env.NEXT_PUBLIC_IMG_URL;
 
 export default function MasterCard({ data, t }) {
-  const [user, setUser] = useState([]);
   const router = useRouter();
 
   //   const goChat = () =>
@@ -19,27 +17,16 @@ export default function MasterCard({ data, t }) {
     <>
       <Card className={css.TabCard}>
         <div className={css.UserTabCard}>
-          {data.image ? (
-            <Image
-              className={css.UserTabCardImage}
-              priority
-              src={urlImg + data.image}
-              width={90}
-              height={90}
-              alt="avatar"
-              // placeholder="blur"
-              // blurDataURL={user.thumbnailUrl}
-            />
-          ) : (
-            <Image
-              width={150}
-              src={img}
-              preview={user.thumbnailUrl}
-              alt="img"
-            />
-          )}
-          {/*  */}
-
+          <Image
+            className={css.UserTabCardImage}
+            priority
+            src={urlImg + data.image}
+            width={90}
+            height={90}
+            alt="avatar"
+            // placeholder="blur"
+            // blurDataURL={user.thumbnailUrl}
+          />
           <Title level={3} style={{ paddingTop: 16 }}>
             {data?.firstname} {data?.lastname}
           </Title>

@@ -76,7 +76,7 @@ export async function getServerSideProps(context) {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: req.cookies.access_type + " " + req.cookies.access_token,
+      Authorization: "Bearer" + " " + req.cookies.access_token,
     },
     body: JSON.stringify({ user_id: req.cookies.user_id }),
   };
