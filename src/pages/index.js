@@ -100,6 +100,7 @@ function HomePage({ data, t }) {
       });
   };
 
+  const newDate = user.filter((i) => i.image !== null);
   if (!user) {
     return <Preloader />;
   }
@@ -152,7 +153,7 @@ function HomePage({ data, t }) {
         </div>
         <div>
           <Title level={4}>Eng Ommaboplari</Title>
-          {user.map((i) => (
+          {newDate.map((i) => (
             <Card key={i.id} className={css.indexUserCard}>
               <div className={css.indexUserCardInfo}>
                 <div className={css.indexUserCardInfo1}>
