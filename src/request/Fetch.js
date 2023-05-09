@@ -7,11 +7,11 @@ export async function postFetch({ path, method, value }) {
     url: `${url + path}`,
     headers: {
       "Content-Type": "application/json",
-      Authorization: getCookie("access_type") + " " + getCookie("access_token"),
+      Authorization: "Bearer" + " " + getCookie("access_token"),
     },
     data: value,
   };
-  //   console.log("postFetch:", config);
+    // console.log("postFetch:", config);
   return axios(config)
     .then((res) => {
       return res;

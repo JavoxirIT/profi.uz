@@ -5,6 +5,10 @@
   align-items: center;
   /* padding-right: 40px; */
 }
+.NotificationIconBlock2{
+  display: flex;
+  align-items: center;
+}
 .NotificationIconBlockIcon {
   width: 20px;
   height: 20px;

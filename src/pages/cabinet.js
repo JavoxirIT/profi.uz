@@ -6,19 +6,20 @@ import { getCookie } from "utils/setCookie";
 import Image from "next/image";
 import css from "../styles/Cabinet.module.css";
 import CabinetNavigateList from "components/Cabinet/CabinetNavigateList";
-import img from "../../public/assets/images/users1.png";
 
 const { Title, Text } = Typography;
 const spesialist = process.env.NEXT_PUBLIC_USER_SPECIALIST;
+const url = process.env.NEXT_PUBLIC_ONE_USER;
+const urlImg = process.env.NEXT_PUBLIC_IMG_URL;
 
-export default function Cabinet({ data, t }) {
+export default function Cabinet({ user, t }) {
   const [isChecked, setChecked] = useState(false);
   const router = useRouter();
-  const user =
+  const localData =
     typeof window !== "undefined" ? localStorage.getItem("user") : null;
 
   useEffect(() => {
-    const userData = JSON.parse(user) ?? 0;
+    const userData = JSON.parse(localData) ?? 0;
     if (!getCookie("access_token")) {
       router.push("/authorization").then(() => {
         setChecked(false);
@@ -29,7 +30,7 @@ export default function Cabinet({ data, t }) {
     } else {
       setChecked(true);
     }
-  }, [router, user]);
+  }, [router, localData]);
 
   // заранее загружаем страницу
   useEffect(() => {
@@ -43,19 +44,18 @@ export default function Cabinet({ data, t }) {
           <Card className={css.cabinetCardUserInfo}>
             <div className={css.cabinetCardUserInfoBody}>
               <Image
-                src={img}
+                src={urlImg + user?.image}
                 width={90}
                 height={90}
                 alt="avatar"
                 className={css.UserInfoBodyImg}
               />
               <Title level={3} style={{ paddingTop: 16 }}>
-                {data.name}
+                {user?.firstname} {user?.lastname}
               </Title>
-              <Text>{data.username}</Text>
               <div style={{ paddingTop: 16 }}>
-                <Tag color="default" key={data.company.bs}>
-                  {data.company.bs}
+                <Tag color="default" key={user?.special?.id}>
+                  {user?.special?.name}
                 </Tag>
               </div>
             </div>
@@ -70,11 +70,21 @@ export default function Cabinet({ data, t }) {
     </PageWrapperSingle>
   );
 }
-// Это вызывается при каждом запросе
-export async function getServerSideProps({ query }) {
-  // Получить данные из внешнего API
-  const res = await fetch(`https://jsonplaceholder.typicode.com/users/1`);
-  const data = await res.json();
-  // Передать данные на страницу через реквизит
-  return { props: { data } };
+export async function getServerSideProps(context) {
+  const { query, req } = context;
+  const config = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: req.cookies.access_type + " " + req.cookies.access_token,
+    },
+    body: JSON.stringify({ user_id: req.cookies.user_id }),
+  };
+  const response = await fetch(url, config);
+  const user = await response.json();
+  return {
+    props: {
+      user,
+    },
+  };
 }

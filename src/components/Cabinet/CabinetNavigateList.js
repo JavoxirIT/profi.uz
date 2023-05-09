@@ -7,7 +7,7 @@ const CabinetNavigateList = ({ t }) => {
   const data = [
     {
       id: 1,
-      link: "/anketa",
+      link: "",
       title: t.anketa,
     },
     {
@@ -27,7 +27,7 @@ const CabinetNavigateList = ({ t }) => {
     },
     {
       id: 5,
-      link: "/asdasd",
+      link: "/anketa",
       title: t.edit,
     },
     {

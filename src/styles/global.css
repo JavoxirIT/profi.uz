@@ -37,7 +37,14 @@ body {
   padding: 0;
   margin: 0 auto;
 }
-
+.ant-checkbox-group {
+  display: flex !important;
+  flex-flow: column !important;
+}
+.ant-checkbox-wrapper {
+  padding: 5px 0 !important;
+  margin-left:  0!important;
+}
 .ant-tabs-nav-wrap {
   margin-bottom: 10px !important;
 }

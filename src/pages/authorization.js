@@ -48,7 +48,7 @@ function Authorization({ t }) {
         //   console.log(res);
         if (res.status === 200) {
           setCookie("access_token", res.data.access_token, res.data.expires_in);
-          setCookie("access_type", res.data.token_type);
+          setCookie("user_id", res.data.user.id, res.data.expires_in);
           setUser(res.data.user);
           openNotificationWithIcon(
             "success",
@@ -151,7 +151,7 @@ function Authorization({ t }) {
               />
             </Form.Item>
 
-            <Form.Item className={style.AuthorizationFormButtonForm}>
+            <Form.Item >
               <Button
                 type="primary"
                 htmlType="submit"

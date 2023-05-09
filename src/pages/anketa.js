@@ -25,14 +25,44 @@ const { Title, Text } = Typography;
 
 const isType = typeof window !== undefined;
 
-export default function Anketa({ viloyat, special }) {
+export default function Anketa({ }) {
+  const [viloyat, setViloyat] = useState([]);
+  const [special, setSpecial] = useState([]);
+  useEffect(() => {
+    const path = "viloyat";
+    const method = "GET";
+
+    postFetch({ path, method, value: "" })
+        .then((res) => {
+          if (res.status === 200) {
+            setViloyat(res.data.viloyat);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+  }, [setViloyat]);
+  //
+  useEffect(() => {
+    const path = "special";
+    const method = "GET";
+    postFetch({ path, method, value: "" })
+        .then((res) => {
+          if (res.status === 200) {
+            setSpecial(res.data.special);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+  }, []);
   // сообщение об успешном изминения данных
   const [api, contextHolder] = notification.useNotification();
   const openNotificationWithIcon = (type, code, message) => {
     api[type]({
       message: code,
       description: message,
-      dduration: 0,
+      duration: 1500,
     });
   };
 
@@ -54,7 +84,7 @@ export default function Anketa({ viloyat, special }) {
     router.prefetch("/cabinet");
     router.prefetch("/");
   }, [router]);
-  // действия с upload
+  //! действия с upload
   const getBase64 = (file) =>
     new Promise((resolve, reject) => {
       const reader = new FileReader();
@@ -104,14 +134,14 @@ export default function Anketa({ viloyat, special }) {
       });
   };
   // получаем ид из спецыалистов
-  const [isspecial, setSpecial] = useState([]);
+  const [isspecial, setIsSpecial] = useState([]);
   const onSpecialSelect = (e) => {
     const method = "GET";
     const path = `sub-special/${e} `;
     postFetch({ path, method, value: "" })
       .then((res) => {
-        if (res.status == 200) {
-          setSpecial(res.data.special);
+        if (res.status === 200) {
+          setIsSpecial(res.data.special);
         }
       })
       .catch((err) => {
@@ -123,7 +153,7 @@ export default function Anketa({ viloyat, special }) {
   const onFineshAnketa = (value) => {
     const method = "POST";
     const path = "user-update";
-    console.log(value);
+    // console.log(value);
     postFetch({ path, method, value })
       .then((res) => {
         console.log("udate user", res);

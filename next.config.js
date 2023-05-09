@@ -13,7 +13,7 @@ module.exports = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "via.placeholder.com",
+        hostname: "https//4biz.uz",
         port: "",
         pathname: "",
       },
@@ -21,8 +21,8 @@ module.exports = {
   },
 };
 
-const withBundleAnalyzer = require("@next/bundle-analyzer")({
-  enabled: process.env.ANALYZE === "true",
-  openAnalyzer: true,
-});
-module.exports = withBundleAnalyzer({});
+// const withBundleAnalyzer = require("@next/bundle-analyzer")({
+//   enabled: process.env.ANALYZE === "true",
+//   openAnalyzer: true,
+// });
+// module.exports = withBundleAnalyzer({});

@@ -20,10 +20,6 @@ function MobileLinks({ t }) {
         <p style={{ fontSize: 10 }}>{t.home}</p>
       </Link>
       <Link className={css.link} href={""}>
-        <TbCategory />
-        <p style={{ fontSize: 10 }}>{t.category}</p>
-      </Link>
-      <Link className={css.link} href={""}>
         <AiOutlineHeart />
         <p style={{ fontSize: 10 }}>{t.live}</p>
       </Link>

@@ -42,6 +42,7 @@ export default function NotificationIconBlock({ t }) {
           <FiUser
             className={css.NotificationIconBlockIcon}
             aria-label="cabinet"
+            title="cabinet"
           />
         </Link>
       </div>
