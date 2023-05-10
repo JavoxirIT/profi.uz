@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, Form, Input, notification, message } from "antd";
+import { Button, Form, Input, notification } from "antd";
 import { PatternFormat } from "react-number-format";
 import PageWrapperAuthorization from "../components/PageWrapperAuthorization";
 import Link from "next/link";
@@ -32,7 +32,7 @@ function Authorization({ t }) {
     api[type]({
       message: code,
       description: message,
-      dduration: 0,
+      duration: 1500,
     });
   };
 

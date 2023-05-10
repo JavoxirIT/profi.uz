@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export default function useLocStrGetItem(key) {
+export default function useLocalStorage(initialState,key) {
   const storage =
     typeof window !== "undefined" ? localStorage.getItem(key) : null;
 
@@ -8,7 +8,7 @@ export default function useLocStrGetItem(key) {
     if (storage) {
       return JSON.parse(storage);
     }
-    return initiavlValue;
+    return initialState;
   }
 
   const [value, setValue] = useState(getValue);
