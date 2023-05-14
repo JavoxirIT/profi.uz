@@ -170,7 +170,8 @@ function AllMessage({name, id, mess, allMessage}) {
 	}
 	useEffect(() => {
 		scrollToBottom()
-	},);
+	// 	eslint-disable-next-line
+	},[]);
 
 	return (
 		<Layout className={css.AllMessageWrapper}>
