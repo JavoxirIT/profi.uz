@@ -44,13 +44,13 @@ export const PageWrapperGlobal = ({
             <Layout className={css.layout}>
                 <Header
                     className={css.header}
-                    style={{
-                        position: "sticky",
-                        top: 0,
-                        zIndex: 1,
-                        width: "100%",
-                        paddingTop: 24,
-                    }}
+                    // style={{
+                    //     position: "sticky",
+                    //     top: 0,
+                    //     zIndex: 1,
+                    //     width: "100%",
+                    //     paddingTop: 24,
+                    // }}
                 >
                     <div className={css.headerBlock1}>
                         <div className={css.headerMobileMenu}>

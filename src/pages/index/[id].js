@@ -17,8 +17,9 @@ const url = process.env.NEXT_PUBLIC_ONE_USER;
 const Master = ({ t, data }) => {
   //   const { data, error } = useSWR(repoInfo);
   const { query } = useRouter();
+  // console.log(data)
   return (
-    <PageWrapperSingle title={""} pageTitle="Portfolio" t={t}>
+    <PageWrapperSingle title={data.firstname  + " " + data.lastname} pageTitle="Portfolio" t={t}>
       <main className={css.masterWrapper}>
         <div>
           <Title style={{ marginBottom: 22 }} level={4}>

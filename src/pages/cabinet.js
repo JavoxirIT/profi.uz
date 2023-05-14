@@ -25,8 +25,9 @@ export default function Cabinet({ user, t }) {
         setChecked(false);
       });
     } else if (Number(spesialist) !== Number(userData.role_id)) {
-      setChecked(false);
-      router.push("/");
+      router.push("/").then(() => {
+        setChecked(false);
+      });
     } else {
       setChecked(true);
     }
@@ -62,7 +63,7 @@ export default function Cabinet({ user, t }) {
           </Card>
           <Card className={css.cabinetCardUserNavigate}>
             <div className={css.CardUserNavigateLinkBlock}>
-              <CabinetNavigateList t={t} />
+              <CabinetNavigateList t={t} id={user.id}/>
             </div>
           </Card>
         </div>

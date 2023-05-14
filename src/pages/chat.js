@@ -1,91 +1,95 @@
 import React, {useEffect, useState} from "react";
 import {useRouter} from "next/router";
-import {Avatar, Button, Form, Input, List} from "antd";
-import moment from "moment";
+import {Card, notification} from "antd";
 import {PageWrapperSingle} from "components/PageWrapperSingle";
 import {getCookie} from "../utils/setCookie";
+import AllChats from "../components/chat/AllChats";
+import {postFetch} from "../request/Fetch";
+import AllMessage from "../components/chat/AllMessage";
+import css from "../styles/Chat.module.css"
+import useMessage from "../store/chatStor";
+import ResultNoData from "../utils/ResultNoData";
+import AllChatsMobileDrawer from "../components/chat/AllChatsMobileDrawer";
 
-
-export const CommentList = ({comments}) => {
-    return (
-        <List
-            dataSource={comments}
-            header={`${comments.length} ${comments.length > 1 ? "replies" : "reply"}`}
-            itemLayout="horizontal"
-            renderItem={({content}) => console.log("props", content)}
-        />
-    );
-};
-
-export const Editor = ({onChange, onSubmit, submitting, value}) => (
-    <>
-        <Form.Item>
-            <Input.TextArea rows={4} onChange={onChange} value={value}/>
-        </Form.Item>
-        <Form.Item>
-            <Button
-                htmlType="submit"
-                loading={submitting}
-                onClick={onSubmit}
-                type="primary"
-            >
-                Add Comment
-            </Button>
-        </Form.Item>
-    </>
-);
+const apiUrl = process.env.NEXT_PUBLIC_API_URL
 
 const Chat = ({t}) => {
-    const router = useRouter();
-    const {query} = router;
+	const [notif, setNotif] = useState([])
 
-    const [isChecked, setChecked] = useState(false);
-    useEffect(() => {
-        if (!getCookie("access_token")) {
-            router.push("/authorization").then(() => {
-                setChecked(false);
-            });
-        } else {
-            setChecked(true);
-        }
-    }, [router]);
+	const fetchMessage = useMessage(state => state.fetchMessage)
+	const router = useRouter();
+	const {query} = router;
+	// увидамление
+	const [api, contextHolder] = notification.useNotification();
+	const openNotificationWithIcon = (type, code, message) => {
+		api[type]({
+			message: code,
+			description: message,
+			duration: 2,
+		});
+	};
 
-    const [comments, setComments] = useState([]);
-    const [submitting, setSubmitting] = useState(false);
-    const [value, setValue] = useState("");
-    const handleSubmit = () => {
-        if (!value) return;
-        setSubmitting(true);
-        setTimeout(() => {
-            setSubmitting(false);
-            setValue("");
-            setComments([
-                ...comments,
-                {
-                    author: "Han Solo",
-                    avatar: "",
-                    content: <p>{value}</p>,
-                    datetime: moment(Date.now()).fromNow(),
-                },
-            ]);
-        }, 1000);
-    };
-    const handleChange = (e) => {
-        setValue(e.target.value);
-    };
+	const [rooms, setRooms] = useState([])
+	// получаем все чаты
+	useEffect(() => {
+		const method = "POST"
+		const path = "all-rooms"
+		postFetch({path, method, value: ""}).then((res) => {
+			if (res.status === 200) {
+				setRooms(res.data)
+			}
+			// console.log(res)
+		}).catch((err) => {
+			openNotificationWithIcon("error", err.code, err.message);
+		})
+	}, []);
+	//проверяем авторизован ли пользователь
+	const [isChecked, setChecked] = useState(false);
+	useEffect(() => {
+		if (!getCookie("access_token")) {
+			router.push("/authorization").then(() => {
+				setChecked(false);
+			});
+		} else {
+			setChecked(true);
+		}
+	}, [router]);
 
-    return isChecked && (
-        <PageWrapperSingle title="Chat" t={t}>
-            {comments.length > 0 && <CommentList comments={comments}/>}
+	// получаем переписки с пользователем по клику
+	const allMessage = (key) => {
+		const method = "POST"
+		const path = "all-messages"
+		const value = JSON.stringify({"room_id": Number(key)})
+		postFetch({path, method, value}).then((res) => {
+			if (res.status === 200) {
+				// console.log(res.data)
+				fetchMessage(res.data)
+			} else {
+				openNotificationWithIcon("error", "Ma'lumotlani olib bo'lmadi");
+			}
+		}).catch((err) => {
+			// console.log(err)
+			openNotificationWithIcon("error", err.code, err.message);
+		})
+	}
 
-            <Avatar src="" alt="Han Solo"/>
-            <Editor
-                onChange={handleChange}
-                onSubmit={handleSubmit}
-                submitting={submitting}
-                value={value}
-            />
-        </PageWrapperSingle>
-    );
+	return isChecked && (
+		<PageWrapperSingle title="Suhbatlar" pageTitle={"Suhbatlar"} t={t} setNotif={setNotif}>
+			{contextHolder}
+			<AllChatsMobileDrawer data={rooms} allMessage={allMessage} notif={notif}/>
+			<div className={css.chatWrapper}>
+
+				<Card className={css.chatBlockContact}>
+					{!rooms.length ? <ResultNoData/> : <AllChats data={rooms} allMessage={allMessage} notif={notif}/>}
+				</Card>
+
+				<div>
+					<AllMessage name={query.name} id={query.id}/>
+				</div>
+			</div>
+		</PageWrapperSingle>
+	);
+
 };
+
 export default Chat;

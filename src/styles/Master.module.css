@@ -5,6 +5,23 @@
   column-gap: 60px;
 }
 
+
+/*master comment*/
+.MasterMessageWrapper  {
+  height: calc(100vh - 280px);
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.MasterDataMessage {
+  flex: 1 1 auto;
+  margin-bottom: 10px !important;
+}
+
+.MasterChatEditor {
+
+}
+
 @media (min-width: 220px) and (max-width: 1175px) {
   .masterWrapper {
     display: flex;

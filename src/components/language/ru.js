@@ -10,9 +10,8 @@ export const ru = {
   //   PAGE
   pageTitleAuth: "Авторизацыя",
   //   cabinet
-  cabinet: "Кабинет",
   anketa: "Анкета",
-  mywork: "Выполненные работы",
+  mywork: "Добавить выполненные работы",
   statistics: "Статистика",
   news: "Новости",
   edit: "Изменить",

@@ -10,9 +10,8 @@ export const uz = {
   //   PAGE
   pageTitleAuth: "Kirish",
   //   cabinet
-  cabinet: "Kabinet",
   anketa: "Shaxsiy ma’lumotlar",
-  mywork: "Bajarilgan ishlar",
+  mywork: "Bajarilgan ishlarni qo'shish",
   statistics: "Statistika",
   news: "Xabarlar",
   edit: "Taxrirlash",

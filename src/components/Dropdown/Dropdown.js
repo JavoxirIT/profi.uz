@@ -6,7 +6,7 @@ import css from "../../styles/NotificationIconBlock.module.css";
 import { uz } from "../language/uz";
 import { ru } from "../language/ru";
 
-import useLang from "store/store";
+import useLang from "store/languageStore";
 
 const DropDown = () => {
   const lang = useLang((state) => state.lang);

@@ -6,7 +6,7 @@ import { uz } from "components/language/uz";
 import { postFetch } from "request/Fetch";
 import Preloader from "components/Preloder/Preloader";
 import Preloade2 from "components/Preloder/Preloade2";
-import useLang from "../store/store";
+import useLang from "../store/languageStore";
 import { useRouter } from "next/router";
 import "../../public/antd.min.css"; //antd theme global css
 import "../styles/global.css"; //may-global style
@@ -37,7 +37,7 @@ export default function App({ Component, pageProps }) {
   return withTheme(
     <StyleProvider hashPriority="high">
       <Preloade2 />
-      {loding && <Preloader />}
+      {loding && <Preloade2 />}
       <Component
         {...pageProps}
         t={language}

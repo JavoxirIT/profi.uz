@@ -31,7 +31,14 @@
 .indexUserImage {
   border-radius: 10px;
 }
-
+.indexUserRate{
+  font-size: 30px;
+  color: #6e6f91;
+}
+.indexUserRateTrue{
+  font-size: 30px;
+  color: red;
+}
 @media (min-width: 220px) and (max-width: 1175px) {
   .indexContainer {
     display: flex;

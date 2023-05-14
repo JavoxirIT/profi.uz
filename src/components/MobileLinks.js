@@ -19,7 +19,7 @@ function MobileLinks({ t }) {
         <CgHomeAlt />
         <p style={{ fontSize: 10 }}>{t.home}</p>
       </Link>
-      <Link className={css.link} href={""}>
+      <Link className={css.link} href={"/likeslist"}>
         <AiOutlineHeart />
         <p style={{ fontSize: 10 }}>{t.live}</p>
       </Link>

@@ -1,0 +1,53 @@
+.chatWrapper {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    grid-template-rows: auto;
+    column-gap: 15px;
+    padding-top: 20px;
+}
+
+.AllChatsUserCard {
+    display: flex !important;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ChatUserImage {
+    border-radius: 10px;
+}
+
+.AllMessageWrapper {
+    height: calc(100vh - 150px);
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.ChatDataMessage {
+    flex: 1 1 auto;
+    margin-bottom: 10px !important;
+    overflow-y: auto;
+}
+
+/*.ChatEditor {*/
+.chatFormItems{
+    height: 50px !important;
+}
+/* telegrem button color #3476ab */
+
+@media (min-width: 220px) and (max-width: 1175px) {
+    .chatWrapper{
+        display: flex;
+        flex-direction: column;
+    }
+    .chatBlockContact {
+        display: none;
+    }
+    .ChatEditor > div{
+        padding: 10px !important;
+    }
+    .chatFormItems{
+        height: 50px !important;
+        margin-bottom: 0 !important;
+        font-size: 18px !important;
+    }
+}

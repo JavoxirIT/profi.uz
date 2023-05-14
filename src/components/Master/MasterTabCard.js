@@ -1,7 +1,7 @@
 import { Tabs, Typography } from "antd";
 import React from "react";
 import css from "../../styles/TabCard.module.css";
-
+import MasterWorkComment from "./MasterWorkComment"
 const { Text, Title, Paragraph } = Typography;
 const MasterTab = ({ t, data }) => {
   const items = [
@@ -29,7 +29,7 @@ const MasterTab = ({ t, data }) => {
     {
       key: 3,
       label: "Fikrlar",
-      children: "",
+      children: (<MasterWorkComment/>),
     },
   ];
 

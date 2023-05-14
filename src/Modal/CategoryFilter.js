@@ -15,10 +15,12 @@ function CategoryFilter({setUser, vil, isSpesial, onFinish}) {
         setOpen(true);
     };
     const onClose = () => {
-        form.submit()
         setOpen(false);
     };
-
+const onOk = () =>{
+    form.submit()
+    setOpen(false);
+}
     return (
         <>
             <Button type="primary" size="large" onClick={showDrawer}>
@@ -33,7 +35,7 @@ function CategoryFilter({setUser, vil, isSpesial, onFinish}) {
                 extra={
                     <Space>
                         <Button onClick={onClose}>Qaytish</Button>
-                        <Button type="primary" onClick={onClose}>
+                        <Button type="primary" onClick={onOk}>
                            Saralash
                         </Button>
                     </Space>

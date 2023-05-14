@@ -3,11 +3,11 @@ import Link from "next/link";
 import { eraseCookie } from "utils/setCookie";
 import css from "../../styles/Cabinet.module.css";
 
-const CabinetNavigateList = ({ t }) => {
+const CabinetNavigateList = ({ t, id }) => {
   const data = [
     {
       id: 1,
-      link: "",
+      link: `/index/${id}`,
       title: t.anketa,
     },
     {
@@ -22,7 +22,7 @@ const CabinetNavigateList = ({ t }) => {
     },
     {
       id: 4,
-      link: "",
+      link: "/chat",
       title: t.news,
     },
     {
