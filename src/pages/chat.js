@@ -13,12 +13,12 @@ import AllChatsMobileDrawer from "../components/chat/AllChatsMobileDrawer";
 
 const apiUrl = process.env.NEXT_PUBLIC_API_URL
 
-const Chat = ({t}) => {
-	const [notif, setNotif] = useState([])
+const Chat = ({t, unread}) => {
 
 	const fetchMessage = useMessage(state => state.fetchMessage)
 	const router = useRouter();
 	const {query} = router;
+	// console.log(router)
 	// увидамление
 	const [api, contextHolder] = notification.useNotification();
 	const openNotificationWithIcon = (type, code, message) => {
@@ -38,7 +38,7 @@ const Chat = ({t}) => {
 			if (res.status === 200) {
 				setRooms(res.data)
 			}
-			// console.log(res)
+			// console.log("rooms",res)
 		}).catch((err) => {
 			openNotificationWithIcon("error", err.code, err.message);
 		})
@@ -57,10 +57,12 @@ const Chat = ({t}) => {
 	}, [router]);
 
 	// получаем переписки с пользователем по клику
-	const allMessage = (key) => {
+	const [userid, setUserId] = useState(null)
+	const allMessage = (id, key) => {
+		setUserId(key)
 		const method = "POST"
 		const path = "all-messages"
-		const value = JSON.stringify({"room_id": Number(key)})
+		const value = JSON.stringify({"room_id": Number(id)})
 		postFetch({path, method, value}).then((res) => {
 			if (res.status === 200) {
 				// console.log(res.data)
@@ -75,17 +77,17 @@ const Chat = ({t}) => {
 	}
 
 	return isChecked && (
-		<PageWrapperSingle title="Suhbatlar" pageTitle={"Suhbatlar"} t={t} setNotif={setNotif}>
+		<PageWrapperSingle title="Suhbatlar" pageTitle={"Suhbatlar"} t={t} unread={unread}>
 			{contextHolder}
-			<AllChatsMobileDrawer data={rooms} allMessage={allMessage} notif={notif}/>
+			<AllChatsMobileDrawer data={rooms} allMessage={allMessage} unread={unread}/>
 			<div className={css.chatWrapper}>
 
 				<Card className={css.chatBlockContact}>
-					{!rooms.length ? <ResultNoData/> : <AllChats data={rooms} allMessage={allMessage} notif={notif}/>}
+					{!rooms.length ? <ResultNoData/> : <AllChats data={rooms} allMessage={allMessage} unread={unread} queryID={query.id}/>}
 				</Card>
 
 				<div>
-					<AllMessage name={query.name} id={query.id}/>
+					<AllMessage name={query.name} queryID={query.id} unread={unread} userid={userid}/>
 				</div>
 			</div>
 		</PageWrapperSingle>

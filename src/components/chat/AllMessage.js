@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useLayoutEffect} from 'react';
 import {
 	Button,
 	Card,
@@ -20,22 +20,18 @@ import {Comment} from '@ant-design/compatible';
 import {postFetch} from "../../request/Fetch";
 import useMessage from "../../store/chatStor";
 import ResultNoChats from "../../utils/ResultNoChats";
-
 const urlImg = process.env.NEXT_PUBLIC_IMG_URL;
 const isType = typeof window !== undefined;
-export const CommentList = () => {
+export const CommentList = ({queryID, userid}) => {
 	const message = useMessage(state => state.message)
-
-	if(!message.length){
-		return <ResultNoChats/>
-	}
-	return (
+	 return (
 		message.map((i) => <Comment
+			className={userid === i.user_id || queryID === i.user_id ? `${css.chatComment}` : null}
 			key={i.id}
 			content={
 				<div id="chat">
-					<p style={{paddingBottom: 10}} >{i.message}</p>
-					{i.file && <Image src={urlImg + i.file} alt={"img"} width={200} height={200} />}
+					<p>{i.message}</p>
+					{i.file && <Image src={urlImg + i.file} alt={"img"} width={200} height={200} style={{paddingTop: 10}}/>}
 				</div>
 			}
 			datetime={i.date}
@@ -43,14 +39,14 @@ export const CommentList = () => {
 	);
 };
 
-export const Editor = ({ onSubmit, submitting, form}) => {
+export const Editor = ({onSubmit, submitting, form,}) => {
 
 	return <>
 		<Form form={form} onFinish={onSubmit} initialValues={{
 			file: ""
 		}}>
 			<Space.Compact block>
-				<Form.Item name="file" valuePropName="picture" >
+				<Form.Item name="file" valuePropName="picture">
 					<ImgCrop
 						showGrid
 						rotationSlider
@@ -90,12 +86,13 @@ export const Editor = ({ onSubmit, submitting, form}) => {
 						}}
 					>
 						<Upload style={{width: "100vw"}} showUploadList={false}>
-							<Button  size={"large"} type="primary" className={css.chatFormItems}> <ImAttachment/> </Button>
+							<Button size={"large"} type="primary" className={css.chatFormItems}> <ImAttachment/>
+							</Button>
 						</Upload>
 					</ImgCrop>
 				</Form.Item>
 				<Form.Item name="message" style={{width: "100%",}}>
-					<Input  className={css.chatFormItems}/>
+					<Input className={css.chatFormItems}/>
 				</Form.Item>
 				<Form.Item>
 					<Button
@@ -113,9 +110,9 @@ export const Editor = ({ onSubmit, submitting, form}) => {
 	</>
 }
 
-function AllMessage({name, id, mess, allMessage}) {
+function AllMessage({userid, queryID}) {
+	const message = useMessage(state => state.message)
 	const [form] = Form.useForm()
-	const key = useMessage(state => state.id)
 	const addMessage = useMessage(state => state.addMessage)
 	const [submitting, setSubmitting] = useState(false);
 
@@ -133,10 +130,9 @@ function AllMessage({name, id, mess, allMessage}) {
 		setSubmitting(true);
 		const path = "send-message"
 		const method = "POST"
-		values.user_id = Number(id ?? key)
+		values.user_id = Number(userid ?? queryID)
 		const value = JSON.stringify(values)
 		postFetch({path, method, value}).then((res) => {
-				// console.log(res)
 				if (res.status === 200) {
 					let msg = {
 						date: res.data.date,
@@ -150,10 +146,10 @@ function AllMessage({name, id, mess, allMessage}) {
 					addMessage(msg)
 					setSubmitting(false)
 					form.resetFields()
-				} else if(res.response.status === 302) {
+				} else if (res.response.status === 302) {
 					openNotificationWithIcon("error", "Avval foydalanuvchini tanlang");
 					setSubmitting(false)
-				}else{
+				} else {
 					setSubmitting(false)
 				}
 			}
@@ -165,21 +161,19 @@ function AllMessage({name, id, mess, allMessage}) {
 	};
 	//Скролим вниз чат
 	let messagesEnd;
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	const scrollToBottom = () => {
-		messagesEnd.scrollIntoView({ behavior: "smooth" });
-	}
-	useEffect(() => {
-		scrollToBottom()
-	},[scrollToBottom]);
+	useLayoutEffect(() => {
+		messagesEnd.scrollIntoView({behavior: "smooth"});
+	});
 
 	return (
 		<Layout className={css.AllMessageWrapper}>
 			{contextHolder}
 			<Card className={css.ChatDataMessage}>
-				<CommentList/>
-				<div style={{ float:"left", clear: "both" }}
-				     ref={(el) => { messagesEnd = el; }}>
+				<CommentList queryID={queryID} userid={userid}/>
+				<div style={{float: "left", clear: "both"}}
+				     ref={(el) => {
+					     messagesEnd = el;
+				     }}>
 				</div>
 			</Card>
 			<div className={css.ChatEditor}>

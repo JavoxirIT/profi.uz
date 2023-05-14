@@ -27,6 +27,10 @@
     margin-bottom: 10px !important;
     overflow-y: auto;
 }
+.chatComment{
+    background: #c0a503 !important;
+    color: #fff !important;
+}
 
 /*.ChatEditor {*/
 .chatFormItems{

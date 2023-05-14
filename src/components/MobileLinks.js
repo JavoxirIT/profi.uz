@@ -10,9 +10,7 @@ import { useRouter } from "next/router";
 
 function MobileLinks({ t }) {
   const router = useRouter();
-
   const goBack = (e) => router.back();
-
   return (
     <div style={{ display: "flex", justifyContent: "space-around" }}>
       <Link className={css.link} href={"/"}>

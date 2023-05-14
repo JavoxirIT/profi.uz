@@ -2,13 +2,12 @@ import React, {useState} from 'react';
 import {Button} from "antd";
 import {Avatar, List} from 'antd';
 
+
 // {"id":37,"firstname":"Javoxir","lastname":"Xasanov","phone":"998901005588","image":"/upload/user/U-1682326652.jpg","description":"teat","role_id":2,"room_id":2}
 const urlImg = process.env.NEXT_PUBLIC_IMG_URL;
 
-function AllChats({data, allMessage, notif}) {
-	const [dataID, setDataId] = useState(null)
-	// console.log("data", notif)
-	// console.log("notif", notif)
+function AllChats({data, allMessage, unread, queryID}) {
+
 	const listData = data.map((i) => {
 		return {
 			title: `${i.firstname + " " + i.lastname}`,
@@ -19,6 +18,9 @@ function AllChats({data, allMessage, notif}) {
 	});
 	// console.log("listData", listData)
 
+	const clickAllMessage = (id, key) => {
+		allMessage(id, key)
+	}
 
 
 	return (<List
@@ -31,10 +33,11 @@ function AllChats({data, allMessage, notif}) {
 				<List.Item
 					key={item.title}
 					extra={
-						<Button type="primary" shape="circle" onClick={() => allMessage(item.id)}>
-							{notif.length ? notif.map((j) => j.user?.id === item.key ? j.message_count : 0) : 0}
+						<Button type="primary" shape="circle" onClick={() => clickAllMessage(item.id, item.key)}>
+							0
 						</Button>
 					}
+					onClick={() => allMessage(item.id, item.key)}
 				>
 					<List.Item.Meta
 						avatar={<Avatar src={item.avatar}/>}

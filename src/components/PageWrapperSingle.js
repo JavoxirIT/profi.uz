@@ -6,18 +6,22 @@ import {Layout, Typography} from "antd";
 import {MenuOutlined} from "@ant-design/icons";
 import css from "../styles/PageWrapper.module.css";
 import FooterMenu from "./Footer/FooterMenu";
+import {RiArrowGoBackLine} from "react-icons/ri";
+import {useRouter} from "next/router";
 
 const {Header, Footer, Sider, Content} = Layout;
 
 const {Title} = Typography;
 
 export const PageWrapperSingle = ({
-	                                  setNotif,
+	                                  unread,
 	                                  children,
 	                                  title,
 	                                  pageTitle = "Sahifa",
 	                                  t,
                                   }) => {
+	const router = useRouter();
+	const goBack = (e) => router.back();
 	return (
 		<>
 			<Head>
@@ -35,14 +39,14 @@ export const PageWrapperSingle = ({
 			</Head>
 			<Layout className={css.layout}>
 				<Header className={css.header}>
-					<div className={css.headerMobileMenu}>
-						<MenuOutlined className={css.headerMobileMenuIcon} t={t}/>
+					<div className={css.headerMobileMenu} onClick={goBack}>
+						<RiArrowGoBackLine className={css.headerMobileMenuIcon} t={t}/>
 					</div>
 					<Link className={css.headerLogo} href={"/"}>
 						profi.uz
 					</Link>
 					<Title level={4}>{pageTitle}</Title>
-					<NotificationIconBlock t={t} setNotif={setNotif}/>
+					<NotificationIconBlock t={t} unread={unread}/>
 				</Header>
 				<Content className={css.content}>
 					<div className={css.section}> {children}</div>

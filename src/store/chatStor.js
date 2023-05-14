@@ -6,10 +6,10 @@ const useMessage = create(
 		message: [],
 		id: 0,
 		fetchMessage: (data) => set((state) => {
-			const key  = data[0]?.user_id
+			// const key  = data[0]?.user_id
 			return {
 				message: data,
-				id: key
+				// id: key
 			}
 		}),
 		addMessage: (mess) => {

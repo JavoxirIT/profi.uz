@@ -4,10 +4,11 @@ import {Avatar, Button, List} from "antd";
 
 
 const urlImg = process.env.NEXT_PUBLIC_IMG_URL;
-function AllChatsMobileDrawer({data, allMessage, notif}) {
+function AllChatsMobileDrawer({data, allMessage, unread}) {
+
 	const [visible, setVisible] = useState(false);
-	const clickAllMessage = (key) => {
-		allMessage(key)
+	const clickAllMessage = (id, key) => {
+		allMessage(id, key)
 		setVisible(false)
 	}
 	const listData = data.map((i) => {
@@ -30,10 +31,11 @@ function AllChatsMobileDrawer({data, allMessage, notif}) {
 					<List.Item
 						key={item.title}
 						extra={
-							<Button type="primary" shape="circle" onClick={() => clickAllMessage(item.id)}>
-								{notif.length ? notif.map((j) => j.user?.id === item.key ? j.message_count : 0) : 0}
+							<Button type="primary" shape="circle" onClick={() => clickAllMessage(item.id, item.key)}>
+								0
 							</Button>
 						}
+						onClick={() => allMessage(item.id, item.key)}
 					>
 						<List.Item.Meta
 							avatar={<Avatar src={item.avatar}/>}
