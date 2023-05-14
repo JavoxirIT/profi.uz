@@ -35,7 +35,7 @@ export default function NotificationIconBlock({t, setNotif}) {
 	}
 	useEffect(() => {
 		unreadMessages()
-	}, []);
+	});
 
 
 	return (

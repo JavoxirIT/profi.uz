@@ -42,6 +42,7 @@ const Chat = ({t}) => {
 		}).catch((err) => {
 			openNotificationWithIcon("error", err.code, err.message);
 		})
+		//eslint-disable-next-line
 	}, []);
 	//проверяем авторизован ли пользователь
 	const [isChecked, setChecked] = useState(false);

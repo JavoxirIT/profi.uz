@@ -67,7 +67,7 @@ function Likeslist({data, t}) {
 			{contextHolder}
 			<div style={{paddingTop: 10}}>
 
-				{data.length === 0 ? <Text>Sizda sevimlilar ro'yhati mavjut emas</Text> : data.map((i) => (
+				{data.length === 0 ? <Text>Sizda sevimlilar ro`yhati mavjut emas</Text> : data.map((i) => (
 					<Card key={i.id} className={css.indexUserCard}>
 						<div className={css.indexUserCardInfo}>
 							<div className={css.indexUserCardInfo1}>
