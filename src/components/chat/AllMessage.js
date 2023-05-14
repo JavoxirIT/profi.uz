@@ -165,13 +165,13 @@ function AllMessage({name, id, mess, allMessage}) {
 	};
 	//Скролим вниз чат
 	let messagesEnd;
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	const scrollToBottom = () => {
 		messagesEnd.scrollIntoView({ behavior: "smooth" });
 	}
 	useEffect(() => {
 		scrollToBottom()
-	// 	eslint-disable-next-line
-	},[]);
+	},[scrollToBottom]);
 
 	return (
 		<Layout className={css.AllMessageWrapper}>
