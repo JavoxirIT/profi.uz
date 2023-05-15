@@ -14,6 +14,7 @@ const url = process.env.NEXT_PUBLIC_ONE_USER;
 const urlImg = process.env.NEXT_PUBLIC_IMG_URL;
 
 export default function Cabinet({user, t}) {
+	// console.log("user:", user)
 	const [isChecked, setChecked] = useState(false);
 	const router = useRouter();
 	const localData =
@@ -63,8 +64,8 @@ export default function Cabinet({user, t}) {
 								{!user.firstname ? "Shaxsiy ma`lumotlar kiritilmagan" : user.firstname + " " + user.lastname}
 							</Title>
 							<div style={{paddingTop: 16}}>
-								<Tag color="default" key={user.special?.id}>
-									{user.special?.name}
+								<Tag color="default" key={user?.special?.id}>
+									{user?.special?.name}
 								</Tag>
 							</div>
 						</div>
