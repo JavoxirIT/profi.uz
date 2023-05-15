@@ -2,7 +2,7 @@ import {Button, Card, Tag, Typography, Rate} from "antd";
 import {useRouter} from "next/router";
 import React, {useEffect, useState} from "react";
 import css from "../../styles/TabCard.module.css";
-import img from "../../../public/assets/images/no-image.png";
+import img from "../../img/noimage.png";
 import Image from "next/image";
 import useLocalStorage from "../../hooks/useLocalStorage";
 

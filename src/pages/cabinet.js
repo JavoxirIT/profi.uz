@@ -6,7 +6,7 @@ import {getCookie} from "utils/setCookie";
 import Image from "next/image";
 import css from "../styles/Cabinet.module.css";
 import CabinetNavigateList from "components/Cabinet/CabinetNavigateList";
-import userImage from "../../public/assets/images/no-image.png"
+import userImage from "../img/noimage.png"
 
 const {Title, Text} = Typography;
 const spesialist = process.env.NEXT_PUBLIC_USER_SPECIALIST;

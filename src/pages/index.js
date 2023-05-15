@@ -10,7 +10,7 @@ import {getCookie} from "utils/setCookie";
 import axios from "axios";
 import Preloade from "components/Preloder/Preloade";
 import {postFetch} from "../request/Fetch";
-import img from "../../public/assets/images/no-image.png";
+import img from "../img/noimage.png";
 
 const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 const urlAlUser = process.env.NEXT_PUBLIC_ALL_USER;

@@ -3,7 +3,7 @@ import {PageWrapperGlobal} from "../components/PageWrapperGlobal";
 import {Card, notification, Tag, Typography} from "antd";
 import css from "../styles/Index.module.css";
 import Image from "next/image";
-import img from "../../public/assets/images/2.png";
+import img from "../img/noimage.png";
 import Link from "next/link";
 import {AiFillHeart} from "react-icons/ai";
 import {HiOutlineLocationMarker} from "react-icons/hi";
