@@ -165,7 +165,7 @@ export default function MyWorks({ t }) {
               </Upload>
             </ImgCrop>
           </Form.Item>
-          <Form.Item name="description" label="Batafsil ma’lumot">
+          <Form.Item name="about" label="Batafsil ma’lumot">
             <Input.TextArea
               rows={3}
               showCount

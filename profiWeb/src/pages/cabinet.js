@@ -14,7 +14,7 @@ const url = process.env.NEXT_PUBLIC_ONE_USER;
 const urlImg = process.env.NEXT_PUBLIC_IMG_URL;
 
 export default function Cabinet({user, t}) {
-	// console.log("user:", user)
+	console.log("user:", user)
 	const [isChecked, setChecked] = useState(false);
 	const router = useRouter();
 	const localData =
