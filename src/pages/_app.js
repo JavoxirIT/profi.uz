@@ -4,7 +4,7 @@ import { StyleProvider } from "@ant-design/cssinjs";
 import withTheme from "../theme/index"; // antd theme
 import { uz } from "components/language/uz";
 import { postFetch } from "request/Fetch";
-import Preloader from "components/Preloder/Preloader";
+import Preloade from "components/Preloder/Preloade";
 import Preloade2 from "components/Preloder/Preloade2";
 import useLang from "../store/languageStore";
 import { useRouter } from "next/router";

@@ -20,22 +20,37 @@ import {Comment} from '@ant-design/compatible';
 import {postFetch} from "../../request/Fetch";
 import useMessage from "../../store/chatStor";
 import ResultNoChats from "../../utils/ResultNoChats";
+import {Preloader} from "../../utils/Preloader";
+
+
 const urlImg = process.env.NEXT_PUBLIC_IMG_URL;
 const isType = typeof window !== undefined;
 export const CommentList = ({queryID, userid}) => {
+	const [mess, setMess] = useState([])
 	const message = useMessage(state => state.message)
-	 return (
-		message.map((i) => <Comment
-			className={userid === i.user_id || queryID === i.user_id ? `${css.chatComment}` : null}
-			key={i.id}
-			content={
-				<div id="chat">
-					<p>{i.message}</p>
-					{i.file && <Image src={urlImg + i.file} alt={"img"} width={200} height={200} style={{paddingTop: 10}}/>}
+	const loading = useMessage(state => state.loading)
+
+	const ID = message.find((i => userid === i.user_id || queryID === i.user_id))
+
+
+	if (loading) {
+		return <Preloader/>
+	}
+	return (
+		<div className={css.chatCommentGlobal}>
+			{message.map((i) =>
+				<div key={i.id}
+				     className={ID ? `${css.chatComment}` : `${css.chatComment2}`}>
+					<div
+						className={ID ? `${css.chatCommentchild}` : `${css.chatCommentchild2}`}>
+						<small className={css.chatCommentchildTime}>{i.date}</small>
+						<p className={css.chatCommentchildText}>{i.message}</p>
+						{i.file && <Image src={urlImg + i.file} alt={"img"} width={200} height={200}
+						                  style={{borderRadius: "15px 15px 0 15px", marginTop: 10}}/>}
+					</div>
 				</div>
-			}
-			datetime={i.date}
-		/>)
+			)}
+		</div>
 	);
 };
 
@@ -85,7 +100,8 @@ export const Editor = ({onSubmit, submitting, form,}) => {
 							});
 						}}
 					>
-						<Upload style={{width: "100vw"}} showUploadList={false}>
+						{/*showUploadList={false}*/}
+						<Upload style={{width: "100vw"}}>
 							<Button size={"large"} type="primary" className={css.chatFormItems}> <ImAttachment/>
 							</Button>
 						</Upload>
@@ -151,6 +167,7 @@ function AllMessage({userid, queryID}) {
 					setSubmitting(false)
 				} else {
 					setSubmitting(false)
+					openNotificationWithIcon("error", "Xabar yuborilmadi");
 				}
 			}
 		).catch((err) => {

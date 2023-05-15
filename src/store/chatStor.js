@@ -5,11 +5,14 @@ const useMessage = create(
 	(set) => ({
 		message: [],
 		id: 0,
+		loading: true,
 		fetchMessage: (data) => set((state) => {
-			// const key  = data[0]?.user_id
-			return {
-				message: data,
-				// id: key
+			if (data.length !== 0) {
+				return {
+					message: data,
+					loading: false
+					// id: key
+				}
 			}
 		}),
 		addMessage: (mess) => {

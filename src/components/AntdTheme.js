@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, ConfigProvider, theme } from "antd";
+import { ConfigProvider, theme } from "antd";
 
 const AntdTheme = ({ children }) => (
   <ConfigProvider

@@ -156,7 +156,7 @@ export default function Anketa({}) {
     // console.log(value);
     postFetch({ path, method, value })
       .then((res) => {
-        console.log("udate user", res);
+        // console.log("udate user", res);
         if (res.status === 200) {
           openNotificationWithIcon(
             "success",
@@ -318,20 +318,20 @@ export default function Anketa({}) {
                   method: "POST",
                   headers: {
                     authorization: isType
-                      ? getCookie("access_type") +
+                      ? "Bearer" +
                         " " +
                         getCookie("access_token")
                       : null,
                   },
                   body: formData,
                 };
-
+                console.log(config)
                 fetch("https://4biz.uz/api/profile-img", config)
                   .then((res) => res.json())
                   .then((json) => {
                     console.log("json", json);
-                    //   console.log("json", json.status);
-                    //   console.log("image:", json.data.image);
+                      console.log("json", json.status);
+                      console.log("image:", json.data.image);
                     if (json.status === "success") {
                       form.setFieldsValue({
                         image: json.data.image,

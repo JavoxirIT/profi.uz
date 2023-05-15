@@ -274,18 +274,18 @@ body {
 
 /*chat comment*/
 .ant-comment {
-    padding-left: 10px !important;
-    margin-bottom: 10px !important;
-    border-radius: 10px !important;
+    width: max-content !important;
 }
 
 .comment-action {
     padding-left: 8px;
     cursor: auto;
 }
-.ant-comment-inner{
+
+.ant-comment-inner {
     padding: 0 !important;
 }
+
 .ant-comment-content-author-time {
     font-size: 10px !important;
 }
@@ -300,9 +300,15 @@ body {
 /*.ant-pro-setting-drawer-handle.active{*/
 /*    left: 60vw;*/
 /*}*/
-.drower-open-modal{
+.drower-open-modal {
     display: none;
 }
+.ant-upload-list.ant-upload-list-text{
+      text-align: center;
+      position: fixed;
+      bottom: 15vh;
+      left: 50vw;
+  }
 
 @media (min-width: 220px) and (max-width: 1175px) {
     .ant-card-body {
@@ -340,11 +346,13 @@ body {
         overflow-y: scroll;
         /*opacity: 0;*/
     }
+
     .drower-open-modal.actives {
         opacity: 1;
         pointer-events: all;
         background: rgba(0, 0, 0, 0.4);
     }
+
     .drower-modal-content {
         width: 85vw;
         height: 100vh;
@@ -384,11 +392,17 @@ body {
         height: 100% !important;
         font-size: 20px !important;
         border-radius: 0 !important;
-        border-color: #0c0d15 !important;
+        border-color: #ffdd00 !important;
         display: flex !important;
         justify-content: center !important;
         align-items: center !important;
         margin: 0 !important;
+    }
+    .ant-upload-list.ant-upload-list-text{
+        text-align: center;
+        position: fixed;
+        bottom: 15vh;
+        left: 8vw;
     }
     /*end chat user modal*/
 }

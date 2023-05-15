@@ -8,9 +8,9 @@ import css from "../styles/Index.module.css";
 import {useEffect, useState} from "react";
 import {getCookie} from "utils/setCookie";
 import axios from "axios";
-import Preloader from "components/Preloder/Preloader";
+import Preloade from "components/Preloder/Preloade";
 import {postFetch} from "../request/Fetch";
-import img from "../../public/assets/images/2.png";
+import img from "../../public/assets/images/no-image.png";
 
 const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 const urlAlUser = process.env.NEXT_PUBLIC_ALL_USER;
@@ -136,7 +136,7 @@ function HomePage({newData, t}) {
 	}
 
 	if (!user) {
-		return <Preloader/>;
+		return <Preloade/>;
 	}
 	return (
 		<PageWrapperGlobal
