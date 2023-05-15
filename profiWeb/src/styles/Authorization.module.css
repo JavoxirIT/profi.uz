@@ -1,0 +1,29 @@
+.AuthorizationFormBlock {
+  display: flex;
+  flex-direction: column;
+  justify-content: center !important;
+  align-items: center !important;
+  /* padding: 0 43px; */
+}
+/* .AuthorizationForm {
+  width: 500px;
+} */
+.AuthorizationFormInput {
+  height: 46px;
+  font-size: 22px !important;
+}
+/* .AuthorizationFormButtonForm {
+  padding: 0 50px !important;
+} */
+.AuthorizationFormButton {
+  width: 100% !important;
+  height: 49px !important;
+  font-size: 16px;
+}
+
+.AuthorizationLinkBlock {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  padding: 10px 0;
+}

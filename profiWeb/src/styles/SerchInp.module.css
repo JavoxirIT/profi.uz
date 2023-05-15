@@ -1,0 +1,8 @@
+.Search_Inpblock {
+  width: 690px !important;
+}
+@media (min-width: 220px) and (max-width: 1175px) {
+  .Search_Inpblock {
+    width: 100%;
+  }
+}

@@ -1,0 +1,36 @@
+.TabCard {
+  height: 375px;
+}
+.UserTabCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.UserTabCardImage {
+  border-radius: 10px;
+}
+.TabCardButton {
+  width: 100%;
+  margin-top: 16px !important;
+  height: 56px !important;
+}
+.MasterTab {
+  height: 80vh !important;
+}
+@media (min-width: 220px) and (max-width: 1175px) {
+  .TabCard {
+    height: auto;
+  }
+  .TabCardText {
+    font-size: 14px;
+  }
+  .TabCardButton {
+    font-weight: 700 !important;
+    font-size: 16px !important;
+    padding: 8px !important;
+  }
+  .MasterTab {
+    height: max-content !important;
+  }
+}

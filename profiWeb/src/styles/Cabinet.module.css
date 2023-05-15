@@ -1,0 +1,63 @@
+.cabinetCardBlock {
+  height: 100%;
+  padding: 20px 0;
+  display: grid;
+  grid-template-columns: 20% 1fr;
+  grid-template-rows: auto;
+  column-gap: 50px;
+}
+.cabinetCardUserInfo {
+  width: inherit !important;
+  height: inherit !important;
+  margin: 0 !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.cabinetCardUserInfoBody {
+  padding-top: 20px;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+}
+
+.cabinetCardUserNavigate {
+  width: inherit !important;
+  height: inherit !important;
+  margin: 0 !important;
+}
+.CardUserNavigateLinkBlock {
+  display: flex;
+  flex-direction: column;
+}
+.CabinetNavigateBlockList {
+  margin: 10px 0 !important;
+  padding: 5px 0 5px 22px !important;
+}
+.NavigateLinkBlockItem {
+  font-weight: 400;
+  font-size: 16px !important;
+  padding: 7px 0;
+}
+
+@media (min-width: 220px) and (max-width: 1175px) {
+  .cabinetCardBlock {
+    margin-top: 50px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: max-content 1fr;
+    row-gap: 10px !important;
+  }
+  .cabinetCardUserInfo {
+    height: max-content !important;
+  }
+  .cabinetCardUserInfoBody {
+    position: relative;
+  }
+  .UserInfoBodyImg {
+    position: absolute;
+    top: -65px;
+    z-index: 1;
+    border-radius: 10px;
+  }
+}
