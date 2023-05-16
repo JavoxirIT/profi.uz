@@ -266,7 +266,7 @@ function HomePage({newData, t}) {
 											</Title>
 										</Link>
 
-										<Rate style={{fontSize: 30}} onChange={(e) => ratingChange(i.id, e)}
+										<Rate 	className={css.indexUserRate} onChange={(e) => ratingChange(i.id, e)}
 										      value={i.reyting} allowHalf/> {" "}
 										<div>
 											<Text>Umumiy reyting: {i.reyting}</Text>
@@ -278,8 +278,8 @@ function HomePage({newData, t}) {
 								<div>
 									<AiFillHeart aria-labelledby="like"
 									             onClick={() => ChangeLike({id: i.id, like: i.like?.likes})}
-									             className={i.like?.likes === 0 || i.like === "Unauthorized" ?
-										             `${css.indexUserRate}` : `${css.indexUserRateTrue}`}/>
+									             className={i.like?.likes === 0 || i.like === "Unauthorized" ? `${css.indexUserRate}` : `${css.indexUserRateTrue}`}
+									/>
 								</div>
 							</div>
 							<div>

@@ -59,7 +59,9 @@
     width: 100px;
     height: 100px;
   }
-
+  .indexUserRate{
+    font-size: 20px;
+  }
   /* .indexCheckBoxBlock {
       display: grid;
       grid-template-columns: 1fr 1fr;

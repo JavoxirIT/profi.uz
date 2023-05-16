@@ -14,14 +14,11 @@ const url = process.env.NEXT_PUBLIC_ONE_USER;
 const urlImg = process.env.NEXT_PUBLIC_IMG_URL;
 
 export default function Cabinet({user, t}) {
+	const router = useRouter();
 	// console.log("user:", user)
 	const [isChecked, setChecked] = useState(false);
-	const router = useRouter();
-	const localData =
-		typeof window !== "undefined" ? localStorage.getItem("user") : null;
 
 	useEffect(() => {
-		const userData = JSON.parse(localData) ?? 0;
 		if (!getCookie("access_token")) {
 			router.push("/authorization").then(() => {
 				setChecked(false);
@@ -29,11 +26,13 @@ export default function Cabinet({user, t}) {
 		}else {
 			setChecked(true);
 		}
-	}, [router, localData]);
+	}, [router]);
 
 	// заранее загружаем страницу
 	useEffect(() => {
-		router.prefetch("/authorization");
+		router.prefetch("/authorization").then(() => {
+			setChecked(false);
+		});
 	}, [router]);
 
 	return (
