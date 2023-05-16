@@ -9,12 +9,12 @@ import CabinetNavigateList from "components/Cabinet/CabinetNavigateList";
 import userImage from "../img/noimage.png"
 
 const {Title, Text} = Typography;
-const spesialist = process.env.NEXT_PUBLIC_USER_SPECIALIST;
+// const spesialist = process.env.NEXT_PUBLIC_USER_SPECIALIST;
 const url = process.env.NEXT_PUBLIC_ONE_USER;
 const urlImg = process.env.NEXT_PUBLIC_IMG_URL;
 
 export default function Cabinet({user, t}) {
-	console.log("user:", user)
+	// console.log("user:", user)
 	const [isChecked, setChecked] = useState(false);
 	const router = useRouter();
 	const localData =
@@ -26,11 +26,7 @@ export default function Cabinet({user, t}) {
 			router.push("/authorization").then(() => {
 				setChecked(false);
 			});
-		} else if (Number(spesialist) !== Number(userData?.role_id)) {
-			router.push("/").then(() => {
-				setChecked(false);
-			});
-		} else {
+		}else {
 			setChecked(true);
 		}
 	}, [router, localData]);

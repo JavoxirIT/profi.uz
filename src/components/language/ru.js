@@ -2,13 +2,21 @@ export const ru = {
   authButtonTitle: "Авторизация",
   regButtonTitle: "Регистрацыя",
   formReqMess: "Пожалуйста введите номер (тел)",
+  formReqMessLastName: "Пожалуйста введите вашу фамилию!",
+  formReqMessFirstName: "Пожалуйста введите ваше имя!",
   formReqMessParol: "Пожалуйста введите парол",
   formReqMessParol2: "Пароль",
+  // регистрацыя
+  firstname: "Имя",
+  lastname: "Фамилия",
+  phone: "Телефон",
+  customer: "Заказчик",
+  specialist: "Специалист",
   //link
   linkHome: "ГЛАВНАЯ СТРАНИЦА",
   linkRegistration: "РЕГИСТРАЦИЯ",
   //   PAGE
-  pageTitleAuth: "Авторизацыя",
+  pageTitleAuth: "АВТОРИЗАЦЫЯ",
   //   cabinet
   anketa: "Анкета",
   mywork: "Добавить выполненные работы",

@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import {Typography, Card, Tag, Rate, Checkbox, Form, Button, notification} from "antd";
 import css from "../styles/Index.module.css";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {getCookie} from "utils/setCookie";
 import axios from "axios";
 import Preloade from "components/Preloder/Preloade";
@@ -19,8 +19,8 @@ const {Text, Title} = Typography;
 const isType = typeof window !== undefined;
 
 function HomePage({newData, t}) {
-	const [api, contextHolder] = notification.useNotification();
 	// натификацыя
+	const [api, contextHolder] = notification.useNotification();
 	const openNotificationWithIcon = (type, code, message) => {
 		api[type]({
 			message: code,
@@ -28,7 +28,13 @@ function HomePage({newData, t}) {
 			duration: 5,
 		});
 	};
-	const [user, setUser] = useState(newData);
+
+	function userSort(a, b) {
+		return a.reyting - b.reyting;
+	}
+
+	const [user, setUser] = useState(newData.sort(userSort).reverse());
+	console.log("newData", user)
 	useEffect(() => {
 		const config = {
 			method: "POST",
@@ -124,8 +130,8 @@ function HomePage({newData, t}) {
 		const value = JSON.stringify({user_id: e.id, like: like})
 		postFetch({path, method, value}).then((res) => {
 			if (res.status === 200) {
-				const dd = newData.find(i=> i.id === res.data.user_id)
-				const nd = newData.filter(i=> i.id !== res.data.user_id)
+				const dd = newData.find(i => i.id === res.data.user_id)
+				const nd = newData.filter(i => i.id !== res.data.user_id)
 				dd.like.likes = res.data.likes
 				setUser([...nd, dd])
 			}
@@ -134,6 +140,42 @@ function HomePage({newData, t}) {
 		})
 		console.log(value)
 	}
+	const [mayRating, setMayRating] = useState()
+
+	const ratingChange = (id, reyting) => {
+		console.log(id, reyting)
+		const path = "insert-star"
+		const value = JSON.stringify({
+			star: String(reyting),
+			user_id: Number(id)
+		})
+		postFetch({path, value}).then((res) => {
+			console.log(res)
+			if (res.status === 200) {
+				const oneUser = newData.find(i => i.id === res.data.user_id)
+				const newArrUser = newData.filter(i => i.id !== res.data.user_id)
+				oneUser.reyting = res.data.reyting
+				setUser([...newArrUser, oneUser])
+				openNotificationWithIcon(
+					"success",
+					"Baho qabul qilindi"
+				);
+			} else {
+				openNotificationWithIcon(
+					"error",
+					res.code,
+					"Soʻrov bajarilmadi"
+				);
+			}
+		}).catch((err) => {
+			openNotificationWithIcon(
+				"error",
+				err.code,
+				err.message,
+			);
+		})
+	}
+
 
 	if (!user) {
 		return <Preloade/>;
@@ -196,8 +238,8 @@ function HomePage({newData, t}) {
 										<Image
 											src={`${urlImg + i.image}`}
 											alt="avatar"
-											width={70}
-											height={70}
+											width={90}
+											height={90}
 											className={css.indexUserImage}
 											priority={true}
 										/>
@@ -205,8 +247,8 @@ function HomePage({newData, t}) {
 										<Image
 											src={img}
 											alt="avatar"
-											width={70}
-											height={70}
+											width={90}
+											height={90}
 											className={css.indexUserImage}
 											priority={true}
 										/>
@@ -223,13 +265,21 @@ function HomePage({newData, t}) {
 												{i.firstname} {i.lastname}
 											</Title>
 										</Link>
+
+										<Rate style={{fontSize: 30}} onChange={(e) => ratingChange(i.id, e)}
+										      value={i.reyting} allowHalf/> {" "}
+										<div>
+											<Text>Umumiy reyting: {i.reyting}</Text>
+										</div>
+
 									</div>
+
 								</div>
 								<div>
 									<AiFillHeart aria-labelledby="like"
 									             onClick={() => ChangeLike({id: i.id, like: i.like?.likes})}
 									             className={i.like?.likes === 0 || i.like === "Unauthorized" ?
-										             `${css.indexUserRate}` :  `${css.indexUserRateTrue}` }/>
+										             `${css.indexUserRate}` : `${css.indexUserRateTrue}`}/>
 								</div>
 							</div>
 							<div>

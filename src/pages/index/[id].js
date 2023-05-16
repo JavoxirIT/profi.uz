@@ -1,5 +1,5 @@
 import { PageWrapperSingle } from "../../components/PageWrapperSingle";
-import { Typography } from "antd";
+import { Typography} from "antd";
 import React from "react";
 import MasterTabCard from "../../components/Master/MasterTabCard";
 import css from "../../styles/Master.module.css";
@@ -15,9 +15,9 @@ const { Title } = Typography;
 const url = process.env.NEXT_PUBLIC_ONE_USER;
 
 const Master = ({ t, data }) => {
+  // console.log(data)
   //   const { data, error } = useSWR(repoInfo);
   const { query } = useRouter();
-  // console.log(data)
   return (
     <PageWrapperSingle title={data.firstname  + " " + data.lastname} pageTitle="Portfolio" t={t}>
       <main className={css.masterWrapper}>
@@ -25,7 +25,7 @@ const Master = ({ t, data }) => {
           <Title style={{ marginBottom: 22 }} level={4}>
             Ba’tafsil malumotlari
           </Title>
-          <MasterCard data={data} t={t} />
+          <MasterCard data={data} t={t} user_id={query.id}/>
         </div>
         <div className={css.MasterTab}>
           <MasterTabCard data={data} t={t} />

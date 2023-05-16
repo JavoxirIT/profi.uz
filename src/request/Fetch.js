@@ -1,7 +1,7 @@
 import axios from "axios";
 import { getCookie } from "utils/setCookie";
 const url = process.env.NEXT_PUBLIC_API_URL;
-export async function postFetch({ path, method, value }) {
+export async function postFetch({ path, method = "POST", value }) {
   const config = {
     method: method,
     url: `${url + path}`,

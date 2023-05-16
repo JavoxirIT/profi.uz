@@ -26,8 +26,8 @@ function MobileLinks({ t }) {
         <p style={{ fontSize: 10 }}>{t.cabinet}</p>
       </Link>
       <div className={css.link} onClick={goBack}>
-        <RiArrowGoBackLine />
-        <p style={{ fontSize: 10 }}>{t.back}</p>
+        <RiArrowGoBackLine color={"red"}/>
+        <p style={{ fontSize: 10, color: "red" }}>{t.back}</p>
       </div>
     </div>
   );

@@ -26,6 +26,7 @@ const { Title, Text } = Typography;
 const isType = typeof window !== undefined;
 
 export default function Anketa({}) {
+  const router = useRouter()
   const [viloyat, setViloyat] = useState([]);
   const [special, setSpecial] = useState([]);
   useEffect(() => {
@@ -62,14 +63,12 @@ export default function Anketa({}) {
     api[type]({
       message: code,
       description: message,
-      duration: 1500,
+      duration: 3,
     });
   };
 
   //   console.log(special);
   const [form] = Form.useForm();
-  const router = useRouter();
-
   // фунуции для кнопок навигацыии button
   const handleCabinet = (e) => {
     e.preventDefault();
@@ -125,7 +124,7 @@ export default function Anketa({}) {
     const path = `tuman/${e}`;
     postFetch({ path, method, value: "" })
       .then((res) => {
-        if (res.status == 200) {
+        if (res.status === 200) {
           setTuman(res.data.tuman);
         }
       })
@@ -163,6 +162,7 @@ export default function Anketa({}) {
             res.statusText,
             "Ma'lumotlar saqlandi"
           );
+          router.push("/cabinet")
         } else if (res.code === "ERR_BAD_REQUEST") {
           openNotificationWithIcon(
             "error",
@@ -329,9 +329,9 @@ export default function Anketa({}) {
                 fetch("https://4biz.uz/api/profile-img", config)
                   .then((res) => res.json())
                   .then((json) => {
-                    console.log("json", json);
-                      console.log("json", json.status);
-                      console.log("image:", json.data.image);
+                    // console.log("json", json);
+                    //   console.log("json", json.status);
+                    //   console.log("image:", json.data.image);
                     if (json.status === "success") {
                       form.setFieldsValue({
                         image: json.data.image,
@@ -339,7 +339,7 @@ export default function Anketa({}) {
                     }
                   })
                   .catch((err) => {
-                    console.log(err);
+                    openNotificationWithIcon("error", err.code, err.message);
                   });
               }}
             >

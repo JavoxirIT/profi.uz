@@ -35,7 +35,7 @@ function AllChatsMobileDrawer({data, allMessage, unread}) {
 								0
 							</Button>
 						}
-						onClick={() => allMessage(item.id, item.key)}
+						onClick={() =>  clickAllMessage(item.id, item.key)}
 					>
 						<List.Item.Meta
 							avatar={<Avatar src={item.avatar}/>}

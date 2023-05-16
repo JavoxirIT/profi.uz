@@ -1,24 +1,57 @@
-import {Button, Card, Tag, Typography, Rate} from "antd";
+import {Button, Card, Tag, Typography, Rate, notification} from "antd";
 import {useRouter} from "next/router";
 import React, {useEffect, useState} from "react";
 import css from "../../styles/TabCard.module.css";
 import img from "../../img/noimage.png";
 import Image from "next/image";
 import useLocalStorage from "../../hooks/useLocalStorage";
+import {postFetch} from "../../request/Fetch";
 
 const {Text, Title} = Typography;
 
 const urlImg = process.env.NEXT_PUBLIC_IMG_URL;
 
-export default function MasterCard({data, t}) {
-	const [rateStorage, setRateStorage] = useLocalStorage([], "rate")
-	const [rate, setRate] = useState(0);
+export default function MasterCard({data, t, user_id}) {
+	const [api, contextHolder] = notification.useNotification();
+	const openNotificationWithIcon = (type, code, message) => {
+		api[type]({
+			message: code,
+			description: message,
+			duration: 3,
+		});
+	};
+	const [reyt, setReyt] = useState(data.reyting)
+	const [reyting, setReyting] = useState(data.reyting)
 	const rateChange = (e) => {
-		setRateStorage(e);
+		setReyting(e)
+		const path = "insert-star"
+		const value = JSON.stringify({
+			star: String(e),
+			user_id: Number(user_id)
+		})
+		postFetch({path, value}).then((res) => {
+			console.log(res)
+			if (res.status === 200) {
+				setReyt(res.data.reyting)
+				openNotificationWithIcon(
+					"success",
+					"Baho qabul qilindi"
+				);
+			} else {
+				openNotificationWithIcon(
+					"error",
+					res.code,
+					"Soʻrov bajarilmadi"
+				);
+			}
+		}).catch((err) => {
+			openNotificationWithIcon(
+				"error",
+				err.code,
+				err.message,
+			);
+		})
 	}
-	useEffect(() => {
-		setRate(rateStorage)
-	}, [rateStorage]);
 
 	const [user, setUser] = useState([]);
 	const router = useRouter();
@@ -28,6 +61,7 @@ export default function MasterCard({data, t}) {
 
 	return (
 		<>
+			{contextHolder}
 			<Card className={css.TabCard}>
 				<div className={css.UserTabCard}>
 					{data.image ? (
@@ -51,17 +85,20 @@ export default function MasterCard({data, t}) {
 					)}
 					{/*  */}
 
-					<Title level={3} style={{paddingTop: 16}}>
+					<h4 className={css.UserTabCardName}>
 						{data.firstname} {data.lastname}
-					</Title>
+					</h4>
 					<Text className={css.TabCardText}>{data.distirct.vil_name}</Text>
 					<div style={{paddingTop: 16}}>
 						<Tag color="default" key={1} style={{margin: 5}}>
 							{data.special.name}{" "}
 						</Tag>
 					</div>
-					<div>
-						<Rate style={{fontSize: 30}} onChange={rateChange} value={rate}/>
+					<div style={{textAlign: "center"}} >
+						<Rate style={{fontSize: 30}} onChange={rateChange} value={reyting} allowHalf/> {" "}
+						<div>
+							<small>Umumiy reyting: {reyt}</small>
+						</div>
 					</div>
 				</div>
 			</Card>

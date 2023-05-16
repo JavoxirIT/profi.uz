@@ -48,14 +48,14 @@ export default function App({ Component, pageProps }) {
   useEffect(() => {
    setInterval(()=>{
      unreadMessages()
-   }, 10000)
+   }, 10000000)
   }, []);
 
 
   return withTheme(
     <StyleProvider hashPriority="high">
       <Preloade2 />
-      {loding && <Preloade2 />}
+      {loding && <Preloade />}
       <Component
         {...pageProps}
         t={language}

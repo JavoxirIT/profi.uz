@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Dropdown, Space, Switch, Typography } from "antd";
-import { RiEarthFill } from "react-icons/ri";
+import {GoSettings} from "react-icons/go";
 import { Segmented } from "antd";
 import css from "../../styles/NotificationIconBlock.module.css";
 import { uz } from "../language/uz";
@@ -50,7 +50,7 @@ const DropDown = () => {
       }}
       placement="bottomLeft"
     >
-      <RiEarthFill
+      <GoSettings
         className={css.NotificationIconBlockIcon}
         title="dropdown"
         aria-label="dropdown"

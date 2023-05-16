@@ -40,9 +40,9 @@ export const CommentList = ({queryID, userid}) => {
 		<div className={css.chatCommentGlobal}>
 			{message.map((i) =>
 				<div key={i.id}
-				     className={ID ? `${css.chatComment}` : `${css.chatComment2}`}>
+				     className={userid === i.user_id || queryID === i.user_id ? `${css.chatComment}` : `${css.chatComment2}`}>
 					<div
-						className={ID ? `${css.chatCommentchild}` : `${css.chatCommentchild2}`}>
+						className={userid === i.user_id || queryID === i.user_id ? `${css.chatCommentchild}` : `${css.chatCommentchild2}`}>
 						<small className={css.chatCommentchildTime}>{i.date}</small>
 						<p className={css.chatCommentchildText}>{i.message}</p>
 						{i.file && <Image src={urlImg + i.file} alt={"img"} width={200} height={200}

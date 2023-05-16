@@ -1,4 +1,4 @@
-import React  from "react";
+import React from "react";
 import Link from "next/link";
 import {AiOutlineHeart} from "react-icons/ai";
 import {MdOutlineNotifications} from "react-icons/md";
@@ -12,7 +12,7 @@ import {eraseCookie} from "utils/setCookie";
 import DropDown from "./Dropdown/Dropdown";
 
 
-export default function NotificationIconBlock({t,unread}) {
+export default function NotificationIconBlock({t, unread}) {
 	const router = useRouter();
 	const goBack = (e) => {
 		eraseCookie("access_token");
@@ -36,11 +36,13 @@ export default function NotificationIconBlock({t,unread}) {
 			</Badge>
 
 			<div className={css.NotificationIconBlock2}>
-				<Link className={linkCss.link} href={"/likeslist"}><AiOutlineHeart
-					className={css.NotificationIconBlockIcon}
-					title="sevimlilar"
-					aria-label="like"
-				/></Link>
+				<Link className={linkCss.link} href={"/likeslist"}>
+					<AiOutlineHeart
+						className={css.NotificationIconBlockIcon}
+						title="sevimlilar"
+						aria-label="like"
+					/>
+				</Link>
 				<Link className={linkCss.link} href="/cabinet">
 					<FiUser
 						className={css.NotificationIconBlockIcon}

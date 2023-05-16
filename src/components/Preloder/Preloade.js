@@ -1,14 +1,15 @@
 import React from "react";
+import {Layout} from "antd";
 
 export default function Preloade() {
   return (
-    <div className="preloader1">
+    <Layout className="preloader1">
       <div className="load">
         <hr />
         <hr />
         <hr />
         <hr />
       </div>
-    </div>
+    </Layout>
   );
 }
