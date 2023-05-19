@@ -5,23 +5,23 @@
 @tailwind utilities;
 
 :root {
-    --scroll-color: #f0ce00;
-    --antd-tab-border-color: #334155;
-    --antd-tab-border: 2px solid;
-    --antd-tab-border-radius: 16px;
+  --scroll-color: #f0ce00;
+  --antd-tab-border-color: #334155;
+  --antd-tab-border: 2px solid;
+  --antd-tab-border-radius: 16px;
 }
 
 ::-webkit-scrollbar-track {
-    background-color: var(--antd-tab-border-color); /*Цвет скролла*/
+  background-color: var(--antd-tab-border-color); /*Цвет скролла*/
 }
 
 ::-webkit-scrollbar-thumb {
-    border-radius: 5px; /*Закругление ползунка*/
-    background-color: var(--scroll-color); /*Цвет ползунка*/
+  border-radius: 5px; /*Закругление ползунка*/
+  background-color: var(--scroll-color); /*Цвет ползунка*/
 }
 
 ::-webkit-scrollbar {
-    width: 6px; /*Толщина скролла*/
+  width: 6px; /*Толщина скролла*/
 }
 
 /* @media (prefers-color-scheme: dark) {
@@ -30,271 +30,277 @@
 } */
 
 * {
-    font-family: "Inter", sans-serif;
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
+  font-family: "Inter", sans-serif !important;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
 html,
 body {
-    height: 100%;
-    padding: 0;
-    margin: 0 auto;
+  height: 100%;
+  padding: 0;
+  margin: 0 auto;
 }
 
 .ant-checkbox-group {
-    display: flex !important;
-    flex-flow: column !important;
+  display: flex !important;
+  flex-flow: column !important;
 }
 
 .ant-checkbox-wrapper {
-    padding: 5px 0 !important;
-    margin-left: 0 !important;
+  padding: 5px 0 !important;
+  margin-left: 0 !important;
 }
 
 .ant-tabs-nav-wrap {
-    margin-bottom: 10px !important;
+  margin-bottom: 10px !important;
 }
 
 .ant-tabs-nav .ant-tabs-tab {
-    border: var(--antd-tab-border) !important;
-    border-radius: var(--antd-tab-border-radius) !important;
-    padding: 5px 10px !important;
+  border: var(--antd-tab-border) !important;
+  border-radius: var(--antd-tab-border-radius) !important;
+  padding: 5px 10px !important;
 }
 
 .ant-tabs-card > .ant-tabs-tab.ant-tabs-tab-active {
-    border: var(--antd-tab-border) !important;
-    border-radius: 16px !important;
-    padding: 5px 10px !important;
-    border-color: #f0ce00 !important;
+  border: var(--antd-tab-border) !important;
+  border-radius: 16px !important;
+  padding: 5px 10px !important;
+  border-color: #f0ce00 !important;
 }
 
 .ant-tabs-nav::before {
-    border: none !important;
+  border: none !important;
 }
 
 .ant-tabs-card > .ant-tabs-nav .ant-tabs-tab {
-    /* For tabs border */
-    border-color: #0c0d15 !important;
+  /* For tabs border */
+  border-color: #0c0d15 !important;
 }
 
 .ant-tabs-top > .ant-tabs-nav::before {
-    /* For the line to the right and close to the tabs */
-    border-color: var(--antd-tab-border-color) !important;
+  /* For the line to the right and close to the tabs */
+  border-color: var(--antd-tab-border-color) !important;
 }
 
 .ant-tabs > .ant-tabs-nav {
-    /* So that there is no gap between the content and tabs */
-    margin-bottom: 0 !important;
+  /* So that there is no gap between the content and tabs */
+  margin-bottom: 0 !important;
 }
 
 .ant-tabs-content-holder {
-    padding: 15px !important;
-    border: 1px solid !important; /* Border for the content part */
-    border-color: var(--antd-tab-border-color) !important;
-    border-top: transparent !important; /* Remove the top border so that there is no overlap*/
-    /*background: #0e1926;*/
-    /*background: #eeee;*/
-    border-radius: 16px !important;
+  padding: 15px !important;
+  border: 1px solid !important; /* Border for the content part */
+  border-color: var(--antd-tab-border-color) !important;
+  /* border-top: transparent !important; Remove the top border so that there is no overlap */
+  /*background: #0e1926;*/
+  /*background: #eeee;*/
+  border-radius: 16px !important;
+  overflow-y: scroll;
 }
-
+/* Скрываем scrollbar для Chrome, Safari и Opera */
+.ant-tabs-content-holder::-webkit-scrollbar {
+  display: none;
+}
+/* Скрываем scrollbar для IE, Edge и Firefox */
+.ant-tabs-content-holder {
+  -ms-overflow-style: none; /* IE и Edge */
+  scrollbar-width: none; /* Firefox */
+}
 .language-switch {
-    position: fixed !important;
-    bottom: 20px !important;
-    right: 20px !important;
-    z-index: 9999 !important;
-    font-size: 20px !important;
+  position: fixed !important;
+  bottom: 20px !important;
+  right: 20px !important;
+  z-index: 9999 !important;
+  font-size: 20px !important;
 }
 
 .ant-input-clear-icon {
-    font-size: 20px !important;
+  font-size: 20px !important;
 }
 
 /* anketa form upload */
 .ant-upload.ant-upload-select {
-    width: 100% !important;
+  width: 100% !important;
 }
 
 .ant-upload-list-item-container {
-    width: 100% !important;
+  width: 100% !important;
 }
 
 .ant-upload-list-item-actions {
-    display: flex !important;
-    justify-content: space-evenly !important;
+  display: flex !important;
+  justify-content: space-evenly !important;
 }
-
 
 /* header logo */
 .headerLogo2 {
-    font-weight: 700;
-    font-size: 24px !important;
-    line-height: 140%;
-    /* identical to box height, or 34px */
-    letter-spacing: 0.3px;
-    color: #f4d201;
-    text-transform: uppercase;
-    text-decoration: navajowhite;
+  font-weight: 700;
+  font-size: 24px !important;
+  line-height: 140%;
+  /* identical to box height, or 34px */
+  letter-spacing: 0.3px;
+  color: #f4d201;
+  text-transform: uppercase;
+  text-decoration: navajowhite;
 }
 
 /* preloader */
 .preloader1 {
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    /*background: #0c0d15;*/
-    z-index: 9999;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /*background: #0c0d15;*/
+  z-index: 9999;
 }
 
 .load {
-    position: absolute;
-    top: 50%;
-    left: 55%;
-    transform: translate(-50%, -50%);
-    /*change these sizes to fit into your project*/
-    width: 100px;
-    height: 100px;
+  position: absolute;
+  top: 50%;
+  left: 55%;
+  transform: translate(-50%, -50%);
+  /*change these sizes to fit into your project*/
+  width: 100px;
+  height: 100px;
 }
 
 .load hr {
-    border: 0;
-    margin: 0;
-    width: 20%;
-    height: 20%;
-    position: absolute;
-    border-radius: 50%;
-    animation: spin 2s ease infinite;
+  border: 0;
+  margin: 0;
+  width: 20%;
+  height: 20%;
+  position: absolute;
+  border-radius: 50%;
+  animation: spin 2s ease infinite;
 }
 
 .load :first-child {
-    background: #19a68c;
-    animation-delay: -1.5s;
+  background: #19a68c;
+  animation-delay: -1.5s;
 }
 
 .load :nth-child(2) {
-    background: #f63d3a;
-    animation-delay: -1s;
+  background: #f63d3a;
+  animation-delay: -1s;
 }
 
 .load :nth-child(3) {
-    background: #fda543;
-    animation-delay: -0.5s;
+  background: #fda543;
+  animation-delay: -0.5s;
 }
 
 .load :last-child {
-    background: #193b48;
+  background: #193b48;
 }
 
 @keyframes spin {
-    0%,
-    100% {
-        transform: translate(0);
-    }
-    25% {
-        transform: translate(160%);
-    }
-    50% {
-        transform: translate(160%, 160%);
-    }
-    75% {
-        transform: translate(0, 160%);
-    }
+  0%,
+  100% {
+    transform: translate(0);
+  }
+  25% {
+    transform: translate(160%);
+  }
+  50% {
+    transform: translate(160%, 160%);
+  }
+  75% {
+    transform: translate(0, 160%);
+  }
 }
 
 /*  */
 
 .preloader {
-    position: fixed;
-    left: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    /*background: #0c0d15;*/
-    z-index: 10001;
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  /*background: #0c0d15;*/
+  z-index: 10001;
 }
 
 .preloader__row {
-    position: relative;
-    top: 50%;
-    left: 50%;
-    width: 70px;
-    height: 70px;
-    margin-top: -35px;
-    margin-left: -35px;
-    text-align: center;
-    animation: preloader-rotate 2s infinite linear;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  width: 70px;
+  height: 70px;
+  margin-top: -35px;
+  margin-left: -35px;
+  text-align: center;
+  animation: preloader-rotate 2s infinite linear;
 }
 
 .preloader__item {
-    position: absolute;
-    display: inline-block;
-    top: 0;
-    background-color: #337ab7;
-    border-radius: 100%;
-    width: 35px;
-    height: 35px;
-    animation: preloader-bounce 2s infinite ease-in-out;
+  position: absolute;
+  display: inline-block;
+  top: 0;
+  background-color: #337ab7;
+  border-radius: 100%;
+  width: 35px;
+  height: 35px;
+  animation: preloader-bounce 2s infinite ease-in-out;
 }
 
 .preloader__item:last-child {
-    top: auto;
-    bottom: 0;
-    animation-delay: -1s;
+  top: auto;
+  bottom: 0;
+  animation-delay: -1s;
 }
 
 @keyframes preloader-rotate {
-    100% {
-        transform: rotate(360deg);
-    }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes preloader-bounce {
-    0%,
-    100% {
-        transform: scale(0);
-    }
+  0%,
+  100% {
+    transform: scale(0);
+  }
 
-    50% {
-        transform: scale(1);
-    }
+  50% {
+    transform: scale(1);
+  }
 }
 
 .loaded_hiding .preloader {
-    transition: 0.3s opacity;
-    opacity: 1;
+  transition: 0.3s opacity;
+  opacity: 1;
 }
 
 .loaded .preloader {
-    display: none;
+  display: none;
 }
-
 
 /*chat comment*/
 .ant-comment {
-    width: max-content !important;
+  width: max-content !important;
 }
 
 .comment-action {
-    padding-left: 8px;
-    cursor: auto;
+  padding-left: 8px;
+  cursor: auto;
 }
 
 .ant-comment-inner {
-    padding: 0 !important;
+  padding: 0 !important;
 }
 
 .ant-comment-content-author-time {
-    font-size: 10px !important;
+  font-size: 10px !important;
 }
 
 .ant-comment-content-detail {
-    font-size: 17px !important;
+  font-size: 17px !important;
 }
-
 
 /**/
 
@@ -302,108 +308,110 @@ body {
 /*    left: 60vw;*/
 /*}*/
 .drower-open-modal {
-    display: none;
+  display: none;
 }
-.ant-upload-list.ant-upload-list-text{
-      text-align: center;
-      position: fixed;
-      bottom: 15vh;
-      left: 50vw;
-  }
+.ant-upload-list.ant-upload-list-text {
+  text-align: center;
+  position: fixed;
+  bottom: 15vh;
+  left: 50vw;
+}
 
 @media (min-width: 220px) and (max-width: 1175px) {
-    .ant-card-body {
-        padding: 18px !important;
-    }
+  h4 {
+    font-size: 14px !important;
+  }
+  .ant-card-body {
+    padding: 18px !important;
+  }
 
-    .language-switch {
-        bottom: 65px !important;
-        right: 10px !important;
-        font-size: 20px !important;
-    }
+  .language-switch {
+    bottom: 65px !important;
+    right: 10px !important;
+    font-size: 20px !important;
+  }
 
-    .ant-upload.ant-upload-select {
-        width: 100% !important;
-    }
+  .ant-upload.ant-upload-select {
+    width: 100% !important;
+  }
 
-    .ant-upload-list-item-container {
-        width: 100% !important;
-    }
+  .ant-upload-list-item-container {
+    width: 100% !important;
+  }
 
-    /*chat user modal*/
-    .drower-open-modal {
-        width: 100%;
-        height: 100vh;
-        position: fixed;
-        top: 0;
-        left: 0;
-        background: none;
-        display: flex;
-        justify-content: flex-end;
-        pointer-events: none;
-        transition: 0.3s all;
-        z-index: 1001;
-        overflow: hidden;
-        overflow-y: scroll;
-        /*opacity: 0;*/
-    }
+  /*chat user modal*/
+  .drower-open-modal {
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: none;
+    display: flex;
+    justify-content: flex-end;
+    pointer-events: none;
+    transition: 0.3s all;
+    z-index: 1001;
+    overflow: hidden;
+    overflow-y: scroll;
+    /*opacity: 0;*/
+  }
 
-    .drower-open-modal.actives {
-        opacity: 1;
-        pointer-events: all;
-        background: rgba(0, 0, 0, 0.4);
-    }
+  .drower-open-modal.actives {
+    opacity: 1;
+    pointer-events: all;
+    background: rgba(0, 0, 0, 0.4);
+  }
 
-    .drower-modal-content {
-        width: 85vw;
-        height: 100vh;
-        padding: 20px;
-        z-index: 1002;
-        position: absolute;
-        top: 0;
-        left: -85vw;
-        transition: 0.5s all;
-    }
+  .drower-modal-content {
+    width: 85vw;
+    height: 100vh;
+    padding: 20px;
+    z-index: 1002;
+    position: absolute;
+    top: 0;
+    left: -85vw;
+    transition: 0.5s all;
+  }
 
-    .drower-modal-content.activ {
-        left: 0;
-        transition: 0.5s all;
-    }
+  .drower-modal-content.activ {
+    left: 0;
+    transition: 0.5s all;
+  }
 
-    .ant-pro-setting-drawer-handle {
-        position: absolute;
-        top: 50px;
-        left: 85vw;
-        z-index: 55555;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 48px;
-        height: 48px;
-        text-align: center;
-        /*background-color: var(--ant-primary-color);*/
-        border-radius: 4px 0 0 4px;
-        cursor: pointer;
-        pointer-events: auto;
+  .ant-pro-setting-drawer-handle {
+    position: absolute;
+    top: 50px;
+    left: 85vw;
+    z-index: 55555;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    text-align: center;
+    /*background-color: var(--ant-primary-color);*/
+    border-radius: 4px 0 0 4px;
+    cursor: pointer;
+    pointer-events: auto;
+  }
 
-    }
-
-    .ant-pro-setting-drawer-button {
-        width: 100% !important;
-        height: 100% !important;
-        font-size: 20px !important;
-        border-radius: 0 !important;
-        border-color: #ffdd00 !important;
-        display: flex !important;
-        justify-content: center !important;
-        align-items: center !important;
-        margin: 0 !important;
-    }
-    .ant-upload-list.ant-upload-list-text{
-        text-align: center;
-        position: fixed;
-        bottom: 15vh;
-        left: 8vw;
-    }
-    /*end chat user modal*/
+  .ant-pro-setting-drawer-button {
+    width: 100% !important;
+    height: 100% !important;
+    font-size: 20px !important;
+    border-radius: 0 !important;
+    border-color: #ffdd00 !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    margin: 0 !important;
+  }
+  .ant-upload-list.ant-upload-list-text {
+    text-align: center;
+    position: fixed;
+    bottom: 15vh;
+    left: 8vw;
+  }
+  /*end chat user modal*/
 }

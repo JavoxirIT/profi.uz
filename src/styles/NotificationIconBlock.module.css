@@ -5,7 +5,7 @@
   align-items: center;
   /* padding-right: 40px; */
 }
-.NotificationIconBlock2{
+.NotificationIconBlock2 {
   display: flex;
   align-items: center;
 }
@@ -19,6 +19,24 @@
 }
 .NotificationIconBlockBadge {
   margin: 0 15px !important;
+}
+
+@media (min-width: 1176px) {
+  .NotificationIconBlock {
+    width: 200px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 0;
+  }
+  .NotificationIconBlock2 {
+  }
+  .NotificationIconBlockBadge {
+    margin: 0 !important;
+  }
+  .NotificationIconBlockIcon {
+    margin: 0 7px 0 0 !important;
+  }
 }
 
 @media (min-width: 220px) and (max-width: 1175px) {

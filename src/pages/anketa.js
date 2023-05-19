@@ -26,7 +26,18 @@ const { Title, Text } = Typography;
 const isType = typeof window !== undefined;
 
 export default function Anketa({}) {
-  const router = useRouter()
+  const router = useRouter();
+  const [isChecked, setChecked] = useState(false);
+
+  useEffect(() => {
+    if (!getCookie("access_token")) {
+      router.push("/authorization").then(() => {
+        setChecked(false);
+      });
+    }else {
+      setChecked(true);
+    }
+  }, [router]);
   const [viloyat, setViloyat] = useState([]);
   const [special, setSpecial] = useState([]);
   useEffect(() => {
@@ -180,7 +191,7 @@ export default function Anketa({}) {
   };
 
   //   Запрос не выполнен с кодом состояния 404.
-  return (
+  return isChecked && (
     <PageWrapperAuthorization title="Anketa">
       {contextHolder}
       <div className={css.AnketaFormBlock}>

@@ -14,10 +14,22 @@ import AllChatsMobileDrawer from "../components/chat/AllChatsMobileDrawer";
 const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
 const Chat = ({ t, unread }) => {
+
   const fetchMessage = useMessage((state) => state.fetchMessage);
   const router = useRouter();
   const { query } = router;
-  // console.log(router)
+  //проверяем авторизован ли пользователь
+  const [isChecked, setChecked] = useState(false);
+  useEffect(() => {
+    if (!getCookie("access_token")) {
+      router.push("/authorization").then(() => {
+        setChecked(false);
+      });
+    }else {
+      setChecked(true);
+    }
+  }, [router]);
+  
   // увидамление
   const [api, contextHolder] = notification.useNotification();
   const openNotificationWithIcon = (type, code, message) => {
@@ -45,17 +57,6 @@ const Chat = ({ t, unread }) => {
       });
     //eslint-disable-next-line
   }, []);
-  //проверяем авторизован ли пользователь
-  const [isChecked, setChecked] = useState(false);
-  useEffect(() => {
-    if (!getCookie("access_token")) {
-      router.push("/authorization").then(() => {
-        setChecked(false);
-      });
-    } else {
-      setChecked(true);
-    }
-  }, [router]);
 
   // получаем переписки с пользователем по клику
   const [userid, setUserId] = useState(null);

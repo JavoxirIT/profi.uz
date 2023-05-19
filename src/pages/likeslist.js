@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {PageWrapperGlobal} from "../components/PageWrapperGlobal";
 import {Card, notification, Tag, Typography} from "antd";
 import css from "../styles/Index.module.css";
@@ -18,7 +18,18 @@ const urlImg = process.env.NEXT_PUBLIC_IMG_URL
 const {Text, Title} = Typography;
 
 function Likeslist({data, t}) {
-	const router = useRouter()
+	const router = useRouter();
+	const [isChecked, setChecked] = useState(false);
+
+	useEffect(() => {
+		if (!getCookie("access_token")) {
+			router.push("/authorization").then(() => {
+				setChecked(false);
+			});
+		} else {
+			setChecked(true);
+		}
+	}, [router]);
 
 	const clickUser = (e) => {
 		router.push(`/index/[id]`)
@@ -62,7 +73,7 @@ function Likeslist({data, t}) {
 	}
 
 
-	return (
+	return isChecked && (
 		<PageWrapperSingle title={"Sevimlilar"} pageTitle="Sevimlilar" t={t}>
 			{contextHolder}
 			<div style={{paddingTop: 10}}>

@@ -1,7 +1,9 @@
-import { Tag } from "antd";
+import { Tag, Typography } from "antd";
 import Link from "next/link";
 import { eraseCookie } from "utils/setCookie";
 import css from "../../styles/Cabinet.module.css";
+
+const { Text } = Typography;
 
 const CabinetNavigateList = ({ t, id }) => {
   const data = [
@@ -54,10 +56,14 @@ const CabinetNavigateList = ({ t, id }) => {
     >
       <Link
         className={css.NavigateLinkBlockItem}
-        href={i.link}
+        //   href={i.link}
+        href={{
+          pathname: i.link,
+          query: { user_id: id },
+        }}
         style={{ display: "block", width: "100%" }}
       >
-        {i.title}
+        <Text>{i.title}</Text>
       </Link>
     </Tag>
   ));
