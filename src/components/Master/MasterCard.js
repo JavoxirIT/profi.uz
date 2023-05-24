@@ -6,6 +6,7 @@ import img from "../../img/noimage.png";
 import Image from "next/image";
 import useLocalStorage from "../../hooks/useLocalStorage";
 import {postFetch} from "../../request/Fetch";
+import MasterComplaint from "./MasterComplaint";
 
 const {Text, Title} = Typography;
 
@@ -30,7 +31,7 @@ export default function MasterCard({data, t, user_id}) {
 			user_id: Number(user_id)
 		})
 		postFetch({path, value}).then((res) => {
-			console.log(res)
+			// console.log(res)
 			if (res.status === 200) {
 				setReyt(res.data.reyting)
 				openNotificationWithIcon(
@@ -58,7 +59,13 @@ export default function MasterCard({data, t, user_id}) {
 
 	//   const goChat = () =>
 	//     router.push({ pathname: "/chat", query: { pid: `${data.id}` } });
-
+	const [isModalOpen, setIsModalOpen] = useState(false);
+	const showModal = (key) => {
+		setIsModalOpen(true);
+	};
+	const handleCancel = () => {
+		setIsModalOpen(false);
+	};
 	return (
 		<>
 			{contextHolder}
@@ -88,16 +95,16 @@ export default function MasterCard({data, t, user_id}) {
 					<h4 className={css.UserTabCardName}>
 						{data.firstname} {data.lastname}
 					</h4>
-					<Text className={css.TabCardText}>{data.distirct.vil_name}</Text>
+					<Text className={css.TabCardText}>{data?.distirct?.vil_name}</Text>
 					<div style={{paddingTop: 16}}>
 						<Tag color="default" key={1} style={{margin: 5}}>
-							{data.special.name}{" "}
+							{data?.special?.name}{" "}
 						</Tag>
 					</div>
 					<div style={{textAlign: "center"}} >
 						<Rate style={{fontSize: 30}} onChange={rateChange} value={reyting} allowHalf/> {" "}
 						<div>
-							<small>Umumiy reyting: {reyt}</small>
+							<Text>umumiy reyting: {reyt}</Text>
 						</div>
 					</div>
 				</div>
@@ -115,6 +122,15 @@ export default function MasterCard({data, t, user_id}) {
 			>
 				Murojaat qilish
 			</Button>
+			<Button
+				onClick={() => showModal(data.id)}
+				type="primary"
+				size="large"
+				className={css.TabCardButton}
+			>
+				{t.complaintModalTitle}
+			</Button>
+			<MasterComplaint userId={user_id} open={isModalOpen} t={t} handleCancel={handleCancel} setIsModalOpen={setIsModalOpen}/>
 		</>
 	);
 }

@@ -21,7 +21,28 @@
 .MasterChatEditor {
 
 }
-
+/*----------------------------*/
+.MasterCommentWrapper{
+  height: 100%;
+  position: relative;
+  /*display: grid;*/
+  /*grid-template-columns: 1fr;*/
+  /*grid-template-rows: 92% 8%;*/
+  /*row-gap: 10px;*/
+}
+.MasterCommentList{
+  /*flex: 1 1 auto !important;*/
+}
+.MasterCommentListBtn{
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+.MasterCommentBtn{
+  position: fixed !important;
+  bottom: 150px !important;
+  right: 250px !important;
+}
 @media (min-width: 220px) and (max-width: 1175px) {
   .masterWrapper {
     display: flex;
@@ -29,5 +50,9 @@
   }
   .MasterTab {
     margin-top: 15px;
+  }
+  .MasterCommentBtn{
+    bottom: 75px !important;
+    right: 30px !important;
   }
 }

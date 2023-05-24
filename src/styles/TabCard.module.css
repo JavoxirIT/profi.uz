@@ -13,6 +13,8 @@
 }
 .UserTabCardImage {
   border-radius: 10px;
+  width: 200px;
+  height: 200px;
 }
 .TabCardButton {
   width: 100%;
@@ -38,6 +40,7 @@
 .bajarilganIshlarImage {
   width: 500px;
   height: 300px;
+  border-radius: 10px;
 }
 /* @media (width: 360px) {
   .bajarilganIshlarImage {
@@ -63,10 +66,18 @@
     flex-direction: column !important;
     padding: 20px 0;
   }
+  .UserTabCardImage {
+    width: 120px;
+    height: 120px;
+  }
 }
 @media (min-width: 220px) and (max-width: 1175px) {
   .TabCard {
     height: auto;
+  }
+  .UserTabCardImage {
+    width: 100px;
+    height: 100px;
   }
   .TabCardText {
     font-size: 14px;

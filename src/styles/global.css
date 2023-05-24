@@ -6,8 +6,9 @@
 
 :root {
   --scroll-color: #f0ce00;
-  --antd-tab-border-color: #334155;
-  --antd-tab-border: 2px solid;
+  --border-color:  #f0ce00;
+  --antd-tab-border-color: #c4c4c4;
+  --antd-tab-border: 1px solid #c4c4c4;
   --antd-tab-border-radius: 16px;
 }
 
@@ -38,19 +39,15 @@
 
 html,
 body {
+  width: 100%;
   height: 100%;
   padding: 0;
   margin: 0 auto;
 }
-
-.ant-checkbox-group {
-  display: flex !important;
-  flex-flow: column !important;
-}
-
 .ant-checkbox-wrapper {
   padding: 5px 0 !important;
   margin-left: 0 !important;
+  /*display: inline-block !important;*/
 }
 
 .ant-tabs-nav-wrap {
@@ -76,7 +73,8 @@ body {
 
 .ant-tabs-card > .ant-tabs-nav .ant-tabs-tab {
   /* For tabs border */
-  border-color: #0c0d15 !important;
+  /*border-color: #0c0d15 !important;*/
+  /*border-color: var(--border-color) !important;*/
 }
 
 .ant-tabs-top > .ant-tabs-nav::before {
@@ -102,6 +100,13 @@ body {
 /* Скрываем scrollbar для Chrome, Safari и Opera */
 .ant-tabs-content-holder::-webkit-scrollbar {
   display: none;
+}
+/*управляем третим табом*/
+.ant-tabs-content{
+  height: 100% !important;
+}
+#rc-tabs-1-panel-3{
+  height: 100% !important;
 }
 /* Скрываем scrollbar для IE, Edge и Firefox */
 .ant-tabs-content-holder {
@@ -279,6 +284,7 @@ body {
 .loaded .preloader {
   display: none;
 }
+/**/
 
 /*chat comment*/
 .ant-comment {
@@ -415,3 +421,21 @@ body {
   }
   /*end chat user modal*/
 }
+
+
+
+/* the slides */
+.slick-slider {
+  margin: 20px 0 !important;
+}
+.slick-slide:not(:nth-child(1)){
+  margin: 0 15px;
+}
+/*!* the parent *!*/
+/*.slick-list {*/
+/*  margin: 10px -9px;*/
+/*}*/
+/*!* item *!*/
+/*.item{*/
+/*  padding: 10px 9px;*/
+/*}*/

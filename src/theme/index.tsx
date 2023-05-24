@@ -19,7 +19,7 @@ const withTheme = (node: JSX.Element) => (
         theme={{
           token: {
             // colorPrimaryBg: "#0c0d15;",
-            colorInfoText: "#ffdd00",
+            colorInfoText: "#d0b400",
             colorInfo: "#ffdd00",
             colorText: "#ffdd00",
             colorTextTertiary: "#ffdd00",
@@ -31,7 +31,7 @@ const withTheme = (node: JSX.Element) => (
             colorBgLayout: "#ffffff",
             // colorBorderSecondary: "#334155",
             colorBorderSecondary: "#c4c4c4",
-            colorPrimary: "#ffdd00",
+            colorPrimary: "#d0b400",
             // colorBgBase: "#161616",
             colorBgBase: "#ffffff",
             borderRadius: 16,
@@ -73,7 +73,7 @@ const withTheme = (node: JSX.Element) => (
               // colorFillQuaternary: "#0c0d15",
               colorFillQuaternary: "#ffffff",
               // colorBorder: "#0c0d15",
-              colorBorder: "#ffdd00",
+              colorBorder: "#d0b400",
             },
             Layout: {
               // colorBgContainer: "#0c0d15",
@@ -101,6 +101,9 @@ const withTheme = (node: JSX.Element) => (
             },
             Dropdown: {
               zIndexPopup: 15,
+            },
+            Carousel: {
+              motionDurationSlow: "1.5s"
             },
           },
         }}

@@ -1,4 +1,5 @@
 export const uz = {
+  wrapperTitiel: "O'z shahringizdagi eng yaxshi mutaxassislarni toping.",
   authButtonTitle: "Kirish",
   regButtonTitle: "Ro’yxatdan o’tish",
   formReqMess: "Iltomos telefon raqamizni kriting!",
@@ -30,4 +31,8 @@ export const uz = {
   live: "Sevimlilar",
   cabinet: "Kabinet",
   back: "Qaytish",
+  //
+  complaint: "maksimal uzunligi 1000 belgi",
+  complaintButton: "Yuborish",
+  complaintModalTitle: "Shikoyat qilish"
 };

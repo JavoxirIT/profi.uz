@@ -3,21 +3,23 @@ import {RiSearchLine, RiFilterLine} from "react-icons/ri";
 import css from "../styles/SerchInp.module.css";
 import {Input} from "antd";
 
-export default function SerchInp() {
-    const onSearch = (e) => {
-        console.log(e.target.value);
-    };
+const {Search} = Input;
+export default function SerchInp(props) {
+	// const onSearch = (e) => {
+	// 	// setIsSearch({search: e.target.value});
+	// 	console.log(e.target.value);
+	// };
 
-    return <Input
-        className={css.Search_Inpblock}
-        prefix={<RiSearchLine className={css.Search_BtnIcons}/>}
-        placeholder="Kerakli mutaxasisni qidiring..."
-        allowClear
-        onChange={onSearch}
-        onPressEnter={onSearch}
-        onBlur={onSearch}
-        // suffix={<RiFilterLine className={css.Search_BtnIcons} />}
-        size="large"
-    />
+	return <Input
+		className={css.Search_Inpblock}
+		prefix={<RiSearchLine className={css.Search_BtnIcons}/>}
+		placeholder="Kerakli mutaxasisni qidiring..."
+		allowClear
+		onChange={({ target: { value } }) => props.Search(value)}
+		onPressEnter={({ target: { value } }) => props.Search(value)}
+		onBlur={({ target: { value } }) => props.Search(value)}
+		// suffix={<RiFilterLine className={css.Search_BtnIcons} />}
+		size="large"
+	/>
 
 }

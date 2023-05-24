@@ -13,18 +13,18 @@ import "../styles/global.css"; //may-global style
 import "../scripts/loding";
 export default function App({ Component, pageProps }) {
   const lang = useLang((state) => state.lang);
-  const [loding, setLoding] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [language, setLanguage] = useState(uz);
   const router = useRouter();
   // прелоадер
   useEffect(() => {
     //  Обработка начала загрузки
     router.events.on("routeChangeStart", () => {
-      setLoding(true);
+      setLoading(true);
     });
     //  Обработка окончания загрузки
     router.events.on("routeChangeComplete", () => {
-      setLoding(false);
+      setLoading(false);
     });
   }, [router.asPath, router.events]);
 
@@ -55,7 +55,7 @@ export default function App({ Component, pageProps }) {
   return withTheme(
     <StyleProvider hashPriority="high">
       <Preloade2 />
-      {loding && <Preloade />}
+      {loading && <Preloade />}
       <Component
         {...pageProps}
         t={language}

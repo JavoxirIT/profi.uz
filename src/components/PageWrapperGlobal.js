@@ -20,8 +20,7 @@ export const PageWrapperGlobal = ({
                                       setUser,
                                       vil,
                                       isSpesial,
-                                      onFinish
-                                  }) => {
+                                      onFinish , Search}) => {
     const router = useRouter();
     const goBack = (e) => router.back();
     return (
@@ -50,7 +49,7 @@ export const PageWrapperGlobal = ({
                         </Link>
                         <h1 className={css.headerKondidatText}>{pageTitle}</h1>
                         <div className={css.headerSerchMobile}>
-                            <SerchInp/>
+                            <SerchInp  Search={Search}/>
                             <div className={css.FilterDropdawn}>
                                 <CategoryFilter setUser={setUser} vil={vil} isSpesial={isSpesial} onFinish={onFinish}/>
                             </div>

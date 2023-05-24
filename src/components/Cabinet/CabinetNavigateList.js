@@ -40,9 +40,11 @@ const CabinetNavigateList = ({ t, id }) => {
   ];
   // функцыя для выхода
   const handleLink = (e) => {
+    // console.log(e)
     if (e.id === 6) {
       eraseCookie("access_token");
-      sessionStorage.removeItem("user");
+      eraseCookie("user_id ");
+      localStorage.removeItem("user");
     }
   };
 

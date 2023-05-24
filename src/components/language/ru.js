@@ -1,4 +1,5 @@
 export const ru = {
+  wrapperTitiel: "Найдите лучших специалистов в вашем городе.",
   authButtonTitle: "Авторизация",
   regButtonTitle: "Регистрацыя",
   formReqMess: "Пожалуйста введите номер (тел)",
@@ -30,4 +31,8 @@ export const ru = {
   live: "Приоритетные",
   cabinet: "Кабинет",
   back: "Назад",
+//
+  complaint: "максимальная длина 1000 символов",
+  complaintButton: "Отправить",
+  complaintModalTitle: "Подать жалобу"
 };

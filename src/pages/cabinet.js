@@ -46,6 +46,7 @@ export default function Cabinet({ user, t }) {
                   height={90}
                   alt="avatar"
                   className={css.UserInfoBodyImg}
+                  priority
                 />
               ) : (
                 <Image
@@ -54,6 +55,7 @@ export default function Cabinet({ user, t }) {
                   height={90}
                   alt="avatar"
                   className={css.UserInfoBodyImg}
+                  priority
                 />
               )}
               <Title level={3} style={{ paddingTop: 16 }}>
