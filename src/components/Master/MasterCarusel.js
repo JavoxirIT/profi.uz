@@ -20,11 +20,13 @@ function MasterCarusel({caruselUser}) {
 		autoplay: true,
 		dots: true,
 		speed: 4000,
-		autoplaySpeed: 500,
+		autoplaySpeed: 0,
 		cssEase: "linear",
 		slidesToShow: 2,
 		slidesToScroll: 1,
 		variableWidth: true,
+		pauseOnHover: true,
+		touchMove: true,
 		responsive: [
 			{
 				breakpoint: 1024,

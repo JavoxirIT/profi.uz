@@ -12,7 +12,7 @@ const {Text, Title} = Typography;
 
 const urlImg = process.env.NEXT_PUBLIC_IMG_URL;
 
-export default function MasterCard({data, t, user_id}) {
+export default function MasterCard({data, t, user_id, }) {
 	const [api, contextHolder] = notification.useNotification();
 	const openNotificationWithIcon = (type, code, message) => {
 		api[type]({
@@ -130,7 +130,7 @@ export default function MasterCard({data, t, user_id}) {
 			>
 				{t.complaintModalTitle}
 			</Button>
-			<MasterComplaint userId={user_id} open={isModalOpen} t={t} handleCancel={handleCancel} setIsModalOpen={setIsModalOpen}/>
+			<MasterComplaint userId={user_id} open={isModalOpen} t={t} handleCancel={handleCancel} setIsModalOpen={setIsModalOpen} openNotificationWithIcon={openNotificationWithIcon}/>
 		</>
 	);
 }

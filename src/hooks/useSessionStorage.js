@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 
 export default function useSessionStorage(initiavlValue, key) {
   const storage =
-    typeof window !== "undefined" ? localStorage.getItem(key) : null;
+    typeof window !== "undefined" ? sessionStorage.getItem(key) : null;
 
   function getValue() {
     if (storage) {
@@ -14,7 +14,7 @@ export default function useSessionStorage(initiavlValue, key) {
   const [value, setValue] = useState(getValue);
 
   useEffect(() => {
-    localStorage.setItem(key, JSON.stringify(value));
+    sessionStorage.setItem(key, JSON.stringify(value));
   }, [key, value]);
 
   return [value, setValue];

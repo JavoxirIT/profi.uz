@@ -5,29 +5,29 @@ import {postFetch} from "../../request/Fetch";
 import {getCookie} from "../../utils/setCookie";
 const {TextArea} = Input;
 const {Item} = Form
-function MasterComplaint({t, open, userId, handleCancel, setIsModalOpen}) {
-	// увидамление
-	const [api, contextHolder] = notification.useNotification();
-	const openNotificationWithIcon = (type, code, message) => {
-		api[type]({
-			message: code,
-			description: message,
-			duration: 2,
-		});
-	};
+function MasterComplaint({t, open, userId, handleCancel, setIsModalOpen, openNotificationWithIcon}) {
+
 	const [btnLoading, setBtnLoading ] = useState(false)
 	const onSubmit = (val) =>{
 		val.user_id = Number(userId)
 		setBtnLoading(true)
 		setIsModalOpen(false)
 		if(!getCookie("access_token")){
+			setBtnLoading(false)
 			openNotificationWithIcon("error", "Aval ro'yxatdan o'ting");
 			return false
 		}
 		postFetch({path: "insert-complaint", value: val}).then((res)=>{
-			console.log(res)
+			if(res.status === 200){
+				openNotificationWithIcon("success", "Shikoyat adminga yuborildi");
+				setBtnLoading(false)
+			}else{
+				openNotificationWithIcon("error", "Kechurasiz xabar yuborilmadi");
+				setBtnLoading(false)
+			}
 		}).catch((err)=>{
-			console.log(err)
+			openNotificationWithIcon("error", err.code , "Kechirasiz xabar yuborilmadi");
+			setBtnLoading(false)
 		})
 	}
 	return (

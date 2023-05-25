@@ -9,6 +9,7 @@ import img from "../../img/noimage.png";
 import {AiFillHeart} from "react-icons/ai";
 import Link from "next/link";
 import {HiOutlineLocationMarker} from "react-icons/hi";
+import useSessionStorage from "../../hooks/useSessionStorage";
 
 const imgUrl = process.env.NEXT_PUBLIC_IMG_URL
 const {Text, Title} = Typography;
@@ -24,21 +25,25 @@ const items = [{
 },]
 let subArr = []
 const MasterModalFilter = ({special, vil, onFinish, open, setOpen, ollSpecial, user}) => {
+	const [isPath, setIsPath] = useSessionStorage(null, "dataPath")
+
+	const {pathname} = useRouter()
+	useEffect(() => {
+		if (pathname === "/" && isPath === null) {
+			setOpen(true)
+		}
+	}, [isPath, pathname, setOpen])
+	const handleCancel = () => {
+		setOpen(false)
+	}
+
 	const [specialValue, setSpecialValue] = useState([])
 	useEffect(() => {
 		ollSpecial.map((i) => i.subspecial.filter((sub) => sub.p_type_id === specialValue ? subArr.push(sub) : null))
 	}, [ollSpecial, specialValue]);
 	const subData = subArr.map((i) => ({value: i.id, label: i.name}))
 
-	const {pathname} = useRouter()
-	useEffect(() => {
-		if (pathname === "/") {
-			setOpen(true)
-		}
-	}, [pathname, setOpen])
-	const handleCancel = () => {
-		setOpen(false)
-	}
+
 	const [checked, setChecked] = useState(null)
 	const [values, setValues] = useState(vil)
 	const onRegionChange = (e) => {
@@ -55,6 +60,7 @@ const MasterModalFilter = ({special, vil, onFinish, open, setOpen, ollSpecial, u
 			onFinish(values);
 			// console.log(values)
 			// subArr = Array()
+			setIsPath(pathname)
 			setTimeout(() => {
 				setOpen(false)
 			}, 2000)
@@ -157,66 +163,67 @@ const MasterModalFilter = ({special, vil, onFinish, open, setOpen, ollSpecial, u
 						>
 							Qayta so`rov yuborish
 						</Button>
-						<div className={css.MasterModalFilterUserCard}>
-							{user.map((i) =>
-								<div key={i.id}>
-									<Card className={css.indexUserCardBody}>
-										<div className={css.indexUserCardHeader}>
-											{i.image !== null ? (<Image
-												src={`${imgUrl + i.image}`}
-												alt="avatar"
-												width={50}
-												height={50}
-												className={css.indexCaruselImage}
-												priority={true}
-											/>) : (<Image
-												src={img}
-												alt="avatar"
-												width={50}
-												height={50}
-												className={css.indexCaruselImage}
-												priority={true}
-											/>)}
+						{/*<div className={css.MasterModalFilterUserCard}>*/}
+						{/*	{user.map((i) =>*/}
+						{/*		<div key={i.id}>*/}
+						{/*			<Card className={css.indexUserCardBody} key={i.id}>*/}
+						{/*				<div className={css.indexUserCardHeader} key={i.id}>*/}
+						{/*					{i.image !== null ? (<Image*/}
+						{/*						src={`${imgUrl + i.image}`}*/}
+						{/*						alt="avatar"*/}
+						{/*						width={50}*/}
+						{/*						height={50}*/}
+						{/*						className={css.indexCaruselImage}*/}
+						{/*						priority={true}*/}
+						{/*					/>) : (<Image*/}
+						{/*						src={img}*/}
+						{/*						alt="avatar"*/}
+						{/*						width={50}*/}
+						{/*						height={50}*/}
+						{/*						className={css.indexCaruselImage}*/}
+						{/*						priority={true}*/}
+						{/*					/>)}*/}
 
-											<div>
-												<Rate
-													className={css.indexUserRate}
-													// onChange={(e) => ratingChange(i.id, e)}
-													value={i.reyting}
-													allowHalf
-													disabled
-												/> <br/>
-												<Text>Umumiy reyting: {i.reyting}</Text>
-											</div>
-											<AiFillHeart
-												aria-labelledby="like"
-												// onClick={() => ChangeLike({id: i.id, like: i.like?.likes})}
-												className={i.like?.likes === 0 || i.like === "Unauthorized" ? `${css.indexUserRate}` : `${css.indexUserRateTrue}`}
-											/>
-										</div>
-										<div>
-											<Text style={{fontSize: 12}} key={i.special?.id || null}>
-												{i.special?.name}
-											</Text>
-											<br/>
-											<Link href={"/index/[id]"} as={`/index/${i.id}`}>
-												<Title level={4}>
-													{i.firstname} {i.lastname}
-												</Title>
-											</Link>
-											<p style={{marginBottom: 5}}>
-												<HiOutlineLocationMarker/>
-												<Text style={{paddingLeft: 10}}>
-													{i.distirct?.vil_name}
-												</Text>
-											</p>
+						{/*					<div>*/}
+						{/*						<Rate*/}
+						{/*							className={css.indexUserRate}*/}
+						{/*							// onChange={(e) => ratingChange(i.id, e)}*/}
+						{/*							value={i.reyting}*/}
+						{/*							allowHalf*/}
+						{/*							disabled*/}
+						{/*						/> <br/>*/}
+						{/*						<Text>Umumiy reyting: {i.reyting}</Text>*/}
+						{/*					</div>*/}
+						{/*					<AiFillHeart*/}
+						{/*						key={i.like?.id}*/}
+						{/*						aria-labelledby="like"*/}
+						{/*						// onClick={() => ChangeLike({id: i.id, like: i.like?.likes})}*/}
+						{/*						className={i.like?.likes === 0 || i.like === "Unauthorized" ? `${css.indexUserRate}` : `${css.indexUserRateTrue}`}*/}
+						{/*					/>*/}
+						{/*				</div>*/}
+						{/*				<div>*/}
+						{/*					<Text style={{fontSize: 12}} key={i.special?.id || null}>*/}
+						{/*						{i.special?.name}*/}
+						{/*					</Text>*/}
+						{/*					<br/>*/}
+						{/*					<Link href={"/index/[id]"} as={`/index/${i.id}`}>*/}
+						{/*						<Title level={4}>*/}
+						{/*							{i.firstname} {i.lastname}*/}
+						{/*						</Title>*/}
+						{/*					</Link>*/}
+						{/*					<p style={{marginBottom: 5}}>*/}
+						{/*						<HiOutlineLocationMarker/>*/}
+						{/*						<Text style={{paddingLeft: 10}} key={i.distirct?.vil_name}>*/}
+						{/*							{i.distirct?.vil_name}*/}
+						{/*						</Text>*/}
+						{/*					</p>*/}
 
-											<Tag key={i.sub_special?.id}>{i.sub_special?.name || null}</Tag>
-										</div>
-									</Card>
-								</div>
-							)}
-						</div>
+						{/*					<Tag key={i.sub_special?.id}>{i.sub_special?.name || null}</Tag>*/}
+						{/*				</div>*/}
+						{/*			</Card>*/}
+						{/*		</div>*/}
+						{/*	)}*/}
+						{/*</div>*/}
 					</>}
 			/> : <Result
 				status="error"

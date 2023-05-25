@@ -15,6 +15,7 @@ const { Title } = Typography;
 const url = process.env.NEXT_PUBLIC_ONE_USER;
 
 const Master = ({ t, data }) => {
+
   // console.log(data)
   //   const { data, error } = useSWR(repoInfo);
   const { query } = useRouter();
@@ -25,7 +26,7 @@ const Master = ({ t, data }) => {
           <Title style={{ marginBottom: 22 }} level={4}>
             Ba’tafsil malumotlari
           </Title>
-          <MasterCard data={data} t={t} user_id={query.id}/>
+          <MasterCard data={data} t={t} user_id={query.id} />
         </div>
         <div className={css.MasterTab}>
           <MasterTabCard data={data} t={t} />
