@@ -1,6 +1,6 @@
 .cabinetCardBlock {
   height: 100%;
-  padding: 20px 0;
+  padding: 30px 0 20px 0;
   display: grid;
   grid-template-columns: 20% 1fr;
   grid-template-rows: auto;
@@ -20,7 +20,10 @@
   flex-direction: column !important;
   align-items: center !important;
 }
-
+.UserInfoBodyImg{
+  width: 120px;
+  height: 120px;
+}
 .cabinetCardUserNavigate {
   width: inherit !important;
   height: inherit !important;
@@ -56,7 +59,7 @@
   }
   .UserInfoBodyImg {
     position: absolute;
-    top: -65px;
+    top: -85px;
     z-index: 1;
     border-radius: 10px;
   }

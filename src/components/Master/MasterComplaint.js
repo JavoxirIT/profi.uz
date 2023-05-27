@@ -5,7 +5,7 @@ import {postFetch} from "../../request/Fetch";
 import {getCookie} from "../../utils/setCookie";
 const {TextArea} = Input;
 const {Item} = Form
-function MasterComplaint({t, open, userId, handleCancel, setIsModalOpen, openNotificationWithIcon}) {
+function MasterComplaint({t, open, userId, handleCancel, setIsModalOpen, openNotificationWithIcon, }) {
 
 	const [btnLoading, setBtnLoading ] = useState(false)
 	const onSubmit = (val) =>{

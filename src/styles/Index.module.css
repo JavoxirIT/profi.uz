@@ -64,11 +64,13 @@
 .indexUserRate {
     font-size: 30px;
     color: #6e6f91;
+    transition: 0.3s linear;
 }
 
 .indexUserRateTrue {
     font-size: 30px;
     color: red;
+    transition: 0.3s linear;
 }
 
 /*carusel card*/

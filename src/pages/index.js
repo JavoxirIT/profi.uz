@@ -16,12 +16,11 @@ import {
 import css from "../styles/Index.module.css";
 import React, {useEffect, useState} from "react";
 import {getCookie} from "utils/setCookie";
-import axios from "axios";
-import Preloade from "components/Preloder/Preloade";
 import {postFetch} from "../request/Fetch";
 import img from "../img/noimage.png";
 import MasterCarusel from "../components/Master/MasterCarusel";
 import MasterModalFilter from "../components/Master/MasterModalFilter";
+import Preloader from "../components/Preloder/Preloader"
 
 
 const apiUrl = process.env.NEXT_PUBLIC_API_URL;
@@ -31,7 +30,7 @@ const {Text, Title} = Typography;
 const isType = typeof window !== undefined;
 
 function HomePage({data, t}) {
-
+	const [loading, setLoading] = useState(false)
 	// натификацыя
 	const [api, contextHolder] = notification.useNotification();
 	const openNotificationWithIcon = (type, code, message) => {
@@ -68,6 +67,7 @@ function HomePage({data, t}) {
 	}, [data]);
 	const [vil, setVil] = useState([]);
 	useEffect(() => {
+		setLoading(true)
 		const path = "viloyat";
 		const method = "GET";
 		postFetch({path, method, value: ""})
@@ -76,11 +76,13 @@ function HomePage({data, t}) {
 				setVil(
 					res.data.viloyat.map((i) => ({value: i.id, label: i.vil_name}))
 				);
+				setLoading(false)
 			}
 		})
 		.catch((err) => {
 			openNotificationWithIcon("error", err.code, err.message);
 		});
+		// 	eslint-disable-next-line
 	}, []);
 
 
@@ -104,7 +106,6 @@ function HomePage({data, t}) {
 	// передаём данные в мщдалку
 	const [dataFilter, setDataFilter] = useState([])
 	const onFinish = async (value) => {
-		// console.log(config);
 		postFetch({path: "sorted-user", value: JSON.stringify(value)})
 		.then((res) => {
 			if (res.status === 200) {
@@ -130,13 +131,17 @@ function HomePage({data, t}) {
 				const nd = data.filter((i) => i.id !== res.data.user_id);
 				dd.like.likes = res.data.likes;
 				setUser([...nd, dd].sort(userSort).reverse())
-
+				if (res.data.likes === 1) {
+					openNotificationWithIcon("success", "Sevimlilar ro'yxatiga qo'shildi");
+				} else {
+					openNotificationWithIcon("warning", "Sevimlilar ro'yxatidan chiqarildi");
+				}
 			}
 		})
 		.catch((err) => {
-			console.log(err);
+			openNotificationWithIcon("error", err.code, err.message);
 		});
-		console.log(value);
+		// console.log(value);
 	};
 	const [mayRating, setMayRating] = useState();
 
@@ -198,10 +203,10 @@ function HomePage({data, t}) {
 		setFiltered(newList);
 	};
 
-
+	// console.log("filtered", filtered)
 	const [open, setOpen] = useState(false)
-	if (!user) {
-		return <Preloade/>;
+	if (!filtered) {
+		return <Preloader/>;
 	}
 	return (
 		<PageWrapperGlobal
@@ -216,8 +221,16 @@ function HomePage({data, t}) {
 		>
 			{contextHolder}
 			{/*vil={modalvil}*/}
-			<MasterModalFilter vil={vil} special={isSpesial} onFinish={onFinish} setOpen={setOpen} open={open}
-			                   ollSpecial={ollSpecial} user={dataFilter}/>
+			<MasterModalFilter
+				vil={vil}
+				special={isSpesial}
+				onFinish={onFinish}
+				setOpen={setOpen}
+				open={open}
+				ollSpecial={ollSpecial}
+				user={dataFilter}
+				loading={loading}
+			/>
 			<h1 className={css.IndexTitle}>{t.wrapperTitiel}</h1>
 			<MasterCarusel caruselUser={caruselUser}/>
 			<main className={css.indexContainer}>
@@ -228,9 +241,6 @@ function HomePage({data, t}) {
 					<div className={css.indexCheckBoxBlock}>
 						<Form
 							onFinish={onFinish}
-							initialValues={{
-								region: [1],
-							}}
 						>
 							<Card className={css.indexCheckBox1}>
 								<Text className={css.indexCheckTitle}>VILOYATLAR</Text>
@@ -287,9 +297,9 @@ function HomePage({data, t}) {
 									)}
 
 									<div style={{paddingLeft: 20}}>
-										<Text style={{fontSize: 14}} key={i.special?.id || null}>
+										<Tag style={{fontSize: 14}} key={i.special?.id || null}>
 											{i.special?.name}
-										</Text>
+										</Tag>
 										<br/>
 										<Link href={"/index/[id]"} as={`/index/${i.id}`}>
 											<Title level={4}>
@@ -311,7 +321,7 @@ function HomePage({data, t}) {
 									<AiFillHeart
 										aria-labelledby="like"
 										onClick={() =>
-											ChangeLike({id: i.id, like: i.like?.likes})
+											ChangeLike({id: i.id, like: i.like?.likes || 0})
 										}
 										className={
 											i.like?.likes === 0 || i.like === "Unauthorized"
@@ -328,8 +338,14 @@ function HomePage({data, t}) {
 										{i.distirct?.vil_name}
 									</Text>
 								</p>
+								<div style={{paddingTop: 16}}>
+									{/*{i.sub_special?.map((i) =>*/}
+									{/*	<Tag color="default" key={i.id}>*/}
+									{/*		{i.name}*/}
+									{/*	</Tag>*/}
+									{/*)}*/}
 
-								<Tag key={i.sub_special?.id}>{i.sub_special?.name || null}</Tag>
+								</div>
 							</div>
 						</Card>
 					))}

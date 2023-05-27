@@ -1,8 +1,8 @@
 import React from "react";
 import Link from "next/link";
-import { AiOutlineHeart } from "react-icons/ai";
-import { MdOutlineNotifications } from "react-icons/md";
+import { AiOutlineHeart, AiFillWechat } from "react-icons/ai";
 import { FiUser } from "react-icons/fi";
+import { BsChatRightText } from "react-icons/bs";
 import css from "../styles/NotificationIconBlock.module.css";
 import linkCss from "../styles/Links.module.css";
 import { Badge } from "antd";
@@ -25,11 +25,12 @@ export default function NotificationIconBlock({ t, unread }) {
       <DropDown />
       <Badge
         size="small"
-        count={unread?.length}
+        // count={unread?.length}
+        count={10}
         className={css.NotificationIconBlockBadge}
       >
         <Link href={"/chat"}>
-          <MdOutlineNotifications
+          <BsChatRightText
             className={css.NotificationIconBlockIcon}
             title="yangi xabar"
             aria-label="nitification"

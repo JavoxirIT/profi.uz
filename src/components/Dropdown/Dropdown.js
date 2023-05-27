@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Dropdown, Space, Switch, Typography } from "antd";
-import {GoSettings} from "react-icons/go";
+import {RiEarthLine} from "react-icons/ri";
 import { Segmented } from "antd";
 import css from "../../styles/NotificationIconBlock.module.css";
 import { uz } from "../language/uz";
@@ -48,9 +48,9 @@ const DropDown = () => {
       menu={{
         items,
       }}
-      placement="bottomLeft"
+      placement="bottom"
     >
-      <GoSettings
+      <RiEarthLine
         className={css.NotificationIconBlockIcon}
         title="dropdown"
         aria-label="dropdown"

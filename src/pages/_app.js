@@ -4,8 +4,7 @@ import { StyleProvider } from "@ant-design/cssinjs";
 import withTheme from "../theme/index"; // antd theme
 import { uz } from "components/language/uz";
 import { postFetch } from "request/Fetch";
-import Preloade from "components/Preloder/Preloade";
-import Preloade2 from "components/Preloder/Preloade2";
+import Preloader from "components/Preloder/Preloader";
 import useLang from "../store/languageStore";
 import { useRouter } from "next/router";
 import "../../public/antd.min.css"; //antd theme global css
@@ -54,8 +53,7 @@ export default function App({ Component, pageProps }) {
 
   return withTheme(
     <StyleProvider hashPriority="high">
-      <Preloade2 />
-      {loading && <Preloade />}
+      {loading && <Preloader />}
       <Component
         {...pageProps}
         t={language}

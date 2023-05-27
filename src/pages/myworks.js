@@ -16,7 +16,7 @@ const isType = typeof window !== undefined;
 export default function MyWorks({ t }) {
   const router = useRouter();
   const { query } = router;
-  console.log(query);
+  // console.log(query);
   const [isChecked, setChecked] = useState(false);
 
   useEffect(() => {

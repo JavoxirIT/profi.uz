@@ -8,7 +8,7 @@ import {postFetch} from "../../request/Fetch";
 
 const {Text, Title, Paragraph} = Typography;
 const urlImg = process.env.NEXT_PUBLIC_IMG_URL;
-const MasterTabCard = ({t, data}) => {
+const MasterTabCard = ({t, data, fetchAllKlass, allClass, fetchStarType }) => {
 	const [api, contextHolder] = notification.useNotification();
 	const openNotificationWithIcon = (type, code, message) => {
 		api[type]({
@@ -17,35 +17,11 @@ const MasterTabCard = ({t, data}) => {
 			duration: 5,
 		});
 	};
-	const [starType, setStarType] = useState([])
-	const fetchStarType = () => {
-		postFetch({path: "star-type"}).then((res) => {
-			if (res.status === 200) {
-				setStarType(res.data.map((i) => ({value: i.id, label: i.name + "/" + i.name_ru})))
-			} else {
-				openNotificationWithIcon("error", res.code, res.message);
-			}
-		}).catch((err) => {
-			openNotificationWithIcon("error", err.code, err.message);
-		})
-	}
 
-	const [allClass, setAllClass] = useState([])
-	const fetchAllKlass = () => {
-		const value = {user_id: data.id}
-		postFetch({path: "all-klass", value}).then((res) => {
-			if (res.status === 200) {
-				setAllClass(res.data)
-			} else {
-				openNotificationWithIcon("error", res.code, res.message);
-			}
-		}).catch((err) => {
-			openNotificationWithIcon("error", err.code, err.message);
-		})
-	}
+
 	useEffect(() => {
-		fetchAllKlass()
 		fetchStarType()
+		fetchAllKlass()
 		// 	eslint-disable-next-line
 	}, [data.id])
 	const items = [
@@ -82,13 +58,13 @@ const MasterTabCard = ({t, data}) => {
 									<small>{i.time}</small>
 								</div>
 							</div>
-							<div>
+							<div className={css.bajarilganIshlarBlockImage} >
 								{i.gallery !== null ? (
 									<Image
 										priority
 										src={urlImg + i.image}
-										width={200}
-										height={200}
+										width={650}
+										height={500}
 										alt="work"
 										className={css.bajarilganIshlarImage}
 									/>
@@ -111,7 +87,7 @@ const MasterTabCard = ({t, data}) => {
 		{
 			key: 3,
 			label: "Fikrlar",
-			children: <MasterWorkComment t={t} starType={starType} userId={data.id} allClass={allClass} fetchAllKlass={fetchAllKlass}/>,
+			children: <MasterWorkComment t={t} userId={data.id} allClass={allClass} />,
 		},
 	];
 

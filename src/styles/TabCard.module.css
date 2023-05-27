@@ -4,6 +4,7 @@
 .UserTabCardName {
   padding-top: 16px;
   font-size: 18px;
+  text-align: center;
 }
 .UserTabCard {
   display: flex;
@@ -32,15 +33,20 @@
   overflow-y: scroll;
 } */
 .bajarilganIshlarBlockChild {
-  display: flex;
-  justify-content: space-between;
-  padding: 20px 0;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: auto;
+  padding: 20px;
   column-gap: 15px;
 }
-.bajarilganIshlarImage {
-  width: 500px;
+.bajarilganIshlarBlockImage{
+  width: auto;
   height: 300px;
-  border-radius: 10px;
+  overflow: auto;
+}
+.bajarilganIshlarImage {
+  width: 100% !important;
+  height: auto !important;
 }
 /* @media (width: 360px) {
   .bajarilganIshlarImage {

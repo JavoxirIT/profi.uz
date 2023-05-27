@@ -45,7 +45,7 @@ export const PageWrapperSingle = ({
 					<Link className={css.headerLogo} href={"/"}>
 						profi.uz
 					</Link>
-					<Title level={4}>{pageTitle}</Title>
+					<Title level={4} style={{color: "#d0b400"}} >{pageTitle}</Title>
 					<NotificationIconBlock t={t} unread={unread}/>
 				</Header>
 				<Content className={css.content}>

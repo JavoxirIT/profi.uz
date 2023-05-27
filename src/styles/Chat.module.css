@@ -103,6 +103,22 @@
 
 /* telegrem button color #3476ab */
 
+
+.AllChatsBlock{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 5px;
+  margin: 0 0 10px 0;
+  background: #e1e1e1;
+  border-radius: 10px;
+}
+.AllChatsBlockName{
+  width: 60%;
+  text-align: left;
+  color: #001529;
+}
+
 @media (min-width: 220px) and (max-width: 1175px) {
   .chatWrapper {
     display: flex;
