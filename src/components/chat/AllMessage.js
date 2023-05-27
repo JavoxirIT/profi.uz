@@ -7,8 +7,7 @@ import {
 	Space,
 	Upload,
 	Layout,
-	Typography,
-	notification,
+	notification, Spin,
 } from "antd";
 import ImgCrop from "antd-img-crop";
 import {getCookie} from "../../utils/setCookie";
@@ -16,7 +15,6 @@ import Image from "next/image";
 import {ImAttachment} from "react-icons/im"
 import {FaTelegramPlane} from "react-icons/fa"
 import css from "../../styles/Chat.module.css"
-import {Comment} from '@ant-design/compatible';
 import {postFetch} from "../../request/Fetch";
 import useMessage from "../../store/chatStor";
 import ResultNoChats from "../../utils/ResultNoChats";
@@ -25,31 +23,31 @@ import {Preloader} from "../../utils/Preloader";
 
 const urlImg = process.env.NEXT_PUBLIC_IMG_URL;
 const isType = typeof window !== undefined;
-export const CommentList = ({queryID, userid}) => {
-	const [mess, setMess] = useState([])
+export const CommentList = ({queryID, userid, messageLoading}) => {
 	const message = useMessage(state => state.message)
 	const loading = useMessage(state => state.loading)
 
-	const ID = message.find((i => userid === i.user_id || queryID === i.user_id))
-
-
 	if (loading) {
-		return <Preloader/>
+		return <ResultNoChats/>
+	}else if(messageLoading){
+		return  <Preloader/>
 	}
 	return (
 		<div className={css.chatCommentGlobal}>
-			{message.map((i) =>
-				<div key={i.id}
-				     className={userid === i.user_id || queryID === i.user_id ? `${css.chatComment}` : `${css.chatComment2}`}>
-					<div
-						className={userid === i.user_id || queryID === i.user_id ? `${css.chatCommentchild}` : `${css.chatCommentchild2}`}>
-						<small className={css.chatCommentchildTime}>{i.date}</small>
-						<p className={css.chatCommentchildText}>{i.message}</p>
-						{i.file && <Image src={urlImg + i.file} alt={"img"} width={200} height={200}
-						                  style={{borderRadius: "15px 15px 0 15px", marginTop: 10}}/>}
+
+				{message.map((i) =>
+					<div key={i.id}
+					     className={userid === i.user_id || queryID === i.user_id ? `${css.chatComment}` : `${css.chatComment2}`}>
+						<div
+							className={userid === i.user_id || queryID === i.user_id ? `${css.chatCommentchild}` : `${css.chatCommentchild2}`}>
+							<small className={css.chatCommentchildTime}>{i.date}</small>
+							<p className={css.chatCommentchildText}>{i.message}</p>
+							{i.file && <Image src={urlImg + i.file} alt={"img"} width={200} height={200}
+							                  style={{borderRadius: "15px 15px 0 15px", marginTop: 10}}/>}
+						</div>
 					</div>
-				</div>
-			)}
+				)}
+
 		</div>
 	);
 };
@@ -126,7 +124,7 @@ export const Editor = ({onSubmit, submitting, form,}) => {
 	</>
 }
 
-function AllMessage({userid, queryID}) {
+function AllMessage({userid, queryID, messageLoading}) {
 	const message = useMessage(state => state.message)
 	const [form] = Form.useForm()
 	const addMessage = useMessage(state => state.addMessage)
@@ -149,6 +147,7 @@ function AllMessage({userid, queryID}) {
 		values.user_id = Number(userid ?? queryID)
 		const value = JSON.stringify(values)
 		postFetch({path, method, value}).then((res) => {
+				console.log("1", res.data)
 				if (res.status === 200) {
 					let msg = {
 						date: res.data.date,
@@ -186,7 +185,7 @@ function AllMessage({userid, queryID}) {
 		<Layout className={css.AllMessageWrapper}>
 			{contextHolder}
 			<Card className={css.ChatDataMessage}>
-				<CommentList queryID={queryID} userid={userid}/>
+				<CommentList queryID={queryID} userid={userid} messageLoading={messageLoading} />
 				<div style={{float: "left", clear: "both"}}
 				     ref={(el) => {
 					     messagesEnd = el;

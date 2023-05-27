@@ -105,6 +105,9 @@ const withTheme = (node: JSX.Element) => (
             Carousel: {
               motionDurationSlow: "1.5s"
             },
+            Spin:{
+              colorBgContainer: "#008080"
+            },
           },
         }}
       >
