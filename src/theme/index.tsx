@@ -114,7 +114,6 @@ const withTheme = (node: JSX.Element) => (
                 },
                 List: {
                     paddingContentHorizontal: 5,
-                    colorBorder: "#008080",
                 },
             },
         }}

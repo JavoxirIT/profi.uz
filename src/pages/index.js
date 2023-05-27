@@ -296,13 +296,13 @@ function HomePage({data, t}) {
 										/>
 									)}
 
-									<div style={{paddingLeft: 20}}>
+									<div style={{padding: "10px 0 0 20px"}}>
 										<Tag style={{fontSize: 14}} key={i.special?.id || null}>
 											{i.special?.name}
 										</Tag>
 										<br/>
 										<Link href={"/index/[id]"} as={`/index/${i.id}`}>
-											<Title level={4}>
+											<Title level={4} style={{paddingTop: 10}} >
 												{i.firstname} {i.lastname}
 											</Title>
 										</Link>
@@ -317,7 +317,7 @@ function HomePage({data, t}) {
 										</div>
 									</div>
 								</div>
-								<div>
+								<div style={{padding: "5px 10px 0 0"}}>
 									<AiFillHeart
 										aria-labelledby="like"
 										onClick={() =>

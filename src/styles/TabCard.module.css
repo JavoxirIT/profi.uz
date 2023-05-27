@@ -87,6 +87,7 @@
   }
   .TabCardText {
     font-size: 14px;
+    padding: 10px 0 0 0;
   }
   .TabCardButton {
     font-weight: 700 !important;

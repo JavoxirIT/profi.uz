@@ -8,12 +8,14 @@ import useLocalStorage from "../../hooks/useLocalStorage";
 import {postFetch} from "../../request/Fetch";
 import MasterComplaint from "./MasterComplaint";
 import ModalCenter from "../../Modal/ModalCenter";
+import {HiOutlineLocationMarker} from "react-icons/hi";
 
 const {Text, Title} = Typography;
 
 const urlImg = process.env.NEXT_PUBLIC_IMG_URL;
 
 export default function MasterCard({data, t, user_id, starType, fetchAllKlass, openNotificationWithIcon}) {
+	console.log(data)
 	const [reyt, setReyt] = useState(data.reyting)
 	const [reyting, setReyting] = useState(data.reyting)
 	const rateChange = (e) => {
@@ -103,11 +105,19 @@ export default function MasterCard({data, t, user_id, starType, fetchAllKlass, o
 				<h4 className={css.UserTabCardName}>
 					{data.firstname} {data.lastname}
 				</h4>
-				<Text className={css.TabCardText}>{data?.distirct?.vil_name}</Text>
+				<Text className={css.TabCardText}> <HiOutlineLocationMarker/>  {data?.distirct?.vil_name}</Text>
 				<div style={{paddingTop: 16}}>
 					<Tag color="default" key={1} style={{margin: 5}}>
 						{data?.special?.name}{" "}
 					</Tag>
+				</div>
+				<div style={{padding: "10px 0"}}>
+					{data.sub_special.map((i) =>
+						<Tag color="default" key={i.id}>
+							{i.name}
+						</Tag>
+					)}
+
 				</div>
 				<div style={{textAlign: "center"}}>
 					<Rate style={{fontSize: 30}} onChange={rateChange} value={reyting} allowHalf/> {" "}

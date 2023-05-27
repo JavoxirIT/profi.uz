@@ -39,7 +39,7 @@ export const PageWrapperGlobal = ({
                 <title>{title}</title>
             </Head>
             <Layout className={css.layout}>
-                <Header className={css.header} style={{background: "#000031ee"}} >
+                <Header className={css.header} style={{background: "#000031"}} >
                     <div className={css.headerBlock1}>
                         <div className={css.headerMobileMenu} onClick={goBack}>
                             <RiArrowGoBackLine className={css.headerMobileMenuIcon}/>
