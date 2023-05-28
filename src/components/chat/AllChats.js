@@ -28,8 +28,8 @@ const dataState = data.map((i) =>
         </Button>
     </div>
 )
-  const clickAllMessage = (id, key) => {
-    allMessage(id, key);
+  const clickAllMessage = (room_id, user_id) => {
+    allMessage(room_id, user_id);
   };
 
   return (

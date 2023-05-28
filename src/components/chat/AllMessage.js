@@ -19,6 +19,7 @@ import {postFetch} from "../../request/Fetch";
 import useMessage from "../../store/chatStor";
 import ResultNoChats from "../../utils/ResultNoChats";
 import {Preloader} from "../../utils/Preloader";
+import {log} from "util";
 
 
 const urlImg = process.env.NEXT_PUBLIC_IMG_URL;
@@ -27,6 +28,8 @@ export const CommentList = ({queryID, userid, messageLoading}) => {
 	const message = useMessage(state => state.message)
 	const loading = useMessage(state => state.loading)
 
+
+	// console.log(message)
 	if (loading) {
 		return <ResultNoChats/>
 	}else if(messageLoading){
@@ -147,15 +150,16 @@ function AllMessage({userid, queryID, messageLoading}) {
 		values.user_id = Number(userid ?? queryID)
 		const value = JSON.stringify(values)
 		postFetch({path, method, value}).then((res) => {
-				// console.log("1", res.data)
+				console.log("1", res.data)
 				if (res.status === 200) {
 					let msg = {
 						date: res.data.date,
 						file: res.data.file,
 						id: res.data.id,
-						message: res.data.message
-						// room_id:4
-						// user_id:40
+						message: res.data.message,
+						room_id: res.data.room_id,
+						user_id: res.data.user_id
+
 					}
 					openNotificationWithIcon("success", "Xabar yuborildi");
 					addMessage(msg)

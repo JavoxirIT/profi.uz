@@ -44,11 +44,11 @@ const Chat = ({t, unread}) => {
 
 	// получаем переписки с пользователем по клику
 	const [userid, setUserId] = useState(null);
-	const allMessage = (id, key) => {
+	const allMessage = (room_id, user_id) => {
 		setMessageLoading(true)
 		setEffectRooms(false)
-		setUserId(key);
-		const value = JSON.stringify({room_id: Number(id)});
+		setUserId(user_id);
+		const value = JSON.stringify({room_id: Number(room_id)});
 		postFetch({path: "all-messages", value})
 		.then((res) => {
 			if (res.status === 200) {
