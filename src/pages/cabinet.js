@@ -69,7 +69,7 @@ export default function Cabinet({user, t}) {
 								</Tag>
 							</div>
 							<div style={{paddingTop: 16}}>
-								{user?.sub_special.map((i) =>
+								{user?.sub_special?.map((i) =>
 									<Tag color="default" key={i.id}>
 										{i.name}
 									</Tag>

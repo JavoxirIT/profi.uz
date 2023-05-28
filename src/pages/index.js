@@ -324,7 +324,7 @@ function HomePage({data, t}) {
 											ChangeLike({id: i.id, like: i.like?.likes || 0})
 										}
 										className={
-											i.like?.likes === 0 || i.like === "Unauthorized"
+											i.like?.likes === 0 || i.like === "Unauthorized" || i.like === false
 												? `${css.indexUserRate}`
 												: `${css.indexUserRateTrue}`
 										}
