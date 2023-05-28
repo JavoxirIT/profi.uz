@@ -53,7 +53,7 @@ const Chat = ({t, unread}) => {
 		.then((res) => {
 			if (res.status === 200) {
 				// console.log(res.data)
-				setTimeout(()=>{
+				setTimeout(() => {
 					setMessageLoading(false)
 				}, 500)
 				fetchMessage(res.data);
@@ -69,7 +69,7 @@ const Chat = ({t, unread}) => {
 
 
 	const [rooms, setRooms] = useState([]);
-	const [oneRooms, setOneRooms] = useState(null);
+	const [oneRooms, setOneRooms] = useState(0);
 	// получаем все чаты
 	useEffect(() => {
 		postFetch({path: "all-rooms"})
@@ -77,9 +77,17 @@ const Chat = ({t, unread}) => {
 			if (res.status === 200) {
 				setRooms(res.data);
 				//получаем один объект и выодим из него room_id для отправки запроси через useEffect
-				const oneRoomID = res.data.find(i => Number(query.id) === i.id)
-				setOneRooms(oneRoomID.room_id)
-				setUserId(oneRoomID.id);
+				if (query.id) {
+					const oneRoomID = res.data.find(i => Number(query.id) === i.id)
+					setOneRooms(oneRoomID.room_id)
+					setUserId(oneRoomID.id);
+				} else {
+					setOneRooms(0)
+				}
+
+
+			} else {
+				openNotificationWithIcon("error", res.code, res.message);
 			}
 			// console.log("rooms",res)
 		})
@@ -92,21 +100,22 @@ const Chat = ({t, unread}) => {
 
 	// выводим чат к которому обращаемся из кабинета спецыалиста
 	useEffect(() => {
-		const value = JSON.stringify({room_id: Number(oneRooms)});
-		if (effectRooms) {
-			postFetch({path: "all-messages", value})
-			.then((res) => {
-				if (res.status === 200) {
-					// console.log("effect", res)
-					fetchMessage(res.data);
-				}
-			})
-			.catch((err) => {
-				// console.log(err)
-				openNotificationWithIcon("error", err.code, err.message);
-			});
+		if (oneRooms !== 0) {
+			const value = JSON.stringify({room_id: Number(oneRooms)});
+			if (effectRooms) {
+				postFetch({path: "all-messages", value})
+				.then((res) => {
+					if (res.status === 200) {
+						// console.log("effect", res)
+						fetchMessage(res.data);
+					}
+				})
+				.catch((err) => {
+					// console.log("err",err)
+					openNotificationWithIcon("error", err.code, err.message);
+				});
+			}
 		}
-
 	}, [effectRooms, fetchMessage, oneRooms, openNotificationWithIcon])
 // else {
 // 		openNotificationWithIcon("error", "Ma'lumotlani olib bo'lmadi 11111");

@@ -14,7 +14,6 @@ const {Header, Footer, Sider, Content} = Layout;
 const {Title} = Typography;
 
 export const PageWrapperSingle = ({
-	                                  unread,
 	                                  children,
 	                                  title,
 	                                  pageTitle = "Sahifa",
@@ -45,8 +44,8 @@ export const PageWrapperSingle = ({
 					<Link className={css.headerLogo} href={"/"}>
 						profi.uz
 					</Link>
-					<Title level={4} style={{color: "#d0b400"}} >{pageTitle}</Title>
-					<NotificationIconBlock t={t} unread={unread}/>
+					<Title level={4} style={{color: "#d0b400"}}>{pageTitle}</Title>
+					<NotificationIconBlock t={t}/>
 				</Header>
 				<Content className={css.content}>
 					<div className={css.section}> {children}</div>

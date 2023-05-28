@@ -33,31 +33,12 @@ export default function App({ Component, pageProps }) {
     setLanguage(lang);
   }, [lang]);
 
-  const [unread, setUnread] = useState()
-  const unreadMessages = () => {
-    const method = "POST"
-    const path = "unread-messages"
-    postFetch({path, method, value: ""}).then((res) => {
-      // console.log("unread",res)
-      setUnread(res.data)
-    }).catch((err) => {
-      console.log(err)
-    })
-  }
-  useEffect(() => {
-   setInterval(()=>{
-     unreadMessages()
-   }, 10000000)
-  }, []);
-
-
   return withTheme(
     <StyleProvider hashPriority="high">
       {loading && <Preloader />}
       <Component
         {...pageProps}
         t={language}
-        unread={unread}
       />
     </StyleProvider>
   );

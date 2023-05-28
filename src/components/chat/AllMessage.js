@@ -147,7 +147,7 @@ function AllMessage({userid, queryID, messageLoading}) {
 		values.user_id = Number(userid ?? queryID)
 		const value = JSON.stringify(values)
 		postFetch({path, method, value}).then((res) => {
-				console.log("1", res.data)
+				// console.log("1", res.data)
 				if (res.status === 200) {
 					let msg = {
 						date: res.data.date,

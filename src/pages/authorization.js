@@ -67,9 +67,9 @@ function Authorization({ t }) {
             case Number(spesialist):
               router.push("/cabinet");
               break;
-            case Number(admin):
-              router.push("/admin");
-              break;
+            // case Number(admin):
+            //   router.push("/admin");
+            //   break;
             case Number(customer):
               router.push("/");
               break;

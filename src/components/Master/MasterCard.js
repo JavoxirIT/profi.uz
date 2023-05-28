@@ -15,7 +15,7 @@ const {Text, Title} = Typography;
 const urlImg = process.env.NEXT_PUBLIC_IMG_URL;
 
 export default function MasterCard({data, t, user_id, starType, fetchAllKlass, openNotificationWithIcon}) {
-	console.log(data)
+	// console.log(data)
 	const [reyt, setReyt] = useState(data.reyting)
 	const [reyting, setReyting] = useState(data.reyting)
 	const rateChange = (e) => {
