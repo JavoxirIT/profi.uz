@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
-  reactStrictMode: true,
+  reactStrictMode: false,
   transpilePackages: ["antd"],
   //   Автоматическое копирование отслеживаемых файлов
   //   output: "standalone",

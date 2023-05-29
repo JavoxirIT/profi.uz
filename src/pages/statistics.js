@@ -21,8 +21,9 @@ export default function Statistics({ t }) {
         }
     }, [router]);
   return isChecked && (
-    <PageWrapperSingle title="Statistika" pageTitle={"Statistika"} t={t}>
+    <PageWrapperSingle title={t.pageTitleStatictic} pageTitle={t.pageTitleStatictic} t={t}>
       <Card
+          bordered={false}
         className={css.StatisticsWrapperCard}
         bodyStyle={{
           height: "100%",

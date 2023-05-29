@@ -16,23 +16,19 @@
 }
 
 .indexCheckBox1 {
+    min-width: 230px !important;
     min-height: 520px !important;
     width: max-content !important;
     overflow-wrap: break-word;
+    padding: 10px !important;
+}
+.indexCheckBox1:nth-child(1) {
+    margin-bottom: 15px !important;
 }
 .indexCheckBox1 div div div div div div {
     display: flex;
     flex-direction: column;
 }
-.indexCheckBox2 {
-    margin-top: 15px !important;
-}
-.indexCheckBox2 div div div div div div {
-    display: flex;
-    flex-direction: column;
-}
-
-
 .indexUserCardInfoHeader {
     display: flex;
     justify-content: space-between;
@@ -41,7 +37,7 @@
 
 .indexUserCard {
     margin-bottom: 16px !important;
-    padding-left: 30px !important;
+    padding-left: 15px !important;
 }
 
 .indexUserCardInfo {

@@ -13,8 +13,8 @@ import {HiOutlineLocationMarker} from "react-icons/hi";
 const {Text, Title} = Typography;
 
 const urlImg = process.env.NEXT_PUBLIC_IMG_URL;
-
-export default function MasterCard({data, t, user_id, starType, fetchAllKlass, openNotificationWithIcon}) {
+const roll = process.env.NEXT_PUBLIC_USER_CUSTOMER
+export default function MasterCard({lang, data, t, user_id, starType, fetchAllKlass, openNotificationWithIcon}) {
 	// console.log(data)
 	const [reyt, setReyt] = useState(data.reyting)
 	const [reyting, setReyting] = useState(data.reyting)
@@ -28,9 +28,9 @@ export default function MasterCard({data, t, user_id, starType, fetchAllKlass, o
 			// console.log(res)
 			if (res.status === 200) {
 				setReyt(res.data.reyting)
-				openNotificationWithIcon("success", "Baho qabul qilindi");
+				openNotificationWithIcon("success", t.baho);
 			} else {
-				openNotificationWithIcon("error", res.code, "Soʻrov bajarilmadi");
+				openNotificationWithIcon("error", res.code, t.bajarilmadi);
 			}
 		}).catch((err) => {
 			openNotificationWithIcon("error", err.code, err.message,);
@@ -74,58 +74,69 @@ export default function MasterCard({data, t, user_id, starType, fetchAllKlass, o
 			fetchAllKlass()
 			setOpen(false)
 			setLoading(false)
-			openNotificationWithIcon("success", "Fikir qo`shganiz uchun raxmat");
+			openNotificationWithIcon("success", t.fikir);
 		}).catch((err) => {
 			openNotificationWithIcon("error", err.code, err.message);
 			setLoading(false)
 		})
 	}
 
-
+	// console.log(data)
 	return (<>
 		<Card className={css.TabCard}>
-			<div className={css.UserTabCard}>
-				{data.image ? (<Image
-					className={css.UserTabCardImage}
-					priority
-					src={urlImg + data.image}
-					width={90}
-					height={90}
-					alt="avatar"
-					// placeholder="blur"
-					// blurDataURL={user.thumbnailUrl}
-				/>) : (<Image
-					width={150}
-					src={img}
-					preview={user.thumbnailUrl}
-					alt="img"
-				/>)}
-				{/*  */}
+			{data.role_id === Number(roll)
+				? <div style={{textAlign: "center"}}>
+					<h4 className={css.UserTabCardName}>
+						{data.firstname} {data.lastname}
+					</h4>
+					<p style={{color: "#000"}}>{t.tuliqmalumot}</p>
+				</div> :
+				<div className={css.UserTabCard}>
+					{data.image ? (<Image
+						className={css.UserTabCardImage}
+						priority
+						src={urlImg + data.image}
+						width={90}
+						height={90}
+						alt="avatar"
+						// placeholder="blur"
+						// blurDataURL={user.thumbnailUrl}
+					/>) : (<Image
+						width={150}
+						src={img}
+						preview={user.thumbnailUrl}
+						alt="img"
+					/>)}
+					{/*  */}
 
-				<h4 className={css.UserTabCardName}>
-					{data.firstname} {data.lastname}
-				</h4>
-				<Text className={css.TabCardText}> <HiOutlineLocationMarker/>  {data?.distirct?.vil_name}</Text>
-				<div style={{paddingTop: 16}}>
-					<Tag color="default" key={1} style={{margin: 5}}>
-						{data?.special?.name}{" "}
-					</Tag>
-				</div>
-				<div style={{padding: "10px 0"}}>
-					{data.sub_special.map((i) =>
-						<Tag color="default" key={i.id}>
-							{i.name}
+					<h4 className={css.UserTabCardName}>
+						{data.firstname} {data.lastname}
+					</h4>
+					<Text className={css.TabCardText}>
+						<HiOutlineLocationMarker color={"#ff4d4f"} /> {(lang === "ru") ? data?.distirct?.vil_name_ru : data?.distirct?.vil_name}
+					</Text>
+					<div style={{paddingTop: 16}}>
+						<Tag color="default" key={1} style={{margin: 5}}>
+							{lang === "ru" ? data?.special?.nameru : data?.special?.name}{" "}
 						</Tag>
-					)}
+					</div>
+					<div style={{padding: "10px 0"}}>
+						{data.sub_special.map((i) =>
+							<Tag color="default" key={i.id}>
+								{lang === "ru" ? i.nameru : i.name}
+							</Tag>
+						)}
 
-				</div>
-				<div style={{textAlign: "center"}}>
-					<Rate style={{fontSize: 30}} onChange={rateChange} value={reyting} allowHalf/> {" "}
-					<div>
-						<Text>umumiy reyting: {reyt}</Text>
+					</div>
+					<div style={{textAlign: "center"}}>
+						<Rate style={{fontSize: 30}} onChange={rateChange} value={reyting} allowHalf/> {" "}
+						<div>
+							<Text>{t.umumiyReyting}: {reyt}</Text>
+						</div>
 					</div>
 				</div>
-			</div>
+			}
+
 		</Card>
 		<Button
 			onClick={() => {
@@ -136,11 +147,9 @@ export default function MasterCard({data, t, user_id, starType, fetchAllKlass, o
 			type="primary"
 			size="large"
 			className={css.TabCardButton}
-		>
-			Murojaat qilish
-		</Button>
+		>{t.murojaatQilish}</Button>
 		<Button type="primary"
-		        size="large" className={css.TabCardButton} onClick={openModal}>Fikir qoldirish</Button>
+		        size="large" className={css.TabCardButton} onClick={openModal}>{t.fikirQoldirish}</Button>
 		<Button
 			onClick={() => showModal(data.id)}
 			type="primary"
@@ -150,13 +159,13 @@ export default function MasterCard({data, t, user_id, starType, fetchAllKlass, o
 		>
 			{t.complaintModalTitle}
 		</Button>
-		<ModalCenter title="Fikir qoldirish" open={open} handleCancel={handleCancelModal} width={600}>
+		<ModalCenter title={t.fikirQoldirish} open={open} handleCancel={handleCancelModal} width={600}>
 			<Spin spinning={loading}>
 				<Space direction="vertical" style={{width: "100%"}}>
-					{starType.map((i) => <Checkbox key={i.value} checked={values === i.value} value={i.value}
-					                               onChange={handleChange}>{i.label}</Checkbox>)}
+					{starType.map((i) => <Checkbox key={i.id} checked={values === i.id} value={i.id}
+					                               onChange={handleChange}>{lang === "ru" ? i.name_ru : i.name}</Checkbox>)}
 					<div className={css.MasterCommentListBtn}>
-						<Button type="primary" onClick={onClass}>Qo`shish</Button>
+						<Button type="primary" onClick={onClass}>{t.qushish}</Button>
 					</div>
 				</Space>
 			</Spin>

@@ -2,7 +2,7 @@ import React from 'react';
 import {Card, Carousel, Rate, Tag, Typography} from "antd";
 import Image from "next/image";
 import css from "../../styles/Index.module.css";
-import img from "../../img/noimage.png";
+import img from "../../img/photo.jpg";
 import Link from "next/link";
 import {AiFillHeart} from "react-icons/ai";
 import {HiOutlineLocationMarker} from "react-icons/hi";
@@ -20,9 +20,9 @@ function MasterCarusel({caruselUser}) {
 		autoplay: true,
 		dots: true,
 		speed: 4000,
-		autoplaySpeed: 0,
+		autoplaySpeed: 500,
 		cssEase: "linear",
-		slidesToShow: 2,
+		slidesToShow: 1,
 		slidesToScroll: 1,
 		variableWidth: true,
 		pauseOnHover: true,
@@ -157,48 +157,27 @@ function MasterCarusel({caruselUser}) {
 			</div>
 		</Card>
 	)
+	const noDataArr = [];
+	for (let i = 0; i < 10; i++) {
+		noDataArr.push({
+			key: i,
+			image: img
+		});
+	}
 	return (
 		<Slider {...settings} >
-			<Card>
-				<Image
-					key={nanoid()}
-					src={img}
-					alt="avatar"
-					width={250}
-					height={150}
-					priority={true}
-				/>
-			</Card>
-			<Card>
-				<Image
-					key={nanoid()}
-					src={img}
-					alt="avatar"
-					width={250}
-					height={150}
-					priority={true}
-				/>
-			</Card>
-			<Card>
-				<Image
-					key={nanoid()}
-					src={img}
-					alt="avatar"
-					width={250}
-					height={150}
-					priority={true}
-				/>
-			</Card>
-			<Card>
-				<Image
-					key={nanoid()}
-					src={img}
-					alt="avatar"
-					width={250}
-					height={150}
-					priority={true}
-				/>
-			</Card>
+			{noDataArr.map((i)=>
+				<Card bordered={false} hoverable key={i.key} >
+					<Image
+						key={nanoid()}
+						src={i.image}
+						alt="avatar"
+						width={250}
+						height={150}
+						priority={true}
+					/>
+				</Card>
+			)}
 		</Slider>);
 }
 

@@ -12,8 +12,10 @@ import "../styles/global.css"; //may-global style
 import "../scripts/loding";
 export default function App({ Component, pageProps }) {
   const lang = useLang((state) => state.lang);
+  const langName = useLang((state) => state.langName);
   const [loading, setLoading] = useState(false);
   const [language, setLanguage] = useState(uz);
+  const [isLangName, setLangName] = useState("uz");
   const router = useRouter();
   // прелоадер
   useEffect(() => {
@@ -27,11 +29,11 @@ export default function App({ Component, pageProps }) {
     });
   }, [router.asPath, router.events]);
 
-  //
 
   useEffect(() => {
     setLanguage(lang);
-  }, [lang]);
+    setLangName(langName)
+  }, [lang, langName]);
 
   return withTheme(
     <StyleProvider hashPriority="high">
@@ -39,6 +41,7 @@ export default function App({ Component, pageProps }) {
       <Component
         {...pageProps}
         t={language}
+        lang={isLangName}
       />
     </StyleProvider>
   );

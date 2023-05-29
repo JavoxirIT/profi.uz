@@ -1,12 +1,20 @@
 import React, {useState} from 'react';
-import {useModalForm} from 'sunflower-antd';
+import {AiOutlineFrown, AiOutlineMeh, AiOutlineSmile} from "react-icons/ai"
 import {
 	List, Typography,
 } from 'antd';
 
 const {Text, Title} = Typography;
 
-function MasterWorkComment({starType, userId, allClass, fetchAllKlass}) {
+function MasterWorkComment({allClass, lang}) {
+	const customIcons = {
+		1: <AiOutlineFrown style={{fontSize: 40, color: "#f5222d"}} />,
+		2: <AiOutlineFrown style={{fontSize: 40, color: "#f5222d"}} />,
+		3: <AiOutlineMeh style={{fontSize: 40}} />,
+		4: <AiOutlineSmile style={{fontSize: 40, color: "#52c41a"}} />,
+		5: <AiOutlineSmile style={{fontSize: 40, color: "#52c41a"}} />,
+	};
+	console.log(customIcons)
 	return (<List
 		size="small"
 		itemLayout="horizontal"
@@ -15,9 +23,10 @@ function MasterWorkComment({starType, userId, allClass, fetchAllKlass}) {
 			<List.Item.Meta
 				// avatar={<Avatar src={`https://xsgames.co/randomusers/avatar.php?g=pixel&key=${index}`} />}
 				title={<p style={{fontSize: 18}}>{item.firstname}</p>}
-				description={<Text>{item.name + " / " + item.name_ru}</Text>}
+				description={<Text>{lang === "ru" ? item.name_ru : item.name}</Text>}
 			/>
-			<div>{item.stars}</div>
+			<div
+				style={{fontSize: 20}}>{Object.entries(customIcons).map(([key, value]) => Number(item.stars) === Number(key) ? value : null)}</div>
 		</List.Item>)}
 	/>)
 };

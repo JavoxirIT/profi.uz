@@ -13,7 +13,7 @@ export default function SerchInp(props) {
 	return <Input
 		className={css.Search_Inpblock}
 		prefix={<RiSearchLine className={css.Search_BtnIcons}/>}
-		placeholder="Kerakli mutaxasisni qidiring..."
+		placeholder={props.t.search}
 		allowClear
 		onChange={({ target: { value } }) => props.Search(value)}
 		onPressEnter={({ target: { value } }) => props.Search(value)}

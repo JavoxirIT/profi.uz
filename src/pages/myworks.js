@@ -13,7 +13,7 @@ import { postFetch } from "../request/Fetch";
 const { Title } = Typography;
 const workImageUrl = process.env.NEXT_PUBLIC_IMG_WORK;
 const isType = typeof window !== undefined;
-export default function MyWorks({ t }) {
+export default function MyWorks({ t, lang }) {
   const router = useRouter();
   const { query } = router;
   // console.log(query);
@@ -71,9 +71,9 @@ export default function MyWorks({ t }) {
         form.setFieldsValue({
           gallery: file.response.data.image,
         });
-        openNotificationWithIcon("success", " Yuklandi", `${file.name}`);
+        openNotificationWithIcon("success", t.yuklndi, `${file.name}`);
       } else if (file.status === "error") {
-        openNotificationWithIcon("error", " Yuklanmadi", `${file.name}`);
+        openNotificationWithIcon("error", t.yuklanmadi, `${file.name}`);
       }
     },
     progress: {
@@ -88,8 +88,8 @@ export default function MyWorks({ t }) {
   const uploadButton = (
     <div style={{ width: "100%" }}>
       <CloudUploadOutlined />
-      <p className="ant-upload-text">Format JPG, PNG, JPEG</p>
-      <p className="ant-upload-hint">Rasimni tanlang</p>
+      <p className="ant-upload-text">{t.format}  JPG, PNG, JPEG</p>
+      <p className="ant-upload-hint">{t.rasmTanlang}</p>
     </div>
   );
   // отправляем данные в бак
@@ -100,22 +100,22 @@ export default function MyWorks({ t }) {
     postFetch({ path, method, value })
       .then((res) => {
         if (res.status === 200) {
-          openNotificationWithIcon("success", "Malumotlar saqlandi");
+          openNotificationWithIcon("success", t.saqlandi);
           router.push(`/index/${query.user_id}`);
         } else {
-          openNotificationWithIcon("error", "Saqlanmadi", res.message);
+          openNotificationWithIcon("error", t.saqlanmadi, res.message);
         }
       })
       .catch((err) => {
-        openNotificationWithIcon("error", er.code, err.message);
+        openNotificationWithIcon("error", err.code, err.message);
       });
   };
   return (
     isChecked && (
-      <PageWrapperAuthorization title="Bajarilgan ishlar" t={t}>
+      <PageWrapperAuthorization title={t.pageTitleMyWork} t={t}>
         {contextHolder}
         <div className={css.MyWorkBlock}>
-          <Title level={4}>Bajarilgan ishlar</Title>
+          <Title level={4}>{t.bajarilganIshlar}</Title>
           <Form
             name=""
             layout="vertical"
@@ -125,17 +125,17 @@ export default function MyWorks({ t }) {
           >
             <Form.Item
               name="work_name"
-              label="Ish nomi"
+              label={t.ishNomi}
               rules={[
                 {
                   required: true,
-                  message: "",
+                  message: t.ishNomiRequared,
                 },
               ]}
             >
               <Input className={css.MyWorkormInput} />
             </Form.Item>
-            <Form.Item name="gallery" label="Rasm" valuePropName="picture">
+            <Form.Item name="gallery" label={t.rasm} valuePropName="picture">
               <Upload
                 {...props}
                 style={{ width: "100vw" }}
@@ -146,14 +146,14 @@ export default function MyWorks({ t }) {
                 {uploadButton}
               </Upload>
             </Form.Item>
-            <Form.Item name="about" label="Batafsil ma’lumot">
+            <Form.Item name="about" label={t.batafsilMalumot}>
               <Input.TextArea
                 rows={3}
                 showCount
                 maxLength={1000}
                 className={css.MyWorkFormTextArea}
                 allowClear
-                placeholder="To’liqroq yozing..."
+                placeholder={t.batafsilMalumot2}
               />
             </Form.Item>
             <Form.Item>
@@ -163,7 +163,7 @@ export default function MyWorks({ t }) {
                 size="large"
                 style={{ width: "100%", marginTop: 30 }}
               >
-                Saqlash
+                {t.qushish}
               </Button>
             </Form.Item>
           </Form>

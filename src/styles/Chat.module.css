@@ -105,13 +105,13 @@
 
 
 .AllChatsBlock{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 5px;
-  margin: 0 0 10px 0;
-  background: #e1e1e1;
-  border-radius: 10px;
+  /*display: flex  !important;*/
+  /*justify-content: space-between !important;*/
+  /*align-items: center !important;*/
+  /*padding: 10px 5px !important;*/
+  margin: 0 0 10px 0 !important;
+  /*background: #e1e1e1 !important;*/
+  border-radius: 10px !important;
 }
 .AllChatsBlockName{
   width: 60%;

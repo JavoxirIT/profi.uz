@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { Chart } from "chart.js";
 import { Layout } from "antd";
 import css from "../../styles/Statistics.module.css";
-function StatisticsChart() {
+function StatisticsChart({t}) {
   useEffect(() => {
     var ctx = document.getElementById("myChart").getContext("2d");
     var myChart = new Chart(ctx, {
@@ -21,28 +21,28 @@ function StatisticsChart() {
         datasets: [
           {
             data: [66, 144, 146, 116, 107, 131, 43],
-            label: "Applied",
+            label: t.kurilgan,
             borderColor: "rgb(109, 253, 181)",
             backgroundColor: "rgb(109, 253, 181,0.5)",
             borderWidth: 0.5,
           },
           {
             data: [40, 100, 44, 70, 63, 30, 10],
-            label: "Accepted",
+            label: t.saqlangan,
             borderColor: "rgb(75, 192, 192)",
             backgroundColor: "rgb(75, 192, 192,0.5)",
             borderWidth: 0.5,
           },
           {
             data: [20, 24, 50, 34, 33, 23, 12],
-            label: "Pending",
+            label: t.boglangan,
             borderColor: "rgb(255, 205, 86)",
             backgroundColor: "rgb(255, 205, 86,0.5)",
             borderWidth: 0.5,
           },
           {
             data: [6, 20, 52, 12, 11, 78, 21],
-            label: "Rejected",
+            label: t.bekorqilgan,
             borderColor: "rgb(255, 99, 132)",
             backgroundColor: "rgb(255, 99, 132,0.5)",
             borderWidth: 0.5,

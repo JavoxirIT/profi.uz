@@ -1,8 +1,8 @@
 import { Button, Result } from 'antd';
-const ResultNoData = () => (
+const ResultNoData = ({t}) => (
 	<Result
 		status="warning"
-		title="Ma'lumot yoq."
+		title={t.malumotYuq}
 		// extra={
 		// 	<Button type="primary" key="console">
 		// 		Go Console

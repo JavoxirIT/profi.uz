@@ -13,7 +13,7 @@ const {Title, Text} = Typography;
 const url = process.env.NEXT_PUBLIC_ONE_USER;
 const urlImg = process.env.NEXT_PUBLIC_IMG_URL;
 
-export default function Cabinet({user, t}) {
+export default function Cabinet({user, t, lang}) {
 	// console.log(user)
 	const router = useRouter();
 	const [isChecked, setChecked] = useState(false);
@@ -37,7 +37,7 @@ export default function Cabinet({user, t}) {
 		<PageWrapperSingle title="Kabinet" pageTitle={t.cabinet} t={t}>
 			{isChecked && (
 				<div className={css.cabinetCardBlock}>
-					<Card className={css.cabinetCardUserInfo}>
+					<Card bordered={false}  className={css.cabinetCardUserInfo}>
 						<div className={css.cabinetCardUserInfoBody}>
 							{!user.image ? (
 								<Image
@@ -58,27 +58,26 @@ export default function Cabinet({user, t}) {
 									priority
 								/>
 							)}
-							<Title level={3} style={{paddingTop: 16, textAlign: "center"}}>
+							<h1 style={{paddingTop: 16, textAlign: "center", color: "#001529"}}>
 								{!user.firstname
-									? "Shaxsiy ma`lumotlar kiritilmagan"
+									? t.nodata
 									: user.firstname + " " + user.lastname}
-							</Title>
+							</h1>
 							<div style={{paddingTop: 16}}>
 								<Tag color="default" key={user?.special?.id}>
-									{user?.special?.name}
+									{lang === "ru" ? user?.special?.nameru : user?.special?.name}
 								</Tag>
 							</div>
-							<div style={{paddingTop: 16}}>
+							<div className={css.UserInfoSubSpecial}>
 								{user?.sub_special?.map((i) =>
-									<Tag color="default" key={i.id}>
-										{i.name}
+									<Tag color="default" key={i.id} style={{margin: "5px 0"}}>
+										{lang === "ru" ? i.nameru : i.name}
 									</Tag>
 								)}
-
 							</div>
 						</div>
 					</Card>
-					<Card className={css.cabinetCardUserNavigate}>
+					<Card bordered={false} className={css.cabinetCardUserNavigate}>
 						<div className={css.CardUserNavigateLinkBlock}>
 							<CabinetNavigateList t={t} id={user?.id}/>
 						</div>

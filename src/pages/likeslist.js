@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {PageWrapperGlobal} from "../components/PageWrapperGlobal";
-import {Card, notification, Tag, Typography} from "antd";
+import {Card, notification, Rate, Tag, Typography} from "antd";
 import css from "../styles/Index.module.css";
 import Image from "next/image";
 import img from "../img/noimage.png";
@@ -17,7 +17,7 @@ const apiUrl = process.env.NEXT_PUBLIC_API_URL
 const urlImg = process.env.NEXT_PUBLIC_IMG_URL
 const {Text, Title} = Typography;
 
-function Likeslist({data, t}) {
+function Likeslist({data, t, lang}) {
 	const router = useRouter();
 	const [isChecked, setChecked] = useState(false);
 
@@ -51,7 +51,7 @@ function Likeslist({data, t}) {
 		if (getCookie("access_token") === null) {
 			openNotificationWithIcon(
 				"error",
-				"Iltimos avval ro'yxatdan o'ting",
+				t.likenotification,
 			);
 			return false
 		}
@@ -66,20 +66,25 @@ function Likeslist({data, t}) {
 				dd.like.likes = res.data.likes
 				setUser([...nd, dd])
 			}
+			if (res.data.likes === 1) {
+				openNotificationWithIcon("success", t.qushildi);
+			} else {
+				openNotificationWithIcon("error", res.code, res.message);
+			}
 		}).catch((err) => {
 			console.log(err)
 		})
-		console.log(value)
+		// console.log(value)
 	}
 
 
 	return isChecked && (
-		<PageWrapperSingle title={"Sevimlilar"} pageTitle="Sevimlilar" t={t}>
+		<PageWrapperSingle title={t.pageTitleLike} pageTitle={t.pageTitleLike} t={t}>
 			{contextHolder}
-			<div style={{paddingTop: 10}}>
+			<div style={{paddingTop: 20}}>
 
-				{data.length === 0 ? <Text>Sizda sevimlilar ro`yhati mavjut emas</Text> : data.map((i) => (
-					<Card key={i.id} className={css.indexUserCard}>
+				{data.length === 0 ? <Text>{t.likeNoData}</Text> : data.map((i) => (
+					<Card bordered={false} hoverable key={i.id} className={css.indexUserCard}>
 						<div className={css.indexUserCardInfo}>
 							<div className={css.indexUserCardInfo1}>
 								{i.image !== null ? (
@@ -103,9 +108,9 @@ function Likeslist({data, t}) {
 								)}
 
 								<div style={{paddingLeft: 20}}>
-									<Text style={{fontSize: 14}} key={i.special?.id || null}>
-										{i.special?.name}
-									</Text>
+									<Tag style={{fontSize: 14, marginBottom: 10}} key={i.special?.id || null}>
+										{lang === "ru" ? i.special?.nameru : i.special?.name}
+									</Tag>
 									<br/>
 
 									<Link href={"/index/[id]"} as={`/index/${i.id}`}>
@@ -113,6 +118,14 @@ function Likeslist({data, t}) {
 											{i.firstname} {i.lastname}
 										</Title>
 									</Link>
+									<Rate
+										className={css.indexUserRate}
+										value={i.reyting}
+										allowHalf
+									/>{" "}
+									<div>
+										<Text>{t.umumiyReyting}: {i.reyting}</Text>
+									</div>
 								</div>
 							</div>
 							<div>
@@ -126,11 +139,12 @@ function Likeslist({data, t}) {
 							<p style={{marginBottom: 10, paddingTop: 10}}>
 								<HiOutlineLocationMarker/>
 								<Text style={{paddingLeft: 10}}>
-									{i.distirct?.vil_name}
+									{lang === "ru" ? i.distirct?.vil_name_ru : i.distirct?.vil_name}
 								</Text>
 							</p>
 
-							<Tag key={i.sub_special?.id}>{i.sub_special?.name || null}</Tag>
+							<Tag
+								key={i.sub_special?.id}>{lang === "ru" ? i.sub_special?.nameru : i.sub_special?.name || null}</Tag>
 						</div>
 					</Card>
 				))}

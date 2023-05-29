@@ -21,6 +21,7 @@ import img from "../img/noimage.png";
 import MasterCarusel from "../components/Master/MasterCarusel";
 import MasterModalFilter from "../components/Master/MasterModalFilter";
 import Preloader from "../components/Preloder/Preloader"
+import {loadGetInitialProps} from "next/dist/shared/lib/utils";
 
 
 const apiUrl = process.env.NEXT_PUBLIC_API_URL;
@@ -29,7 +30,7 @@ const urlImg = process.env.NEXT_PUBLIC_IMG_URL;
 const {Text, Title} = Typography;
 const isType = typeof window !== undefined;
 
-function HomePage({data, t}) {
+function HomePage({data, t, lang}) {
 	const [loading, setLoading] = useState(false)
 	// натификацыя
 	const [api, contextHolder] = notification.useNotification();
@@ -73,9 +74,7 @@ function HomePage({data, t}) {
 		postFetch({path, method, value: ""})
 		.then((res) => {
 			if (res.status === 200) {
-				setVil(
-					res.data.viloyat.map((i) => ({value: i.id, label: i.vil_name}))
-				);
+				setVil(res.data.viloyat);
 				setLoading(false)
 			}
 		})
@@ -86,15 +85,13 @@ function HomePage({data, t}) {
 	}, []);
 
 
-	const [isSpesial, setSpesial] = useState([]);
+	const [isSpecial, setSpecial] = useState([]);
 	const [ollSpecial, setOllSpecial] = useState([]);
 	useEffect(() => {
 		postFetch({path: "special", method: "GET", value: ""})
 		.then((res) => {
 			if (res.status === 200) {
-				setSpesial(
-					res.data.special.map((i) => ({value: i.id, label: i.name}))
-				);
+				setSpecial(res.data.special);
 				setOllSpecial(res.data.special)
 			}
 		})
@@ -108,6 +105,7 @@ function HomePage({data, t}) {
 	const onFinish = async (value) => {
 		postFetch({path: "sorted-user", value: JSON.stringify(value)})
 		.then((res) => {
+			// console.log(res.data)
 			if (res.status === 200) {
 				setDataFilter(res.data)
 				setUser(res.data)
@@ -119,7 +117,7 @@ function HomePage({data, t}) {
 	};
 	const ChangeLike = (e) => {
 		if (getCookie("access_token") === null) {
-			openNotificationWithIcon("error", "Iltimos avval ro'yxatdan o'ting");
+			openNotificationWithIcon("error", t.likenotification);
 			return false;
 		}
 		const like = e.like === 0 ? 1 : 0;
@@ -132,9 +130,9 @@ function HomePage({data, t}) {
 				dd.like.likes = res.data.likes;
 				setUser([...nd, dd].sort(userSort).reverse())
 				if (res.data.likes === 1) {
-					openNotificationWithIcon("success", "Sevimlilar ro'yxatiga qo'shildi");
+					openNotificationWithIcon("success", t.qushildi);
 				} else {
-					openNotificationWithIcon("warning", "Sevimlilar ro'yxatidan chiqarildi");
+					openNotificationWithIcon("warning", t.chiqarildi);
 				}
 			}
 		})
@@ -160,9 +158,9 @@ function HomePage({data, t}) {
 				const newArrUser = data.filter((i) => i.id !== res.data.user_id);
 				oneUser.reyting = res.data.reyting;
 				setUser([...newArrUser, oneUser].sort(userSort).reverse());
-				openNotificationWithIcon("success", "Baho qabul qilindi");
+				openNotificationWithIcon("success", t.baho);
 			} else {
-				openNotificationWithIcon("error", res.code, "Soʻrov bajarilmadi");
+				openNotificationWithIcon("error", res.code, t.bajarilmadi);
 			}
 		})
 		.catch((err) => {
@@ -202,8 +200,6 @@ function HomePage({data, t}) {
 		}
 		setFiltered(newList);
 	};
-
-	// console.log("filtered", filtered)
 	const [open, setOpen] = useState(false)
 	if (!filtered) {
 		return <Preloader/>;
@@ -211,11 +207,11 @@ function HomePage({data, t}) {
 	return (
 		<PageWrapperGlobal
 			title="Asosi"
-			pageTitle="Kategoriyalar"
+			pageTitle=""
 			t={t}
 			setUser={setUser}
 			vil={vil}
-			isSpesial={isSpesial}
+			isSpecial={isSpecial}
 			onFinish={onFinish}
 			Search={Search}
 		>
@@ -223,35 +219,42 @@ function HomePage({data, t}) {
 			{/*vil={modalvil}*/}
 			<MasterModalFilter
 				vil={vil}
-				special={isSpesial}
+				special={isSpecial}
 				onFinish={onFinish}
 				setOpen={setOpen}
 				open={open}
-				ollSpecial={ollSpecial}
 				user={dataFilter}
 				loading={loading}
+				lang={lang}
+				t={t}
 			/>
 			<h1 className={css.IndexTitle}>{t.wrapperTitiel}</h1>
 			<MasterCarusel caruselUser={caruselUser}/>
 			<main className={css.indexContainer}>
 				<div>
 					<Title level={4} className={css.indexTitltFilter}>
-						Filtrlash
+						{t.saralash}
 					</Title>
 					<div className={css.indexCheckBoxBlock}>
 						<Form
 							onFinish={onFinish}
 						>
-							<Card className={css.indexCheckBox1}>
-								<Text className={css.indexCheckTitle}>VILOYATLAR</Text>
+							<Card bordered={false} className={css.indexCheckBox1}>
+								<Text className={css.indexCheckTitle}>{t.viloyatlar}</Text>
 								<Form.Item name="region">
-									<Checkbox.Group options={vil}/>
+									<Checkbox.Group options={vil.map((i) => ({
+										value: i.id,
+										label: (lang === 'ru') ? i.vil_name_ru : i.vil_name
+									}))}/>
 								</Form.Item>
 							</Card>
-							<Card className={css.indexCheckBox2}>
-								<Text className={css.indexCheckTitle}>MUTTAXASISLIKLAR</Text>
+							<Card bordered={false} className={css.indexCheckBox1}>
+								<Text className={css.indexCheckTitle}>{t.muttaxasisliklar}</Text>
 								<Form.Item name="special">
-									<Checkbox.Group options={isSpesial}/>
+									<Checkbox.Group options={isSpecial.map((i) => ({
+										value: i.id,
+										label: (lang === 'ru') ? i.nameru : i.name
+									}))}/>
 								</Form.Item>
 							</Card>
 							<Form.Item>
@@ -261,7 +264,7 @@ function HomePage({data, t}) {
 									size="large"
 									style={{width: "100%", margin: "10px 0"}}
 								>
-									Saralash
+									{t.saralash}
 								</Button>
 							</Form.Item>
 						</Form>
@@ -269,11 +272,11 @@ function HomePage({data, t}) {
 				</div>
 				<div>
 					<div className={css.indexUserCardInfoHeader}>
-						<Title level={4}>Eng Ommaboplari</Title>
-						<Button type="primary" onClick={() => setOpen(true)}>Saralash</Button>
+						<Title level={4}>{t.engOmmaboplari}</Title>
+						<Button type="primary" onClick={() => setOpen(true)}>{t.qidirish}</Button>
 					</div>
 					{filtered.map((i) => (
-						<Card key={i.id} className={css.indexUserCard}>
+						<Card hoverable bordered={false} key={i.id} className={css.indexUserCard}>
 							<div className={css.indexUserCardInfo}>
 								<div className={css.indexUserCardInfo1}>
 									{i.image !== null ? (
@@ -298,11 +301,11 @@ function HomePage({data, t}) {
 
 									<div style={{padding: "10px 0 0 20px"}}>
 										<Tag style={{fontSize: 14}} key={i.special?.id || null}>
-											{i.special?.name}
+											{lang === "ru" ? i.special?.nameru : i.special?.name}
 										</Tag>
 										<br/>
 										<Link href={"/index/[id]"} as={`/index/${i.id}`}>
-											<Title level={4} style={{paddingTop: 10}} >
+											<Title level={4} style={{paddingTop: 10}}>
 												{i.firstname} {i.lastname}
 											</Title>
 										</Link>
@@ -313,7 +316,7 @@ function HomePage({data, t}) {
 											allowHalf
 										/>{" "}
 										<div>
-											<Text>Umumiy reyting: {i.reyting}</Text>
+											<Text>{t.umumiyReyting}: {i.reyting}</Text>
 										</div>
 									</div>
 								</div>
@@ -335,15 +338,15 @@ function HomePage({data, t}) {
 								<p style={{marginBottom: 10, paddingTop: 10}}>
 									<HiOutlineLocationMarker/>
 									<Text style={{paddingLeft: 10}}>
-										{i.distirct?.vil_name}
+										{lang === "ru" ? i.distirct?.vil_name_ru : i.distirct?.vil_name}
 									</Text>
 								</p>
 								<div style={{paddingTop: 16}}>
-									{/*{i.sub_special?.map((i) =>*/}
-									{/*	<Tag color="default" key={i.id}>*/}
-									{/*		{i.name}*/}
-									{/*	</Tag>*/}
-									{/*)}*/}
+									{i.sub_special?.map((i) =>
+										<Tag color="default" key={i.id}>
+											{lang === "ru" ? i.nameru : i.name}
+										</Tag>
+									)}
 
 								</div>
 							</div>

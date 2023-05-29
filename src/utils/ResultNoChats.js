@@ -1,8 +1,8 @@
 import { Button, Result } from 'antd';
-const ResultNoChats = () => (
+const ResultNoChats = ({t}) => (
 	<Result
 		// status="warning"
-		title="Kerakli chatni tanlang."
+		title={t.chatniTanlang}
 	/>
 );
 export default ResultNoChats;

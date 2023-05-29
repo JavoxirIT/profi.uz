@@ -7,35 +7,35 @@ import css from "../../styles/Statistics.module.css";
 
 const { Text, Title } = Typography;
 
-export default function StatisticsBlock() {
+export default function StatisticsBlock({t}) {
   return (
     <div className={css.StatisticBlock}>
       <Tag>
         <div className={css.StatisticBlocItem}>
           <RiUserSearchLine className={css.StatisticBlockIcon} />
           <p className={css.StatisticBlockData}>60</p>
-          <p className={css.StatisticBlockTitle}>Ko`rilgan</p>
+          <p className={css.StatisticBlockTitle}>{t.kurilgan}</p>
         </div>
       </Tag>
       <Tag>
         <div className={css.StatisticBlocItem}>
           <TbUserCheck className={css.StatisticBlockIcon} />
           <p className={css.StatisticBlockData}>7</p>
-          <p className={css.StatisticBlockTitle}>Saqlangan</p>
+          <p className={css.StatisticBlockTitle}>{t.saqlangan}</p>
         </div>
       </Tag>
       <Tag>
         <div className={css.StatisticBlocItem}>
           <TbPhone className={css.StatisticBlockIcon} />
           <p className={css.StatisticBlockData}>16</p>
-          <p className={css.StatisticBlockTitle}>Qong`iroq</p>
+          <p className={css.StatisticBlockTitle}>{t.boglangan}</p>
         </div>
       </Tag>
       <Tag>
         <div className={css.StatisticBlocItem}>
           <CgClose className={css.StatisticBlockIcon} />
           <p className={css.StatisticBlockData}>29</p>
-          <p className={css.StatisticBlockTitle}> Bekor qilgan</p>
+          <p className={css.StatisticBlockTitle}>{t.bekorqilgan}</p>
         </div>
       </Tag>
     </div>

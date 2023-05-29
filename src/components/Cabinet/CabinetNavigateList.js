@@ -1,4 +1,4 @@
-import { Tag, Typography } from "antd";
+import {Card, Tag, Typography} from "antd";
 import Link from "next/link";
 import { eraseCookie } from "utils/setCookie";
 import css from "../../styles/Cabinet.module.css";
@@ -49,10 +49,11 @@ const CabinetNavigateList = ({ t, id }) => {
   };
 
   return data.map((i) => (
-    <Tag
+    <Card
       key={i.id}
-      bordered
-      size="large"
+     // bordered={false}
+      hoverable
+      // size="large"
       onClick={() => handleLink(i)}
       className={css.CabinetNavigateBlockList}
     >
@@ -67,7 +68,7 @@ const CabinetNavigateList = ({ t, id }) => {
       >
         <Text>{i.title}</Text>
       </Link>
-    </Tag>
+    </Card>
   ));
 };
 export default CabinetNavigateList;

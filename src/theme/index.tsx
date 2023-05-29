@@ -17,7 +17,7 @@ const withTheme = (node: JSX.Element) => (
                 colorTextTertiary: "#ffdd00",
                 // colorBorder: "#334155",
                 // colorBorder: "#c4c4c4",
-                colorBorder: "#000031ee",
+                colorBorder: "rgba(0,0,49,0.2)",
                 // colorBgContainer: "#0c0d15",
                 colorBgContainer: "#ffffff",
                 // colorBgLayout: "#0c0d15",
@@ -33,8 +33,11 @@ const withTheme = (node: JSX.Element) => (
             components: {
                 Card: {
                     // colorBgContainer: "#0E1926",
-                    colorBgContainer: "#f5f5f5",
-                    paddingLG: 8
+                    colorBgContainer: "rgba(255,255,255,0.67)",
+                    paddingLG: 15,
+                    // boxShadowTertiary: '0 1px 2px 0 rgba(0, 0, 0, 0.08), 0 1px 6px -1px rgba(0, 0, 0, 0.06), 0 2px 4px 0 rgba(0, 0, 0, 0.04)',
+                    boxShadowTertiary: "0px 3px 15px -1px rgba(34, 60, 80, 0.2)",
+                    // boxShadowTertiary: "0px 3px 21px -9px rgba(34, 60, 80, 0.4)",
                 },
                 Typography: {
                     colorText: "#000000",

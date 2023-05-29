@@ -8,7 +8,7 @@ import {postFetch} from "../../request/Fetch";
 
 const {Text, Title, Paragraph} = Typography;
 const urlImg = process.env.NEXT_PUBLIC_IMG_URL;
-const MasterTabCard = ({t, data, fetchAllKlass, allClass, fetchStarType }) => {
+const MasterTabCard = ({t,lang, data, fetchAllKlass, allClass, fetchStarType }) => {
 	const [api, contextHolder] = notification.useNotification();
 	const openNotificationWithIcon = (type, code, message) => {
 		api[type]({
@@ -27,11 +27,10 @@ const MasterTabCard = ({t, data, fetchAllKlass, allClass, fetchStarType }) => {
 	const items = [
 		{
 			key: 1,
-			label: "Batafsil",
+			label: t.batafsil,
 			children: (
 				<>
 					<div>
-						<Title level={4}>Batafsil</Title>
 						<Text>{data?.description}</Text>
 					</div>
 					<div key={data?.sub_special?.id}>
@@ -43,7 +42,7 @@ const MasterTabCard = ({t, data, fetchAllKlass, allClass, fetchStarType }) => {
 		},
 		{
 			key: 2,
-			label: "Bajargan ishlari",
+			label: t.bajarilgan,
 			children: (
 				<div className={css.bajarilganIshlarBlock}>
 					{data?.allworks?.map((i, index) => (
@@ -86,8 +85,8 @@ const MasterTabCard = ({t, data, fetchAllKlass, allClass, fetchStarType }) => {
 		},
 		{
 			key: 3,
-			label: "Fikrlar",
-			children: <MasterWorkComment t={t} userId={data.id} allClass={allClass} />,
+			label: t.fikirlar,
+			children: <MasterWorkComment lang={lang}  t={t} userId={data.id} allClass={allClass} />,
 		},
 	];
 

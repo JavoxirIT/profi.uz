@@ -24,14 +24,14 @@ import {log} from "util";
 
 const urlImg = process.env.NEXT_PUBLIC_IMG_URL;
 const isType = typeof window !== undefined;
-export const CommentList = ({queryID, userid, messageLoading}) => {
+export const CommentList = ({queryID, userid, messageLoading, t}) => {
 	const message = useMessage(state => state.message)
 	const loading = useMessage(state => state.loading)
 
 
 	// console.log(message)
 	if (loading) {
-		return <ResultNoChats/>
+		return <ResultNoChats t={t}/>
 	}else if(messageLoading){
 		return  <Preloader/>
 	}
@@ -127,7 +127,7 @@ export const Editor = ({onSubmit, submitting, form,}) => {
 	</>
 }
 
-function AllMessage({userid, queryID, messageLoading}) {
+function AllMessage({userid, queryID, messageLoading, t}) {
 	const message = useMessage(state => state.message)
 	const [form] = Form.useForm()
 	const addMessage = useMessage(state => state.addMessage)
@@ -161,16 +161,16 @@ function AllMessage({userid, queryID, messageLoading}) {
 						user_id: res.data.user_id
 
 					}
-					openNotificationWithIcon("success", "Xabar yuborildi");
+					openNotificationWithIcon("success", t.xabarYuborildi);
 					addMessage(msg)
 					setSubmitting(false)
 					form.resetFields()
 				} else if (res.response.status === 302) {
-					openNotificationWithIcon("error", "Avval foydalanuvchini tanlang");
+					openNotificationWithIcon("error", t.avalTanlang);
 					setSubmitting(false)
 				} else {
 					setSubmitting(false)
-					openNotificationWithIcon("error", "Xabar yuborilmadi");
+					openNotificationWithIcon("error", "");
 				}
 			}
 		).catch((err) => {
@@ -189,7 +189,7 @@ function AllMessage({userid, queryID, messageLoading}) {
 		<Layout className={css.AllMessageWrapper}>
 			{contextHolder}
 			<Card className={css.ChatDataMessage}>
-				<CommentList queryID={queryID} userid={userid} messageLoading={messageLoading} />
+				<CommentList queryID={queryID} userid={userid} messageLoading={messageLoading} t={t}/>
 				<div style={{float: "left", clear: "both"}}
 				     ref={(el) => {
 					     messagesEnd = el;

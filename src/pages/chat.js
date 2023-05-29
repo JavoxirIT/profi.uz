@@ -58,7 +58,7 @@ const Chat = ({t, unread}) => {
 				}, 500)
 				fetchMessage(res.data);
 			} else {
-				openNotificationWithIcon("error", "Ma'lumotlani olib bo'lmadi");
+				openNotificationWithIcon("error", t.error);
 			}
 		})
 		.catch((err) => {
@@ -123,8 +123,8 @@ const Chat = ({t, unread}) => {
 	return (
 		isChecked && (
 			<PageWrapperSingle
-				title="Suhbatlar"
-				pageTitle={"Suhbatlar"}
+				title={t.pageTitleChat}
+				pageTitle={t.pageTitleChat}
 				t={t}
 				unread={unread}
 			>
@@ -137,7 +137,7 @@ const Chat = ({t, unread}) => {
 				<div className={css.chatWrapper}>
 					<Card className={css.chatBlockContact}>
 						{!rooms.length ? (
-							<ResultNoData/>
+							<ResultNoData t={t} />
 						) : (
 							<AllChats
 								data={rooms}
@@ -155,6 +155,7 @@ const Chat = ({t, unread}) => {
 							queryID={query.id}
 							unread={unread}
 							userid={userid}
+							t={t}
 						/>
 					</div>
 				</div>

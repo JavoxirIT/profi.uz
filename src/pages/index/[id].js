@@ -15,7 +15,7 @@ const { Title } = Typography;
 
 const url = process.env.NEXT_PUBLIC_ONE_USER;
 
-const Master = ({ t, data }) => {
+const Master = ({ t, data, lang }) => {
   // console.log(data)
   const { query } = useRouter();
 
@@ -32,7 +32,7 @@ const Master = ({ t, data }) => {
   const fetchStarType = () => {
     postFetch({path: "star-type"}).then((res) => {
       if (res.status === 200) {
-        setStarType(res.data.map((i) => ({value: i.id, label: i.name + "/" + i.name_ru})))
+        setStarType(res.data)
       } else {
         openNotificationWithIcon("error", res.code, res.message);
       }
@@ -58,17 +58,17 @@ const Master = ({ t, data }) => {
 
 
   return (
-    <PageWrapperSingle title={data.firstname  + " " + data.lastname} pageTitle="Portfolio" t={t}>
+    <PageWrapperSingle title={data.firstname  + " " + data.lastname} pageTitle="" t={t}>
       {contextHolder}
       <main className={css.masterWrapper}>
         <div>
           <Title style={{ marginBottom: 22 }} level={4}>
-            Ba’tafsil malumotlari
+            {t.batafsilMalumot}
           </Title>
-          <MasterCard data={data} t={t} user_id={query.id} fetchAllKlass={fetchAllKlass} starType={starType} openNotificationWithIcon={openNotificationWithIcon}/>
+          <MasterCard lang={lang} data={data} t={t} user_id={query.id} fetchAllKlass={fetchAllKlass} starType={starType} openNotificationWithIcon={openNotificationWithIcon}/>
         </div>
         <div className={css.MasterTab}>
-          <MasterTabCard data={data} t={t} allClass={allClass} fetchStarType={fetchStarType} fetchAllKlass={fetchAllKlass}/>
+          <MasterTabCard lang={lang} data={data} t={t} allClass={allClass} fetchStarType={fetchStarType} fetchAllKlass={fetchAllKlass}/>
         </div>
       </main>
     </PageWrapperSingle>
