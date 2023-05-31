@@ -1,50 +1,36 @@
 import React, {useState} from 'react';
 import DrawerModal from "./DrawerModal";
-import {Avatar, Button, List} from "antd";
+import {Avatar, Badge, Button, Card, List, Row} from "antd";
+import css from "../../styles/Chat.module.css";
 
 
 const urlImg = process.env.NEXT_PUBLIC_IMG_URL;
 function AllChatsMobileDrawer({data, allMessage, unread}) {
 
 	const [visible, setVisible] = useState(false);
-	const clickAllMessage = (id, key) => {
-		allMessage(id, key)
+	const clickAllMessage = (room_id, user_id) => {
+		allMessage(room_id, user_id)
 		setVisible(false)
 	}
-	const listData = data.map((i) => {
-		return {
-			title: `${i.firstname + " " + i.lastname}`,
-			avatar: `${urlImg + i.image}`,
-			id: i.room_id,
-			key: i.id
-		}
-	});
+	const dataState = data.map((i) =>
+		<Card bordered={false} hoverable key={i.id} onClick={() => clickAllMessage(i.room_id, i.id)}
+		      className={css.AllChatsBlock}>
+			<Row justify="space-between" align="middle">
+				<Avatar shape="square" size={50} src={urlImg + i.image}/>
+				<p className={css.AllChatsBlockName}>{i.firstname + " " + i.lastname}</p>
+				<Badge
+					className="site-badge-count-109"
+					count={i.message_count}
+					style={{
+						backgroundColor: '#ffdd00',
+					}}
+				/>
+			</Row>
+		</Card>
+	)
 	return (
 		<DrawerModal setVisible={setVisible} visible={visible}>
-			<List
-				itemLayout="vertical"
-				size="small"
-				dataSource={listData}
-				footer={""}
-				// header={`${comments.length} ${comments.length > 1 ? 'replies' : 'reply'}`}
-				renderItem={(item) => (
-					<List.Item
-						key={item.title}
-						extra={
-							<Button type="primary" shape="circle" onClick={() => clickAllMessage(item.id, item.key)}>
-								0
-							</Button>
-						}
-						onClick={() =>  clickAllMessage(item.id, item.key)}
-					>
-						<List.Item.Meta
-							avatar={<Avatar src={item.avatar}/>}
-							title={<a href={item.href} style={{fontSize: 14}}>{item.title}</a>}
-
-						/>
-					</List.Item>
-				)}
-			/>
+			{dataState}
 		</DrawerModal>
 	);
 }

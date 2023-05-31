@@ -1,4 +1,6 @@
 .AuthorizationFormBlock {
+  width: 100%;
+  height: calc(100vh - 99px);
   display: flex;
   flex-direction: column;
   justify-content: center !important;
@@ -23,8 +25,8 @@
 }
 
 .AuthorizationLinkBlock {
-  width: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: flex-start;
   padding: 10px 0;
 }

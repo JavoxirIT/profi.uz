@@ -1,11 +1,8 @@
 import React from "react";
 import {ConfigProvider, theme} from "antd";
 
-const testGreenColor = "#52c41a";
-const testRedColor = "#ff0000";
 
 const withTheme = (node: JSX.Element) => (
-
     <ConfigProvider
         theme={{
             token: {

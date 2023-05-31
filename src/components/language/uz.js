@@ -1,5 +1,8 @@
 export const uz = {
-  wrapperTitiel: "O'z shahringizdagi eng yaxshi mutaxassislarni toping.",
+  modaltitleFilter: "Mustaxasisni topish uchun viloyatni tanlang",
+  reklama: "Reklama",
+  reklamaText: "Reklamangiz uchun joy",
+  wrapperTitle: "O'z shahringizdagi eng yaxshi mutaxassislarni toping",
   authButtonTitle: "Kirish",
   regButtonTitle: "Ro’yxatdan o’tish",
   formReqMess: "Iltomos telefon raqamizni kriting!",

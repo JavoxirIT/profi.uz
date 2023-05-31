@@ -18,6 +18,7 @@ const useMessage = create(
 		addMessage: (mess) => {
 			set((state) => ({
 				message: [...state.message, mess],
+				loading: false
 			}));
 		},
 		// clearCart: () => set({}),

@@ -1,16 +1,16 @@
-.Search_Inpblock {
-  margin-right: 10px;
-}
+/*.Search_Inpblock {*/
+/*  margin-right: 10px;*/
+/*}*/
 @media (min-width: 1300px) {
   .Search_Inpblock {
     width: 690px !important;
-    margin-right: 10px;
+    /*margin-right: 10px;*/
   }
 }
-@media (min-width: 175px) and (max-width: 1300px) {
+@media (min-width: 1175px) and (max-width: 1300px) {
   .Search_Inpblock {
-    width: 690px !important;
-    margin-right: 10px;
+    width: 100% !important;
+    /*margin-right: 10px;*/
   }
 }
 @media (min-width: 220px) and (max-width: 1175px) {

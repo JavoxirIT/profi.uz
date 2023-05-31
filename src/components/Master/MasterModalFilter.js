@@ -42,16 +42,16 @@ const MasterModalFilter = ({special, vil, onFinish, open, setOpen, loading, user
 	const [newValue, setNewValue] = useState([])
 	useEffect(() => {
 		special.map((i) => i.subspecial.filter((sub) => sub.p_type_id === specialValue ? subArr.push(sub) : null))
-		let newArr = Array.from(new Set(subArr.flat()));
+		let newArr = Array.from(new Set(subArr));
 		setNewValue(newArr)
 	}, [special, specialValue]);
-
 
 	const [checked, setChecked] = useState(null)
 	const [values, setValues] = useState(vil)
 	const onRegionChange = (e) => {
 		setChecked(e.target.value)
 	}
+
 	const {
 		form, current, gotoStep, stepsProps, formProps, submit, formLoading,
 	} = useStepsForm({
@@ -63,14 +63,32 @@ const MasterModalFilter = ({special, vil, onFinish, open, setOpen, loading, user
 			setSpecialValue(null)
 			setTimeout(() => {
 				setOpen(false)
+				gotoStep(current - 3)
 				form.resetFields()
 			}, 3000)
-			await new Promise(r => setTimeout(r, 1000));
+			await new Promise(r => setTimeout(r, 500));
 			return 'ok';
 		}, total: 4,
 
 	});
-	// vil.map((i) => ({value: i.id, label: (lang === 'ru')? i.vil_name_ru : i.vil_name}))
+	//очищаем массив когда возвращаемся с 3 степа
+	const resetArr = () => {
+		subArr = []
+	}
+
+	// сортировка по алфавиту
+	function userSort(a, b) {
+		if (lang === "ru") {
+			if (a.nameru > b.nameru) return 1;
+			if (a.nameru === b.nameru) return 0;
+			if (a.nameru < b.nameru) return -1;
+		} else {
+			if (a.name > b.name) return 1;
+			if (a.name === b.name) return 0;
+			if (a.name < b.name) return -1;
+		}
+	}
+
 	const formList = [<>
 		<Form.Item name="region">
 			<Checkbox.Group>
@@ -89,41 +107,15 @@ const MasterModalFilter = ({special, vil, onFinish, open, setOpen, loading, user
 		<Form.Item className={css.MasterModalFilterBtn}>
 			<Button type="primary" onClick={() => gotoStep(current + 1)}>{t.qabul}</Button>
 		</Form.Item>
-	</>, <>
-		<Form.Item>
-			<Checkbox.Group>
-				<div className={css.MasterModalFilterCheckbox}>
-					{special.map((i, index) => <Checkbox
-						key={i.id}
-						value={i.id}
-						onChange={(e) => setSpecialValue(e.target.value)}
-						// checked={specialValue === i.value}
-					>
-						{lang === 'ru' ? i.nameru : i.name}
-					</Checkbox>)}
-
-				</div>
-			</Checkbox.Group>
-		</Form.Item>
-		<Form.Item className={css.MasterModalFilterBtn}>
-			<Button
-				style={{marginRight: 10}}
-				type="primary"
-				loading={formLoading}
-				onClick={() => gotoStep(current + 1)}
-			>
-				{t.qabul}
-			</Button>
-			<Button onClick={() => gotoStep(current - 1)}>{t.qaytish}</Button>
-		</Form.Item>
-	</>, <>
-		<Space direction="vertical">
-			<Form.Item name="special">
+	</>,
+		<>
+			<Form.Item>
 				<Checkbox.Group>
 					<div className={css.MasterModalFilterCheckbox}>
-						{newValue.map((i, index) => <Checkbox
+						{special.sort(userSort).map((i, index) => <Checkbox
 							key={i.id}
 							value={i.id}
+							onChange={(e) => setSpecialValue(e.target.value)}
 							// checked={specialValue === i.value}
 						>
 							{lang === 'ru' ? i.nameru : i.name}
@@ -132,25 +124,53 @@ const MasterModalFilter = ({special, vil, onFinish, open, setOpen, loading, user
 					</div>
 				</Checkbox.Group>
 			</Form.Item>
-		</Space>
-		<Form.Item className={css.MasterModalFilterBtn}>
-			<Button
-				style={{marginRight: 10}}
-				type="primary"
-				loading={formLoading}
-				onClick={() => {
-					submit().then(result => {
-						if (result === 'ok') {
-							gotoStep(current + 1);
-						}
-					});
-				}}
-			>
-				{t.qabul}
-			</Button>
-			<Button onClick={() => gotoStep(current - 1)}>{t.qaytish}</Button>
-		</Form.Item>
-	</>];
+			<Form.Item className={css.MasterModalFilterBtn}>
+				<Button
+					style={{marginRight: 10}}
+					type="primary"
+					loading={formLoading}
+					onClick={() => gotoStep(current + 1)}
+				>
+					{t.qabul}
+				</Button>
+				<Button onBlur={resetArr} onClick={() => gotoStep(current - 1)}>{t.qaytish}</Button>
+			</Form.Item>
+		</>,
+		<>
+			<Space direction="vertical">
+				<Form.Item name="special">
+					<Checkbox.Group>
+						<div className={css.MasterModalFilterCheckbox}>
+							{newValue.sort(userSort).map((i) => <Checkbox
+								key={i.id}
+								value={i.id}
+								// checked={specialValue === i.value}
+							>
+								{lang === 'ru' ? i.nameru : i.name}
+							</Checkbox>)}
+
+						</div>
+					</Checkbox.Group>
+				</Form.Item>
+			</Space>
+			<Form.Item className={css.MasterModalFilterBtn}>
+				<Button
+					style={{marginRight: 10}}
+					type="primary"
+					loading={formLoading}
+					onClick={() => {
+						submit().then(result => {
+							if (result === 'ok') {
+								gotoStep(current + 1);
+							}
+						});
+					}}
+				>
+					{t.qabul}
+				</Button>
+				<Button onBlur={resetArr} onClick={() => gotoStep(current - 1)}>{t.qaytish}</Button>
+			</Form.Item>
+		</>];
 
 	return (<ModalCenter
 		title={t.modaltitle}

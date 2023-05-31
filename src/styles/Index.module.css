@@ -5,30 +5,48 @@
     grid-template-columns: auto 1fr;
     grid-template-rows: auto;
     gap: 15px;
-    margin-top: 50px;
+    margin-top: 60px;
 }
 
 .IndexTitle {
     font-size: 50px;
     color: #d0b400;
-    margin: 30px 0;
+    margin: 15px 0;
     font-weight: 600;
 }
 
 .indexCheckBox1 {
     min-width: 230px !important;
-    min-height: 520px !important;
+    min-height: 400px !important;
     width: max-content !important;
     overflow-wrap: break-word;
     padding: 10px !important;
-}
-.indexCheckBox1:nth-child(1) {
     margin-bottom: 15px !important;
-}
-.indexCheckBox1 div div div div div div {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
+
+.indexCheckBox1 div {
+    padding: 0 !important;
+}
+
+/*.indexCheckBox1 div div p{*/
+/*    transform: rotate(-45deg);*/
+/*}*/
+.indexCheckBox1Reklama {
+    width: 100%;
+    transform: rotate(-45deg);
+}
+
+.indexCheckBox1Text {
+    color: #000031;
+    font-size: 16px;
+    text-transform: uppercase;
+    padding: 0;
+    margin: 0;
+}
+
 .indexUserCardInfoHeader {
     display: flex;
     justify-content: space-between;
@@ -98,6 +116,7 @@
     gap: 10px;
     padding-top: 20px;
 }
+
 /*---------------------------------------------*/
 .MasterModalFilterCheckbox {
     column-width: 250px !important;
@@ -105,24 +124,133 @@
     column-gap: 20px !important;
     column-rule: 1px solid rgb(216, 216, 216) !important;
 }
-.MasterModalFilterCheckbox > label{
+
+.MasterModalFilterCheckbox > label {
     display: flex !important;
 }
-.MasterModalFilterBtn{
+
+.MasterModalFilterBtn {
     display: flex !important;
     justify-content: flex-end !important;
 }
+
+/*carusel uesr*/
+.MasterKaruselUser {
+    padding: 20px 0 !important;
+}
+
+/*.MasterKaruselUser button{*/
+/*    color: cornflowerblue !important;*/
+/*    background: lightcoral !important;*/
+/*}*/
+.MasterKaruselUser div {
+    padding: 10px 0 0 0 !important;
+}
+
+.MasterKaruselUser div div div div {
+    margin: 0 10px !important;
+}
+
+/*carousel title*/
+.MasterKaruselTitle div {
+    text-align: start;
+    height: 138px;
+}
+
+/*IndexFooterFilterContainer*/
+.IndexFooterFilterBlock {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.IndexFooterFilterContainer {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: auto;
+    gap: 40px 30px;
+    padding: 50px 0 30px 50px;
+}
+
+.IndexFooterFilterItemTitle {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.IndexFooterFilterItems {
+    list-style-type: none;
+    line-height: 40px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.IndexFooterFilterItems:hover {
+    background: #001529;
+    border-radius: 5px;
+    padding-left: 15px;
+    color: #fff;
+}
+@media (min-width: 220px) and (max-width: 360px) {
+    .IndexFooterFilterContainer {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        gap: 40px 30px;
+        padding: 50px 0 30px 50px;
+    }
+    .indexUserImage {
+        width: 60px !important;
+        height: 60px !important;
+        object-fit: contain;
+    }
+}
+@media (min-width: 360px) and (max-width: 600px) {
+    .IndexFooterFilterContainer {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: auto;
+        gap: 40px 30px;
+        padding: 50px 0 30px 25px;
+    }
+}
+
+@media (min-width: 600px) and (max-width: 1350px) {
+    .IndexFooterFilterContainer {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: auto;
+        gap: 40px 30px;
+        padding: 50px 0 30px 35px;
+    }
+}
+
+@media (min-width: 1350px) and (max-width: 1500px) {
+    .IndexFooterFilterContainer {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        grid-template-rows: auto;
+        gap: 40px 30px;
+        padding: 50px 0 30px 45px;
+    }
+}
+
 @media (min-width: 220px) and (max-width: 1175px) {
     .indexContainer {
         display: flex;
         flex-direction: column;
-        margin-top: 10px;
+        margin-top: 40px;
+    }
+
+    .indexUserCardInfoHeader {
+        padding-bottom: 10px;
     }
 
     .IndexTitle {
         font-size: 30px;
         margin-bottom: 10px;
-        text-align: center;
+        text-align: start;
     }
 
     .indexUserCard {
@@ -136,6 +264,7 @@
     .indexUserImage {
         width: 100px;
         height: 100px;
+        object-fit: contain;
     }
 
     .indexUserRate {
@@ -151,17 +280,21 @@
     .indexCheckBoxBlock {
         display: none;
     }
+
     .indexCheckTitle {
         font-size: 12px;
     }
+
     .indexCheckBox1 {
         margin-top: 0;
         width: max-content;
     }
+
     .indexCheckBox2 {
         margin-top: 0 !important;
         width: max-content;
     }
+
     .MasterModalFilterUserCard {
         display: flex;
         flex-direction: column;

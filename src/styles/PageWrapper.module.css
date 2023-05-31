@@ -1,12 +1,11 @@
 .layout {
     min-height: 100vh !important;
     width: 100%;
-    display: flex !important;
-    flex-direction: column !important;
 }
 
 .header {
-    height: 80px !important;
+    width: 100% !important;
+    height: max-content !important;
     position: sticky;
     top: 0;
     z-index: 10;
@@ -54,81 +53,73 @@
     padding: 10px;
 }
 
-/* .headerNotificationIconBlock {
-} */
 /* antd layaut */
 .content {
-    flex: 1 1 auto;
+    min-height: calc(100vh - 94px) !important;
     display: flex;
-    justify-content: center;
-    align-items: stretch;
-    /* margin-top: 10px;
-      padding-bottom: 10px; */
+    flex-direction: column;
+    align-items: center;
+    /*padding-top: 10px;*/
 }
 
 .section {
+    height: inherit;
     width: 100% !important;
-    max-width: calc(100vw - 400px);
-    display: flex;
-    flex-direction: column;
-    /* margin-top: 20px; */
+    max-width: calc(100vw - 400px) !important;
+    /*margin-top: 20px;*/
 }
 
 .footer {
     display: none;
 }
 
-@media (min-width: 1300px) {
-    /*.headerBlock1 {*/
-    /*  padding-top: 15px;*/
-    /*}*/
-}
+
 
 @media (min-width: 1176px) and (max-width: 1300px) {
-    .layout {
-        width: 100% !important;
-    }
     .header {
-        height: min-content !important;
-        display: flex;
-        justify-content: space-between !important;
-        align-items: center;
+        height: max-content !important;
+        /*display: flex;*/
+        /*justify-content: space-between !important;*/
+        /*align-items: center;*/
         /*padding: 0 15px 0 15px !important;*/
     }
 
-    .headerBlock1 {
-        width: 100%;
-        max-width: calc(100vw - 30px);
-        padding-left: 0;
-        /*padding-top: 15px;*/
-        display: flex;
-        justify-content: space-between !important;
-        align-items: center;
-    }
+    /*.headerBlock1 {*/
+    /*    height: max-content !important;*/
+    /*    width: 100%;*/
+    /*    max-width: calc(100vw - 30px);*/
+    /*    padding-left: 0;*/
+    /*    !*padding-top: 15px;*!*/
+    /*    display: flex;*/
+    /*    justify-content: space-between !important;*/
+    /*    align-items: center;*/
+    /*}*/
 }
 
 @media (min-width: 220px) and (max-width: 1175px) {
     .layout {
-        height: 100%;
         padding-bottom: 15px;
     }
 
     .header {
-        height: min-content !important;
+        width: 100vw !important;
+        height: max-content !important;
         display: flex;
         justify-content: space-between !important;
         align-items: center;
-        padding: 15px 15px 15px 15px !important;
+        padding: 15px 15px 10px 15px !important;
     }
 
     .headerBlock1 {
-        width: 100%;
+        height: max-content !important;
+        width: inherit !important;
         max-width: calc(100vw - 30px);
         padding-left: 0;
         /*padding-top: 15px;*/
         display: grid;
-        grid-template-columns: 20% 1fr 1fr;
+        grid-template-columns: 20% 40% 40%;
         grid-template-rows: 25px 50px;
+        row-gap: 10px;
     }
 
     .headerLogo {
@@ -160,7 +151,7 @@
         grid-column-end: 4;
         grid-row-start: 2;
         grid-row-end: 3;
-        margin-top: 20px;
+        /*margin-top: 20px;*/
         /*margin-top: 10px;margin-top: 10px;*/
         display: flex;
         align-items: center;
@@ -172,24 +163,22 @@
         display: flex;
         justify-content: flex-end;
     }
+
     .content {
-        margin: 0 0 50px 0 !important;
-        /* min-height: 100vh !important; */
-        height: 100% !important;
-        width: 100%;
-        /* overflow-y: scroll; */
+        width: 100vw !important;
+        overflow: hidden;
+        padding: 0 20px;
     }
 
     .section {
-        width: 100%;
-        max-width: calc(100vw - 30px);
-        justify-content: flex-start;
+        max-width: 100vw !important;
+        padding-bottom: 40px !important;
     }
 
     .footer {
         display: block;
         position: fixed;
-        bottom: 0px;
+        bottom: 0;
         z-index: 1;
         width: 100%;
         height: 60px;

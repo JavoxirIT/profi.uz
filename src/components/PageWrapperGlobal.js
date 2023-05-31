@@ -16,11 +16,7 @@ export const PageWrapperGlobal = ({
 	                                  children,
 	                                  title = "Профи",
 	                                  pageTitle,
-	                                  t,
-	                                  setUser,
-	                                  vil,
-	                                  isSpesial,
-	                                  onFinish, Search
+	                                  t, Search
                                   }) => {
 	const router = useRouter();
 	const goBack = (e) => router.back();
@@ -40,7 +36,7 @@ export const PageWrapperGlobal = ({
 				<title>{title}</title>
 			</Head>
 			<Layout className={css.layout}>
-				<Header className={css.header} style={{background: "#000031"}}>
+				<Header className={css.header}>
 					<div className={css.headerBlock1}>
 						<div className={css.headerMobileMenu} onClick={goBack}>
 							<RiArrowGoBackLine className={css.headerMobileMenuIcon}/>
@@ -53,17 +49,13 @@ export const PageWrapperGlobal = ({
 							<SerchInp Search={Search} t={t}/>
 						</div>
 						<div className={css.headerNotificationIconBlock}>
-							<NotificationIconBlock t={t}/>{" "}
+							<NotificationIconBlock t={t}/>
 						</div>
 					</div>
-
-					{/* <nav className={css.headerNav}>
-          <Links />
-        </nav> */}
 				</Header>
-				<Content className={css.content}>
+				<div className={css.content}>
 					<div className={css.section}> {children}</div>
-				</Content>
+				</div>
 				<Footer className={css.footer}>
 					<FooterMenu t={t}/>
 				</Footer>

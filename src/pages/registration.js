@@ -78,101 +78,104 @@ function Registration({t}) {
 		>
 			{contextHolder}
 			<div className={style.AuthorizationFormBlock}>
-				{" "}
-				<Form
-					layout="vertical"
-					name="basic"
-					onFinish={RegistrationPost}
-					autoComplete="off"
-					className={style.AuthorizationForm}
-				>
-					<Item
-						label={t.firstname}
-						name="firstname"
-						rules={[
-							{
-								required: true,
-								message: t.formReqMessFirstName,
-							},
-						]}
+				<div>
+					{" "}
+					<Form
+						layout="vertical"
+						name="basic"
+						onFinish={RegistrationPost}
+						autoComplete="off"
+						className={style.AuthorizationForm}
 					>
-						<Input className={style.AuthorizationFormInput}  placeholder={t.firstname} />
-					</Item>
-					<Item
-						label={t.lastname}
-						name="lastname"
-						rules={[
-							{
-								required: true,
-								message: t.formReqMessLastName,
-							},
-						]}
-					>
-						<Input className={style.AuthorizationFormInput} placeholder={t.lastname}/>
-					</Item>
-					<Item
-						label={t.phone}
-						name="phone"
-						rules={[
-							{
-								required: true,
-								message: t.formReqMess,
-							},
-						]}
-					>
-						<PatternFormat
-							format="+998 (##) ### ## ##"
-							allowEmptyFormatting
-							mask="_"
-							customInput={Input}
-							className={style.AuthorizationFormInput}
-						/>
-					</Item>
-
-					<Item
-						label={t.formReqMessParol2}
-						name="password"
-						rules={[
-							{
-								required: true,
-								message: t.formReqMessParol,
-							},
-						]}
-					>
-						<Input.Password
-							placeholder={t.formReqMessParol2}
-							className={style.AuthorizationFormInput}
-						/>
-					</Item>
-					{/*<Item*/}
-					{/*	valuePropName="checked"*/}
-					{/*	wrapperCol={{*/}
-					{/*		offset: 3,*/}
-					{/*		span: 24,*/}
-					{/*	}}*/}
-					{/*>*/}
-					{/*	<Text>{t.customer}</Text>*/}
-					{/*	<Switch*/}
-					{/*		style={{margin: "0 20px"}}*/}
-					{/*		onChange={(e) => setIsSwitch(e.target === false ? 2 : 3)}*/}
-					{/*	/>*/}
-					{/*	<Text>{t.specialist}</Text>*/}
-					{/*</Item>*/}
-					<Item className={style.AuthorizationFormButtonForm}>
-						<Button
-							type="primary"
-							htmlType="submit"
-							className={style.AuthorizationFormButton}
+						<Item
+							label={t.firstname}
+							name="firstname"
+							rules={[
+								{
+									required: true,
+									message: t.formReqMessFirstName,
+								},
+							]}
 						>
-							{t.regButtonTitle}
-						</Button>
-					</Item>
-				</Form>
-				<div className={style.AuthorizationLinkBlock}>
-					<Link href={"/"}>{t.linkHome}</Link>
-				</div>
-				<div className={style.AuthorizationLinkBlock}>
-					<Link href={"/authorization"}>{t.pageTitleAuth}</Link>
+							<Input className={style.AuthorizationFormInput} placeholder={t.firstname}/>
+						</Item>
+						<Item
+							label={t.lastname}
+							name="lastname"
+							rules={[
+								{
+									required: true,
+									message: t.formReqMessLastName,
+								},
+							]}
+						>
+							<Input className={style.AuthorizationFormInput} placeholder={t.lastname}/>
+						</Item>
+						<Item
+							label={t.phone}
+							name="phone"
+							rules={[
+								{
+									required: true,
+									message: t.formReqMess,
+								},
+							]}
+						>
+							<PatternFormat
+								format="+998 (##) ### ## ##"
+								allowEmptyFormatting
+								mask="_"
+								customInput={Input}
+								className={style.AuthorizationFormInput}
+							/>
+						</Item>
+
+						<Item
+							label={t.formReqMessParol2}
+							name="password"
+							rules={[
+								{
+									required: true,
+									message: t.formReqMessParol,
+								},
+							]}
+						>
+							<Input.Password
+								placeholder={t.formReqMessParol2}
+								className={style.AuthorizationFormInput}
+							/>
+						</Item>
+						{/*<Item*/}
+						{/*	valuePropName="checked"*/}
+						{/*	wrapperCol={{*/}
+						{/*		offset: 3,*/}
+						{/*		span: 24,*/}
+						{/*	}}*/}
+						{/*>*/}
+						{/*	<Text>{t.customer}</Text>*/}
+						{/*	<Switch*/}
+						{/*		style={{margin: "0 20px"}}*/}
+						{/*		onChange={(e) => setIsSwitch(e.target === false ? 2 : 3)}*/}
+						{/*	/>*/}
+						{/*	<Text>{t.specialist}</Text>*/}
+						{/*</Item>*/}
+						<Item className={style.AuthorizationFormButtonForm}>
+							<Button
+								type="primary"
+								htmlType="submit"
+								className={style.AuthorizationFormButton}
+							>
+								{t.regButtonTitle}
+							</Button>
+						</Item>
+					</Form>
+
+					<div className={style.AuthorizationLinkBlock}>
+						<Link href={"/"}>{t.linkHome}</Link>
+					</div>
+					<div className={style.AuthorizationLinkBlock}>
+						<Link href={"/authorization"}>{t.pageTitleAuth}</Link>
+					</div>
 				</div>
 			</div>
 		</PageWrapperAuthorization>

@@ -10,15 +10,19 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import {nanoid} from 'nanoid'
-
+import {AiOutlineDoubleRight, AiOutlineDoubleLeft} from "react-icons/ai"
 const {Text, Title} = Typography;
 const imgUrl = process.env.NEXT_PUBLIC_IMG_URL
 
+
+
 function MasterCarusel({caruselUser}) {
 	const settings = {
+		className: `${css.MasterKaruselUser}`,
+		swipeToSlide: true,
 		infinite: true,
 		autoplay: true,
-		dots: true,
+		dots: false,
 		speed: 4000,
 		autoplaySpeed: 500,
 		cssEase: "linear",
@@ -27,6 +31,8 @@ function MasterCarusel({caruselUser}) {
 		variableWidth: true,
 		pauseOnHover: true,
 		touchMove: true,
+		// nextArrow: <SampleNextArrow/>,
+		// prevArrow: <SamplePrevArrow />,
 		responsive: [
 			{
 				breakpoint: 1024,

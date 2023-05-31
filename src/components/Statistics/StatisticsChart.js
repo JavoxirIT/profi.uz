@@ -81,13 +81,13 @@ function StatisticsChart({t}) {
   }, []);
 
   return (
-    <Layout className={css.StatisticsChart}>
+    <div className={css.StatisticsChart}>
       {/* Bar chart */}
       {/* <h1 className="w-[150px] mx-auto mt-10 text-xl font-semibold capitalize ">
         Bar Chart
       </h1> */}
       <canvas id="myChart" />
-    </Layout>
+    </div>
   );
 }
 

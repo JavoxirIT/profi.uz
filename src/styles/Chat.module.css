@@ -89,6 +89,13 @@
   word-wrap: break-word !important;
   word-break: break-all !important;
 }
+.chatCommentImage{
+  border-radius: 15px 15px 0 15px;
+  margin-top: 10px;
+  width: 500px !important;
+  height: auto;
+  object-fit: contain;
+}
 .chatCommentchildTime {
   font-size: 10px;
 }
@@ -137,5 +144,10 @@
     height: 50px !important;
     margin-bottom: 0 !important;
     font-size: 18px !important;
+  }
+  .chatCommentImage{
+    width: 70vw !important;
+    height: auto;
+    object-fit: contain;
   }
 }

@@ -14,7 +14,6 @@ function MasterWorkComment({allClass, lang}) {
 		4: <AiOutlineSmile style={{fontSize: 40, color: "#52c41a"}} />,
 		5: <AiOutlineSmile style={{fontSize: 40, color: "#52c41a"}} />,
 	};
-	console.log(customIcons)
 	return (<List
 		size="small"
 		itemLayout="horizontal"
@@ -26,7 +25,7 @@ function MasterWorkComment({allClass, lang}) {
 				description={<Text>{lang === "ru" ? item.name_ru : item.name}</Text>}
 			/>
 			<div
-				style={{fontSize: 20}}>{Object.entries(customIcons).map(([key, value]) => Number(item.stars) === Number(key) ? value : null)}</div>
+				style={{fontSize: 20}}>{Object.entries(customIcons).map(([key, value]) => Number(item.stars) === Number(key) ? <p key={key} >{value}</p> : null)}</div>
 		</List.Item>)}
 	/>)
 };

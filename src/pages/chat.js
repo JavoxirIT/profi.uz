@@ -71,7 +71,7 @@ const Chat = ({t, unread}) => {
 	const [rooms, setRooms] = useState([]);
 	const [oneRooms, setOneRooms] = useState(0);
 	// получаем все чаты
-	useEffect(() => {
+	const fetchAllRooms = () => {
 		postFetch({path: "all-rooms"})
 		.then((res) => {
 			if (res.status === 200) {
@@ -79,13 +79,14 @@ const Chat = ({t, unread}) => {
 				//получаем один объект и выодим из него room_id для отправки запроси через useEffect
 				if (query.id) {
 					const oneRoomID = res.data.find(i => Number(query.id) === i.id)
-					setOneRooms(oneRoomID.room_id)
-					setUserId(oneRoomID.id);
+					// console.log("oneRoomID", oneRoomID)
+					if (oneRoomID !== undefined) {
+						setOneRooms(oneRoomID.room_id)
+						setUserId(oneRoomID.id);
+					}
 				} else {
 					setOneRooms(0)
 				}
-
-
 			} else {
 				openNotificationWithIcon("error", res.code, res.message);
 			}
@@ -94,17 +95,23 @@ const Chat = ({t, unread}) => {
 		.catch((err) => {
 			openNotificationWithIcon("error", err.code, err.message);
 		});
+	}
+	useEffect(() => {
+		fetchAllRooms()
 		//eslint-disable-next-line
 	}, []);
 
-
+	// console.log("oneRooms",oneRooms)
 	// выводим чат к которому обращаемся из кабинета спецыалиста
 	useEffect(() => {
 		if (oneRooms !== 0) {
+			// console.log(1)
 			const value = JSON.stringify({room_id: Number(oneRooms)});
 			if (effectRooms) {
+				// console.log(2)
 				postFetch({path: "all-messages", value})
 				.then((res) => {
+					// console.log(3)
 					if (res.status === 200) {
 						// console.log("effect", res)
 						fetchMessage(res.data);
@@ -137,7 +144,7 @@ const Chat = ({t, unread}) => {
 				<div className={css.chatWrapper}>
 					<Card className={css.chatBlockContact}>
 						{!rooms.length ? (
-							<ResultNoData t={t} />
+							<ResultNoData t={t}/>
 						) : (
 							<AllChats
 								data={rooms}
@@ -156,6 +163,7 @@ const Chat = ({t, unread}) => {
 							unread={unread}
 							userid={userid}
 							t={t}
+							fetchAllRooms={fetchAllRooms}
 						/>
 					</div>
 				</div>

@@ -2,13 +2,12 @@
     height: 100%;
     padding: 30px 0 20px 0;
     display: grid;
-    grid-template-columns: 20% 1fr;
+    grid-template-columns: 20% 75%;
     grid-template-rows: auto;
-    column-gap: 50px;
+    column-gap: 5%;
 }
 
 .cabinetCardUserInfo {
-    width: inherit !important;
     height: max-content !important;
     margin: 0 !important;
     display: flex;
@@ -17,8 +16,6 @@
 }
 
 .cabinetCardUserInfoBody {
-    width: auto;
-    padding-top: 20px;
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
@@ -38,9 +35,8 @@
 }
 
 .cabinetCardUserNavigate {
-    width: inherit !important;
-    height: inherit !important;
-    margin: 0 !important;
+    height: 100%;
+    min-height: calc(100vh - 150px);
 }
 
 .CardUserNavigateLinkBlock {
@@ -70,7 +66,7 @@
 
 @media (min-width: 220px) and (max-width: 1175px) {
     .cabinetCardBlock {
-        margin-top: 50px;
+        margin-top: 90px;
         display: grid;
         grid-template-columns: 1fr;
         grid-template-rows: max-content 1fr;
@@ -87,8 +83,12 @@
 
     .UserInfoBodyImg {
         position: absolute;
-        top: -85px;
+        top: -110px;
         z-index: 1;
         border-radius: 10px;
     }
+    .cabinetCardUserNavigate {
+        min-height: max-content !important;
+    }
+
 }

@@ -18,6 +18,7 @@
   width: 200px;
   height: 200px;
   margin-top: 20px;
+  object-fit: cover;
 }
 .TabCardButton {
   width: 100%;
@@ -81,6 +82,7 @@
   .UserTabCardImage {
     width: 120px;
     height: 120px;
+    object-fit: cover;
   }
 }
 @media (min-width: 220px) and (max-width: 1175px) {
@@ -88,8 +90,9 @@
     height: auto;
   }
   .UserTabCardImage {
-    width: 100px;
-    height: 100px;
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
   }
   .TabCardText {
     font-size: 14px;
