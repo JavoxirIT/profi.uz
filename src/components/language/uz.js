@@ -49,10 +49,10 @@ export const uz = {
   saralash: "Saralash",
   qidirish: "Qidirish",
   viloyatlar: "Viloyatlar",
-  muttaxasisliklar: "Muttaxasisliklar",
+  muttaxasisliklar: "Mutaxasisliklar",
   umumiyReyting: "Umumiy reyting",
 //   master modal filter
-  modaltitle: "Uch qadamda kerakli muttaxisisni toping",
+  modaltitle: "Uch qadamda kerakli mutaxisisni toping",
   viloyatniTanlang: "Viloyatni tanlang",
   yunalish: "Yo`nalishni tanlang",
   ichkiyunalish: "Ichki yo`nalishni tanlang",
