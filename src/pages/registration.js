@@ -24,7 +24,7 @@ function Registration({t}) {
 		api[type]({
 			message: code,
 			description: message,
-			dduration: 0,
+			duration: 3,
 		});
 	};
 	const [user, setUser] = useSessionStorage([], "user");
@@ -33,17 +33,14 @@ function Registration({t}) {
 	const RegistrationPost = (value) => {
 		value.role_id = String(isSwitch);
 		value.phone = NumberStr(value["phone"]);
-
-		const method = "post";
 		const path = "register";
 		// отправляем запрос для  регистрации
-		postFetch({path, method, value})
+		postFetch({path: "register", value})
 		.then((res) => {
 			if (res.status === 200) {
 				openNotificationWithIcon(
 					"success",
-					"Xush kelibsiz",
-					"Tizimga muvaffaqiyatli kirdingiz"
+					t.success
 				);
 				setCookie("access_token", res.data.access_token, res.data.expires_in);
 				setCookie("access_type", res.data.token_type);
@@ -60,7 +57,12 @@ function Registration({t}) {
 				openNotificationWithIcon(
 					"error",
 					`${res.code + " " + res.message}`,
-					"Xatolik"
+					t.error
+				);
+			} else if (res.response.status === 302) {
+				openNotificationWithIcon(
+					"error",
+					t.error302
 				);
 			}
 		})
@@ -73,7 +75,7 @@ function Registration({t}) {
 
 	return (
 		<PageWrapperAuthorization
-			title="Ro’yxatdan o’tish"
+			title={t.pageTitleRegistration}
 			// pageTitle="Ro’yxatdan o’tish"
 		>
 			{contextHolder}

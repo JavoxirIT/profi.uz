@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useCallback, useEffect, useState} from "react";
 import {useRouter} from "next/router";
 import {Card, notification} from "antd";
 import {PageWrapperSingle} from "components/PageWrapperSingle";
@@ -34,13 +34,13 @@ const Chat = ({t, unread}) => {
 
 	// увидамление
 	const [api, contextHolder] = notification.useNotification();
-	const openNotificationWithIcon = (type, code, message) => {
+	const openNotificationWithIcon = useCallback((type, code, message) => {
 		api[type]({
 			message: code,
 			description: message,
 			duration: 2,
 		});
-	};
+	}, [api]);
 
 	// получаем переписки с пользователем по клику
 	const [userid, setUserId] = useState(null);

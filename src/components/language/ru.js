@@ -26,6 +26,7 @@ export const ru = {
   pageTitleStatictic: "Статистика",
   pageTitleChat: "Сообщения",
   pageTitleAnketa: "Анкета",
+  pageTitleRegistration: "Регистрация",
   //   cabinet
   nodata: "Личная информацыя не добавлена",
   anketa: "Мои данные",
@@ -87,6 +88,9 @@ export const ru = {
   saqlanmadi: "Ошибка! данные не сохранились!",
   error: "Ошибка при загрузке данных",
   error404: "Запрос не выполнен с кодом состояния 404.",
+  error302: "Этот номер телефона зарегистрирован",
+  success: "Вы успешно вошли",
+  errorNoUser: "Извините спецыалист не найден",
   // chat notification
   xabarYuborildi: "Сообщения отправлено",
   avalTanlang: "Сначала выберите пользователя",

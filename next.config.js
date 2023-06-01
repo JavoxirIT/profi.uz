@@ -3,7 +3,7 @@ module.exports = {
   reactStrictMode: false,
   transpilePackages: ["antd"],
   //   Автоматическое копирование отслеживаемых файлов
-  //   output: "standalone",
+    output: "standalone",
   //   outputFileTracingRoot: path.join(__dirname, "../../"),
 
   images: {

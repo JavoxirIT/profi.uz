@@ -78,7 +78,7 @@ function StatisticsChart({t}) {
         },
       },
     });
-  }, []);
+  }, [t.bekorqilgan, t.boglangan, t.kurilgan, t.saqlangan]);
 
   return (
     <div className={css.StatisticsChart}>

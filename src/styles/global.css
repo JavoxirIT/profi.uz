@@ -40,6 +40,11 @@ body {
     padding: 0;
     margin: 0 auto;
 }
+
+img {
+    object-fit: contain !important;
+}
+
 .ant-checkbox-wrapper {
     padding: 5px 0 !important;
     margin-left: 0 !important;
@@ -366,6 +371,7 @@ body {
 
     /*end chat user modal*/
 }
-.slick-arrow{
+
+.slick-arrow {
     color: crimson !important;
 }

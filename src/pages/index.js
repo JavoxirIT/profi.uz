@@ -7,7 +7,7 @@ import {
 	Typography, Card, Tag, Rate, Checkbox, Form, Button, notification, Space, Divider,
 } from "antd";
 import css from "../styles/Index.module.css";
-import React, {useEffect, useLayoutEffect, useState} from "react";
+import React, {useCallback, useEffect, useLayoutEffect, useState} from "react";
 import {getCookie} from "utils/setCookie";
 import {postFetch} from "../request/Fetch";
 import img from "../img/noimage.png";
@@ -32,11 +32,11 @@ function HomePage({data, t, lang}) {
 	const [loading, setLoading] = useState(false)
 	// натификацыя
 	const [api, contextHolder] = notification.useNotification();
-	const openNotificationWithIcon = (type, code, message) => {
+	const openNotificationWithIcon = useCallback((type, code, message) => {
 		api[type]({
 			message: code, description: message, duration: 5,
 		});
-	};
+	}, [api]);
 
 	function userSort(a, b) {
 		return a.reyting - b.reyting;
@@ -61,7 +61,7 @@ function HomePage({data, t, lang}) {
 		} else {
 			setUser(data);
 		}
-	}, [data]);
+	}, [data, openNotificationWithIcon]);
 	const [vil, setVil] = useState([]);
 	useEffect(() => {
 		setLoading(true)
@@ -117,7 +117,7 @@ function HomePage({data, t, lang}) {
 					scrollIntoTheView("scroll")
 					setOpenModal(false)
 				} else {
-					openNotificationWithIcon("error", "Malumot topilmadi");
+					openNotificationWithIcon("error", t.errorNoUser);
 				}
 
 			} else openNotificationWithIcon("error", res.code, res.message);
@@ -129,12 +129,18 @@ function HomePage({data, t, lang}) {
 
 
 	const ChangeLike = (e) => {
-		// console.log("like", e)
 		if (getCookie("access_token") === null) {
 			openNotificationWithIcon("error", t.likenotification);
 			return false;
 		}
-		const like = e.like === 0 ? 1 : 0;
+		let like;
+		if(e.like === false){
+			like = 1
+		}else if(e.like?.likes === 0){
+			like = 1
+		}else{
+			like = 0
+		}
 		const value = JSON.stringify({user_id: e.id, like: like});
 		postFetch({path: "like", value})
 		.then((res) => {
@@ -153,7 +159,6 @@ function HomePage({data, t, lang}) {
 					openNotificationWithIcon("warning", t.chiqarildi);
 				}
 			}
-			// console.log(res)
 		})
 		.catch((err) => {
 			// console.log(err)
@@ -270,69 +275,70 @@ function HomePage({data, t, lang}) {
 					<Title level={4}>{t.engOmmaboplari}</Title>
 					<Button type="primary" onClick={() => setOpen(true)}>{t.qidirish}</Button>
 				</div>
-				{filtered.map((i) => (<Card hoverable bordered={false} key={i.id} className={css.indexUserCard}>
-					<div className={css.indexUserCardInfo}>
-						<div className={css.indexUserCardInfo1}>
-							{i.image !== null ? (<Image
-								src={`${urlImg + i.image}`}
-								alt="avatar"
-								width={90}
-								height={90}
-								className={css.indexUserImage}
-								priority={true}
-							/>) : (<Image
-								src={img}
-								alt="avatar"
-								width={90}
-								height={90}
-								className={css.indexUserImage}
-								priority={true}
-							/>)}
+				{filtered.map((i) => (
+					<Card hoverable bordered={false} key={i.id} className={css.indexUserCard}>
+						<div className={css.indexUserCardInfo}>
+							<div className={css.indexUserCardInfo1}>
+								{i.image !== null ? (<Image
+									src={`${urlImg + i.image}`}
+									alt="avatar"
+									width={90}
+									height={90}
+									className={css.indexUserImage}
+									priority={true}
+								/>) : (<Image
+									src={img}
+									alt="avatar"
+									width={90}
+									height={90}
+									className={css.indexUserImage}
+									priority={true}
+								/>)}
 
-							<div style={{padding: "10px 0 0 20px"}}>
-								<Tag style={{fontSize: 14}} key={i.special?.id || null}>
-									{lang === "ru" ? i.special?.nameru : i.special?.name}
-								</Tag>
-								<br/>
-								<Link href={"/index/[id]"} as={`/index/${i.id}`}>
-									<Title level={4} style={{paddingTop: 10}}>
-										{i.firstname} {i.lastname}
-									</Title>
-								</Link>
-								<Rate
-									className={css.indexUserRate}
-									onChange={(e) => ratingChange(i.id, e)}
-									value={i.reyting}
-									allowHalf
-								/>{" "}
-								<div>
-									<Text>{t.umumiyReyting}: {i.reyting}</Text>
+								<div style={{padding: "10px 0 0 20px"}}>
+									<Tag style={{fontSize: 14}} key={i.special?.id || null}>
+										{lang === "ru" ? i.special?.nameru : i.special?.name}
+									</Tag>
+									<br/>
+									<Link href={"/index/[id]"} as={`/index/${i.id}`}>
+										<Title level={4} style={{paddingTop: 10}}>
+											{i.firstname} {i.lastname}
+										</Title>
+									</Link>
+									<Rate
+										className={css.indexUserRate}
+										onChange={(e) => ratingChange(i.id, e)}
+										value={i.reyting}
+										allowHalf
+									/>{" "}
+									<div>
+										<Text>{t.umumiyReyting}: {i.reyting}</Text>
+									</div>
 								</div>
 							</div>
+							<div style={{padding: "5px 10px 0 0"}}>
+								<AiFillHeart
+									aria-labelledby="like"
+									onClick={() => ChangeLike(i)}
+									className={i.like?.likes === 0 || i.like === "Unauthorized" || i.like === false || i.like === 0 ? `${css.indexUserRate}` : `${css.indexUserRateTrue}`}
+								/>
+							</div>
 						</div>
-						<div style={{padding: "5px 10px 0 0"}}>
-							<AiFillHeart
-								aria-labelledby="like"
-								onClick={() => ChangeLike({id: i.id, like: i.like?.likes || 0 || i.like})}
-								className={i.like?.likes === 0 || i.like === "Unauthorized" || i.like === false || i.like === 0 ? `${css.indexUserRate}` : `${css.indexUserRateTrue}`}
-							/>
-						</div>
-					</div>
-					<div>
-						<p style={{marginBottom: 10, paddingTop: 10}}>
-							<HiOutlineLocationMarker/>
-							<Text style={{paddingLeft: 10}}>
-								{lang === "ru" ? i.distirct?.vil_name_ru : i.distirct?.vil_name}
-							</Text>
-						</p>
-						<div style={{paddingTop: 16}}>
-							{i.sub_special?.map((i) => <Tag color="default" key={i.id}>
-								{lang === "ru" ? i.nameru : i.name}
-							</Tag>)}
+						<div>
+							<p style={{marginBottom: 10, paddingTop: 10}}>
+								<HiOutlineLocationMarker/>
+								<Text style={{paddingLeft: 10}}>
+									{lang === "ru" ? i.distirct?.vil_name_ru : i.distirct?.vil_name}
+								</Text>
+							</p>
+							<div style={{paddingTop: 16}}>
+								{i.sub_special?.map((i) => <Tag color="default" key={i.id}>
+									{lang === "ru" ? i.nameru : i.name}
+								</Tag>)}
 
+							</div>
 						</div>
-					</div>
-				</Card>))}
+					</Card>))}
 			</div>
 		</main>
 		<Divider/>

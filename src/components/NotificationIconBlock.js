@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import Link from "next/link";
-import {AiOutlineHeart, AiFillWechat} from "react-icons/ai";
+import {AiOutlineHeart} from "react-icons/ai";
 import {FiUser} from "react-icons/fi";
 import {BsChatRightText} from "react-icons/bs";
 import css from "../styles/NotificationIconBlock.module.css";
@@ -8,7 +8,7 @@ import linkCss from "../styles/Links.module.css";
 import {Badge} from "antd";
 import {TbDoorExit} from "react-icons/tb";
 import {useRouter} from "next/router";
-import {eraseCookie} from "utils/setCookie";
+import {eraseCookie, getCookie} from "utils/setCookie";
 import DropDown from "./Dropdown/Dropdown";
 import {postFetch} from "../request/Fetch";
 
@@ -24,14 +24,16 @@ export default function NotificationIconBlock({t}) {
 
 	const [unread, setUnread] = useState()
 	useEffect(() => {
-		setInterval(() => {
-			postFetch({path: "unread-messages"}).then((res) => {
-				// console.log("unread",res)
-				setUnread(res.data.count)
-			}).catch((err) => {
-				console.log(err)
-			})
-		}, 10000)
+		if (getCookie("access_token")) {
+			setInterval(() => {
+				postFetch({path: "unread-messages"}).then((res) => {
+					// console.log("unread",res)
+					setUnread(res.data.count)
+				}).catch((err) => {
+					console.log(err)
+				})
+			}, 10000)
+		}
 	}, []);
 
 	return (

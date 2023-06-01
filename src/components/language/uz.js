@@ -26,6 +26,7 @@ export const uz = {
   pageTitleStatictic: "Statistika",
   pageTitleChat: "Suhbatlar",
   pageTitleAnketa: "Anketa",
+  pageTitleRegistration: "Ro’yxatdan o’tish",
   //   cabinet
   nodata: "Shaxsiy ma`lumotlar kiritilmagan",
   anketa: "Shaxsiy ma’lumotlar",
@@ -87,6 +88,9 @@ export const uz = {
   saqlanmadi: "Saqlanmadi",
   error: "Ma'lumotlani olib bo'lmadi",
   error404: "404 holat kodi bilan soʻrov bajarilmadi",
+  error302: "Bu telefon raqam orqali ro`yxatdan o`tilgan",
+  success: "Tizimga muvaffaqiyatli kirdingiz",
+  errorNoUser: "Kechirasiz mutaxasis topilmadi",
 
   // chat notification
   xabarYuborildi: "Xabar yuborildi",
