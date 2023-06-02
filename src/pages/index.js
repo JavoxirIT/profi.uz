@@ -227,7 +227,7 @@ function HomePage({data, t, lang}) {
 		return <Preloader/>;
 	}
 	return (<PageWrapperGlobal
-		title="Asosi"
+		title={t.wrapperTitle}
 		pageTitle=""
 		t={t}
 		setUser={setUser}

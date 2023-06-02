@@ -28,10 +28,17 @@ export const PageWrapperGlobal = ({
 				<meta name="theme-color" content="#0c0d15"/>
 				<meta
 					name="description"
-					content="site for finding and hiring or using various services"
+					content="iProfi - mutaxassislarni qidirish xizmati: ta'mirlash ustalari, repetitorlar, murabbiylar, rassomlar va musiqachilar, go'zallik ustalari va boshqalar."
 				/>
-				<meta name="keywords" content=""/>
+				<meta
+					name="description"
+					content="iProfi -Профи — сервис поиска специалистов: мастера по ремонту, репетиторы, тренеры, артисты и музыканты, мастера красоты и другие."
+				/>
+				<meta name="keywords" content="profi, профи, profi.uz, iprofi.uz"/>
 				<meta name="viewport" content="width=device-width"/>
+				<meta property="og:type" content="website"/>
+				<meta property="og:title" content="Muammolaringizni hal qilish uchun iprofini tanlang." />
+				<meta property="og:url" content="//iprofi.uz"/>
 				<link rel="manifest" href="../../manifest.json"/>
 				<title>{title}</title>
 			</Head>
