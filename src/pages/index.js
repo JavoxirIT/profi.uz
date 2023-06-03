@@ -1,10 +1,10 @@
 import {PageWrapperGlobal} from "../components/PageWrapperGlobal";
 import {HiOutlineLocationMarker} from "react-icons/hi";
-import {AiFillHeart} from "react-icons/ai";
+import {AiFillHeart, AiOutlineEye} from "react-icons/ai";
 import Link from "next/link";
 import Image from "next/image";
 import {
-	Typography, Card, Tag, Rate, Checkbox, Form, Button, notification, Space, Divider,
+	Typography, Card, Tag, Rate, Checkbox, Form, Button, notification, Space, Divider, Tooltip,
 } from "antd";
 import css from "../styles/Index.module.css";
 import React, {useCallback, useEffect, useLayoutEffect, useState} from "react";
@@ -19,6 +19,8 @@ import {IndexTitleFadeEffect} from "../components/Master/IndexTitleFadeEffect";
 import IndexFooterFilter from "../components/Index/IndexFooterFilter";
 import ModalCenter from "../Modal/ModalCenter";
 import {scrollIntoTheView} from "../utils/scrollIntoTheView";
+import {BsChatRightText} from "react-icons/bs";
+import {useRouter} from "next/router";
 
 
 const apiUrl = process.env.NEXT_PUBLIC_API_URL;
@@ -28,6 +30,7 @@ const {Text, Title} = Typography;
 const isType = typeof window !== undefined;
 
 function HomePage({data, t, lang}) {
+	const router = useRouter()
 	const [form] = Form.useForm()
 	const [loading, setLoading] = useState(false)
 	// натификацыя
@@ -42,7 +45,8 @@ function HomePage({data, t, lang}) {
 		return a.reyting - b.reyting;
 	}
 
-	const [user, setUser] = useState(data.sort(userSort).reverse());
+	// const [user, setUser] = useState(data.sort(userSort).reverse());
+	const [user, setUser] = useState([]);
 	const [caruselUser, setCaruselUser] = useState(user);
 	// console.log("newData", user);
 	useEffect(() => {
@@ -65,9 +69,7 @@ function HomePage({data, t, lang}) {
 	const [vil, setVil] = useState([]);
 	useEffect(() => {
 		setLoading(true)
-		const path = "viloyat";
-		const method = "GET";
-		postFetch({path, method, value: ""})
+		postFetch({path: "viloyat", method: "GET"})
 		.then((res) => {
 			if (res.status === 200) {
 				setVil(res.data.viloyat);
@@ -103,6 +105,7 @@ function HomePage({data, t, lang}) {
 	const handleCancelModal = () => {
 		setOpenModal(false)
 	}
+	const [dataModalFilter, setModalFilter] = useState([])
 	const onFinish = async (value) => {
 		if (subId !== null) {
 			value.special = Array()
@@ -113,9 +116,12 @@ function HomePage({data, t, lang}) {
 			if (res.status === 200) {
 				if (res.data.length !== 0) {
 					setUser(res.data)
+					setModalFilter(res.data)
 					form.resetFields()
 					scrollIntoTheView("scroll")
 					setOpenModal(false)
+					setOpen(false)
+					openNotificationWithIcon("success", t.topildi, res.data.length);
 				} else {
 					openNotificationWithIcon("error", t.errorNoUser);
 				}
@@ -134,11 +140,11 @@ function HomePage({data, t, lang}) {
 			return false;
 		}
 		let like;
-		if(e.like === false){
+		if (e.like === false) {
 			like = 1
-		}else if(e.like?.likes === 0){
+		} else if (e.like?.likes === 0) {
 			like = 1
-		}else{
+		} else {
 			like = 0
 		}
 		const value = JSON.stringify({user_id: e.id, like: like});
@@ -169,14 +175,11 @@ function HomePage({data, t, lang}) {
 	const [mayRating, setMayRating] = useState();
 
 	const ratingChange = (id, reyting) => {
-		console.log(id, reyting);
-		const path = "insert-star";
 		const value = JSON.stringify({
 			star: String(reyting), user_id: Number(id),
 		});
-		postFetch({path, value})
+		postFetch({path: "insert-star", value})
 		.then((res) => {
-			console.log(res);
 			if (res.status === 200) {
 				const oneUser = data.find((i) => i.id === res.data.user_id);
 				const newArrUser = data.filter((i) => i.id !== res.data.user_id);
@@ -248,7 +251,8 @@ function HomePage({data, t, lang}) {
 			loading={loading}
 			lang={lang}
 			t={t}
-			user={user}
+			user={dataModalFilter}
+			form={form}
 		/>
 		<IndexTitleFadeEffect t={t}/>
 		<MasterCarusel caruselUser={caruselUser}/>
@@ -273,7 +277,8 @@ function HomePage({data, t, lang}) {
 			<div>
 				<div className={css.indexUserCardInfoHeader}>
 					<Title level={4}>{t.engOmmaboplari}</Title>
-					<Button type="primary" onClick={() => setOpen(true)}>{t.qidirish}</Button>
+					<Button size="large" type="primary"
+					        onClick={() => setOpen(true)}>{t.qidirish}</Button>
 				</div>
 				{filtered.map((i) => (
 					<Card hoverable bordered={false} key={i.id} className={css.indexUserCard}>
@@ -316,12 +321,43 @@ function HomePage({data, t, lang}) {
 									</div>
 								</div>
 							</div>
-							<div style={{padding: "5px 10px 0 0"}}>
+							<div className={css.indexUserNavigateBtn}>
 								<AiFillHeart
 									aria-labelledby="like"
 									onClick={() => ChangeLike(i)}
 									className={i.like?.likes === 0 || i.like === "Unauthorized" || i.like === false || i.like === 0 ? `${css.indexUserRate}` : `${css.indexUserRateTrue}`}
 								/>
+								<Tooltip title={t.batafsilMalumot}>
+									<Button
+										onClick={() => router.push(`/index/${i.id}`)}
+										type="primary"
+										shape="circle"
+										size="large"
+										icon={
+											<AiOutlineEye
+												style={{fontSize: 20}}
+												title="batafsil"
+												aria-label="nitification"
+											/>}
+									/>
+								</Tooltip>
+								<Tooltip title={t.murojaatQilish}>
+									<Button
+										onClick={() => router.push({
+											pathname: "/chat",
+											query: {id: i.id, name: i.lastname + " " + i.firstname},
+										})}
+										type="primary"
+										shape="circle"
+										size="large"
+										icon={
+											<BsChatRightText
+												style={{fontSize: 20}}
+												title="chat"
+												aria-label="nitification"
+											/>}
+									/>
+								</Tooltip>
 							</div>
 						</div>
 						<div>
@@ -387,7 +423,8 @@ function HomePage({data, t, lang}) {
 export async function getServerSideProps(context) {
 	const {req} = context;
 	const config = {
-		method: "POST", headers: {
+		method: "POST",
+		headers: {
 			"Content-Type": "application/json", Authorization: "Bearer" + " " + req.cookies.access_token,
 		},
 	};

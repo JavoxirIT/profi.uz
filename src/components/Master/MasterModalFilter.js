@@ -42,8 +42,7 @@ const MasterModalFilter = ({special, vil, onFinish, open, setOpen, loading, user
 	const [newValue, setNewValue] = useState([])
 	useEffect(() => {
 		special.map((i) => i.subspecial.filter((sub) => sub.p_type_id === specialValue ? subArr.push(sub) : null))
-		let newArr = Array.from(new Set(subArr));
-		setNewValue(newArr)
+		setNewValue(Array.from(new Set(subArr)))
 	}, [special, specialValue]);
 
 	const [checked, setChecked] = useState(null)
@@ -56,16 +55,15 @@ const MasterModalFilter = ({special, vil, onFinish, open, setOpen, loading, user
 		form, current, gotoStep, stepsProps, formProps, submit, formLoading,
 	} = useStepsForm({
 		async submit(values) {
-			// console.log(values)
 			const {region, special} = values;
 			onFinish(values);
 			setIsPath(pathname)
 			setSpecialValue(null)
-			setTimeout(() => {
-				setOpen(false)
-				gotoStep(current - 3)
-				form.resetFields()
-			}, 3000)
+			form.resetFields()
+			// setTimeout(() => {
+			// 	gotoStep(current - 3)
+			//
+			// }, 3000)
 			await new Promise(r => setTimeout(r, 500));
 			return 'ok';
 		}, total: 4,
@@ -73,7 +71,8 @@ const MasterModalFilter = ({special, vil, onFinish, open, setOpen, loading, user
 	});
 	//очищаем массив когда возвращаемся с 3 степа
 	const resetArr = () => {
-		subArr = []
+		subArr.length = 0
+		setNewValue(newValue.splice(0, newValue.length))
 	}
 
 	// сортировка по алфавиту
@@ -133,7 +132,10 @@ const MasterModalFilter = ({special, vil, onFinish, open, setOpen, loading, user
 				>
 					{t.qabul}
 				</Button>
-				<Button onBlur={resetArr} onClick={() => gotoStep(current - 1)}>{t.qaytish}</Button>
+				<Button onClick={() => {
+					gotoStep(current - 1);
+					resetArr()
+				}}>{t.qaytish}</Button>
 			</Form.Item>
 		</>,
 		<>
@@ -141,13 +143,13 @@ const MasterModalFilter = ({special, vil, onFinish, open, setOpen, loading, user
 				<Form.Item name="special">
 					<Checkbox.Group>
 						<div className={css.MasterModalFilterCheckbox}>
-							{newValue.sort(userSort).map((i) => <Checkbox
+							{newValue.length !== 0 ? newValue.sort(userSort).map((i) => <Checkbox
 								key={i.id}
 								value={i.id}
 								// checked={specialValue === i.value}
 							>
 								{lang === 'ru' ? i.nameru : i.name}
-							</Checkbox>)}
+							</Checkbox>) : null}
 
 						</div>
 					</Checkbox.Group>
@@ -168,7 +170,10 @@ const MasterModalFilter = ({special, vil, onFinish, open, setOpen, loading, user
 				>
 					{t.qabul}
 				</Button>
-				<Button onBlur={resetArr} onClick={() => gotoStep(current - 1)}>{t.qaytish}</Button>
+				<Button onClick={() => {
+					gotoStep(current - 1);
+					resetArr()
+				}}>{t.qaytish}</Button>
 			</Form.Item>
 		</>];
 
@@ -180,7 +185,7 @@ const MasterModalFilter = ({special, vil, onFinish, open, setOpen, loading, user
 		<Steps {...stepsProps} items={items}/>
 		<div style={{marginTop: 15}}>
 			<Spin spinning={loading}>
-				<Form  {...formProps} >
+				<Form  {...formProps} form={form}>
 					{formList[current]}
 				</Form>
 			</Spin>
@@ -269,8 +274,8 @@ const MasterModalFilter = ({special, vil, onFinish, open, setOpen, loading, user
 						type="primary"
 						onClick={() => {
 							form.resetFields();
-							gotoStep(0);
-							subArr = Array()
+							gotoStep(current - 3);
+							resetArr()
 						}}
 					>
 						{t.qayta}

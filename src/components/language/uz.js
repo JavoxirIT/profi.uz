@@ -5,10 +5,10 @@ export const uz = {
   wrapperTitle: "O'z shahringizdagi eng yaxshi mutaxassislarni toping",
   authButtonTitle: "Kirish",
   regButtonTitle: "Ro’yxatdan o’tish",
-  formReqMess: "Iltomos telefon raqamizni kriting!",
+  formReqMess: "Iltomos telefon raqamizni kiriting!",
   formReqMessLastName:"Iltomos familiyayizni kiriting!",
   formReqMessFirstName: "Iltomos ismizni kiriting!",
-  formReqMessParol: "Iltomos parolni kriting!",
+  formReqMessParol: "Iltomos parolni kiriting!",
   formReqMessParol2: "Parol",
   // регистрацыя
   firstname: "Ismingiz",
@@ -48,7 +48,7 @@ export const uz = {
 //
   engOmmaboplari: "Eng ommaboplari",
   saralash: "Saralash",
-  qidirish: "Qidirish",
+  qidirish: "Mutaxasisni qidirish",
   viloyatlar: "Viloyatlar",
   muttaxasisliklar: "Mutaxasisliklar",
   umumiyReyting: "Umumiy reyting",
@@ -91,6 +91,7 @@ export const uz = {
   error302: "Bu telefon raqam orqali ro`yxatdan o`tilgan",
   success: "Tizimga muvaffaqiyatli kirdingiz",
   errorNoUser: "Kechirasiz mutaxasis topilmadi",
+  noUser: "Xatolik faydalanuvchi mavjut emas",
 
   // chat notification
   xabarYuborildi: "Xabar yuborildi",

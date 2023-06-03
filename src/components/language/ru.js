@@ -4,13 +4,13 @@ export const ru = {
   reklamaText: "Место для вашей рекламы",
   wrapperTitle: "Найдите лучших специалистов в вашем городе",
   authButtonTitle: "Авторизация",
-  regButtonTitle: "Регистрацыя",
+  regButtonTitle: "Регистрация",
   formReqMess: "Пожалуйста введите номер (тел)",
   formReqMessLastName: "Пожалуйста введите вашу фамилию!",
   formReqMessFirstName: "Пожалуйста введите ваше имя!",
-  formReqMessParol: "Пожалуйста введите парол",
+  formReqMessParol: "Пожалуйста введите пароль",
   formReqMessParol2: "Пароль",
-  // регистрацыя
+  // регистрация
   firstname: "Имя",
   lastname: "Фамилия",
   phone: "Телефон",
@@ -20,7 +20,7 @@ export const ru = {
   linkHome: "ГЛАВНАЯ СТРАНИЦА",
   linkRegistration: "РЕГИСТРАЦИЯ",
   //   PAGE
-  pageTitleAuth: "АВТОРИЗАЦЫЯ",
+  pageTitleAuth: "АВТОРИЗАЦИЯ",
   pageTitleLike: "Избранные",
   pageTitleMyWork: "Маи работы",
   pageTitleStatictic: "Статистика",
@@ -28,7 +28,7 @@ export const ru = {
   pageTitleAnketa: "Анкета",
   pageTitleRegistration: "Регистрация",
   //   cabinet
-  nodata: "Личная информацыя не добавлена",
+  nodata: "Личная информация не добавлена",
   anketa: "Мои данные",
   mywork: "Добавить выполненные работы",
   statistics: "Статистика",
@@ -49,7 +49,7 @@ export const ru = {
 //
   engOmmaboplari: "Самые успешные",
   saralash: "Сортировка",
-  qidirish: "Поиск",
+  qidirish: "Поиск специалиста",
   viloyatlar: "Города",
   muttaxasisliklar: "Направления",
   umumiyReyting: "Общий рейтинг",
@@ -65,14 +65,15 @@ export const ru = {
   topildi: "Специалист найден!",
   topilmadi: "Специалист не найден!",
   search: "Поиск нужнего специалиста...",
+  noUser: "Пользователь не найден",
   //   one user page
-  batafsilMalumot: "Подробная информацыя",
+  batafsilMalumot: "Подробная информация",
   tuliqmalumot: "Пожалуйста введите ваще полные данные для отоброжения",
   murojaatQilish: "Связаться",
   fikirQoldirish: "Оставить отзыв",
   qushish: "Добавить",
 //   tab card
-  batafsil: "Информацыя",
+  batafsil: "Информация",
   bajarilgan: "Мои работы",
   fikirlar: "Отзывы",
 //   notification
@@ -90,7 +91,7 @@ export const ru = {
   error404: "Запрос не выполнен с кодом состояния 404.",
   error302: "Этот номер телефона зарегистрирован",
   success: "Вы успешно вошли",
-  errorNoUser: "Извините спецыалист не найден",
+  errorNoUser: "Извините специалист не найден",
   // chat notification
   xabarYuborildi: "Сообщения отправлено",
   avalTanlang: "Сначала выберите пользователя",

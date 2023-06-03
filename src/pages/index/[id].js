@@ -58,20 +58,20 @@ const Master = ({ t, data, lang }) => {
 
 
   return (
-    <PageWrapperSingle title={data.firstname  + " " + data.lastname} pageTitle="" t={t}>
-      {contextHolder}
-      <main className={css.masterWrapper}>
-        <div>
-          <Title style={{ marginBottom: 22 }} level={4}>
-            {t.batafsilMalumot}
-          </Title>
-          <MasterCard lang={lang} data={data} t={t} user_id={query.id} fetchAllKlass={fetchAllKlass} starType={starType} openNotificationWithIcon={openNotificationWithIcon}/>
-        </div>
-        <div className={css.MasterTab}>
-          <MasterTabCard lang={lang} data={data} t={t} allClass={allClass} fetchStarType={fetchStarType} fetchAllKlass={fetchAllKlass}/>
-        </div>
-      </main>
-    </PageWrapperSingle>
+      <PageWrapperSingle title={data.firstname  + " " + data.lastname} pageTitle="" t={t}>
+        {contextHolder}
+        <main className={css.masterWrapper}>
+          <div>
+            <Title style={{ marginBottom: 22 }} level={4}>
+              {t.batafsilMalumot}
+            </Title>
+            <MasterCard lang={lang} data={data} t={t} user_id={query.id} fetchAllKlass={fetchAllKlass} starType={starType} openNotificationWithIcon={openNotificationWithIcon}/>
+          </div>
+          <div className={css.MasterTab}>
+            <MasterTabCard lang={lang} data={data} t={t} allClass={allClass} fetchStarType={fetchStarType} fetchAllKlass={fetchAllKlass}/>
+          </div>
+        </main>
+      </PageWrapperSingle>
   );
 };
 

@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {Button, Form, Input, notification} from "antd";
+import {Button, Form, Input, notification, Spin} from "antd";
 import {PatternFormat} from "react-number-format";
 import PageWrapperAuthorization from "../components/PageWrapperAuthorization";
 import Link from "next/link";
@@ -32,7 +32,7 @@ function Authorization({t}) {
 		api[type]({
 			message: code,
 			description: message,
-			duration: 1500,
+			duration: 5,
 		});
 	};
 
@@ -40,9 +40,7 @@ function Authorization({t}) {
 	const AuthorizationPost = async (value) => {
 		value.phone = NumberStr(value["phone"]);
 		setLoader(true);
-		const method = "post";
-		const path = "login";
-		await postFetch({path, method, value})
+		await postFetch({path: "login", value})
 		.then((res) => {
 			setLoader(false);
 			//   console.log(res);
@@ -55,13 +53,6 @@ function Authorization({t}) {
 					"Xush kelibsiz",
 					"Tizimga muvaffaqiyatli kirdingiz"
 				);
-				//  res.data.user.role_id === spesialist
-				//    ? router.push("/cabinet")
-				//    : res.data.user.role_id === admin
-				//    ? router.push("/admin")
-				//    : res.data.user.role_id === customer
-				//    ? router.push("/")
-				//    : null;
 
 				switch (res.data.user.role_id) {
 					case Number(spesialist):
@@ -81,7 +72,7 @@ function Authorization({t}) {
 				openNotificationWithIcon(
 					"error",
 					`${res.code + " " + res.message}`,
-					"Xatolik faydalanuvchi mavjut emas"
+					t.noUser
 				);
 			} else {
 				openNotificationWithIcon("error", res.code, res.message);
@@ -94,7 +85,10 @@ function Authorization({t}) {
 		});
 	};
 	const onFinishFailed = (errorInfo) => {
-		openNotificationWithIcon("error", errorInfo, errorInfo);
+		const info = errorInfo.errorFields.map((item) =>
+			<p style={{fontSize: 16, color: "#000"}} key={item.errors}>{item.errors}</p>
+		)
+		openNotificationWithIcon("error", info);
 	};
 
 	// заранее загружаем страницы
@@ -108,23 +102,23 @@ function Authorization({t}) {
 		<PageWrapperAuthorization title="Kirish">
 			{contextHolder}
 			<div className={style.AuthorizationFormBlock}>
+
+
 				<div>
-					{loder ? (
-						<Preloader/>
-					) : (
-						<Form
-							form={form}
-							name="basic"
-							onFinish={AuthorizationPost}
-							onFinishFailed={onFinishFailed}
-							autoComplete="off"
-						>
+					<Form
+						form={form}
+						name="basic"
+						onFinish={AuthorizationPost}
+						onFinishFailed={onFinishFailed}
+						autoComplete="off"
+					>
+						<Spin spinning={loder}>
 							<Form.Item
 								name="phone"
 								rules={[
 									{
 										required: true,
-										message: t.formReqMess,
+										message: `${t.formReqMess}`,
 									},
 								]}
 							>
@@ -142,7 +136,7 @@ function Authorization({t}) {
 								rules={[
 									{
 										required: true,
-										message: t.formReqMessParol,
+										message: `${t.formReqMessParol}`,
 									},
 								]}
 							>
@@ -161,8 +155,8 @@ function Authorization({t}) {
 									{t.authButtonTitle}
 								</Button>
 							</Form.Item>
-						</Form>
-					)}
+						</Spin>
+					</Form>
 					<div className={style.AuthorizationLinkBlock}>
 						<Link href={"/"}>{t.linkHome}</Link>
 					</div>
@@ -170,6 +164,7 @@ function Authorization({t}) {
 						<Link href={"/registration"}>{t.linkRegistration}</Link>
 					</div>
 				</div>
+
 			</div>
 		</PageWrapperAuthorization>
 	);

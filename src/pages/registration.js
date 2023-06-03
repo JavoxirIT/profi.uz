@@ -24,7 +24,7 @@ function Registration({t}) {
 		api[type]({
 			message: code,
 			description: message,
-			duration: 3,
+			duration: 5,
 		});
 	};
 	const [user, setUser] = useSessionStorage([], "user");
@@ -33,7 +33,6 @@ function Registration({t}) {
 	const RegistrationPost = (value) => {
 		value.role_id = String(isSwitch);
 		value.phone = NumberStr(value["phone"]);
-		const path = "register";
 		// отправляем запрос для  регистрации
 		postFetch({path: "register", value})
 		.then((res) => {
@@ -68,6 +67,12 @@ function Registration({t}) {
 		})
 		.catch((err) => openNotificationWithIcon("error", err.code, err.message));
 	};
+	const onFinishFailed = (errorInfo) => {
+		const info = errorInfo.errorFields.map((item) =>
+			<p style={{fontSize: 16, color: "#000"}}  key={item.errors}>{item.errors}</p>
+		)
+		openNotificationWithIcon("error", info);
+	};
 
 	useEffect(() => {
 		router.prefetch("/cabonet");
@@ -86,6 +91,7 @@ function Registration({t}) {
 						layout="vertical"
 						name="basic"
 						onFinish={RegistrationPost}
+						onFinishFailed={onFinishFailed}
 						autoComplete="off"
 						className={style.AuthorizationForm}
 					>
@@ -147,20 +153,20 @@ function Registration({t}) {
 								className={style.AuthorizationFormInput}
 							/>
 						</Item>
-						{/*<Item*/}
-						{/*	valuePropName="checked"*/}
-						{/*	wrapperCol={{*/}
-						{/*		offset: 3,*/}
-						{/*		span: 24,*/}
-						{/*	}}*/}
-						{/*>*/}
-						{/*	<Text>{t.customer}</Text>*/}
-						{/*	<Switch*/}
-						{/*		style={{margin: "0 20px"}}*/}
-						{/*		onChange={(e) => setIsSwitch(e.target === false ? 2 : 3)}*/}
-						{/*	/>*/}
-						{/*	<Text>{t.specialist}</Text>*/}
-						{/*</Item>*/}
+						<Item
+							valuePropName="checked"
+							wrapperCol={{
+								offset: 3,
+								span: 24,
+							}}
+						>
+							<Text>{t.customer}</Text>
+							<Switch
+								style={{margin: "0 20px"}}
+								onChange={(e) => setIsSwitch(e.target === false ? 2 : 3)}
+							/>
+							<Text>{t.specialist}</Text>
+						</Item>
 						<Item className={style.AuthorizationFormButtonForm}>
 							<Button
 								type="primary"
