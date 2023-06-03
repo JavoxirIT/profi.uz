@@ -115,6 +115,7 @@ export default function MasterCard({lang, data, t, user_id, starType, fetchAllKl
 					<Text className={css.TabCardText}>
 						<HiOutlineLocationMarker color={"#ff4d4f"} /> {(lang === "ru") ? data?.distirct?.vil_name_ru : data?.distirct?.vil_name}
 					</Text>
+					<div style={{paddingTop: 16, color: "#000"}} >+{data.phone}</div>
 					<div style={{paddingTop: 16}}>
 						<Tag color="default" key={1} style={{margin: 5}}>
 							{lang === "ru" ? data?.special?.nameru : data?.special?.name}{" "}
