@@ -36,6 +36,7 @@ const MasterModalFilter = ({special, vil, onFinish, open, setOpen, loading, user
 	}, [isPath, pathname, setOpen])
 	const handleCancel = () => {
 		setOpen(false)
+		setIsPath(pathname)
 	}
 
 	const [specialValue, setSpecialValue] = useState([])
