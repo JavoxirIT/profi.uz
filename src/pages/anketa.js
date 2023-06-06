@@ -147,16 +147,17 @@ export default function Anketa({lang, t}) {
 			if (res.status === 200) {
 				setUser(res.data)
 				// console.log(res.data)
-				const subSpecial = res.data.sub_special.map((i) => ({label: i.name, value: i.id}))
+				// const subSpecial = res.data.sub_special.map((i) => ({label: i.name, value: i.id}))
 				form.setFieldsValue({
 					firstname: res.data?.firstname,
 					lastname: res.data?.lastname,
 					spets_id: res.data?.spets_id,
-					sub_spets: subSpecial,
+					sub_spets: res.data.sub_special.map((i) => i.id),
 					region_id: Number(res.data?.distirct.id),
-					district_id: {
-						label: res.data.tuman.tuman_name, value: Number(res.data.tuman.id)
-					},
+					// district_id: {
+					// 	label: res.data.tuman.tuman_name, value: Number(res.data.tuman.id)
+					// },
+					district_id: Number(res.data.tuman.id),
 					description: res.data?.description,
 					image: res.data?.image
 				})
@@ -201,12 +202,6 @@ export default function Anketa({lang, t}) {
 
 	// отправляем данные
 	const onFinishUserData = (value) => {
-		if (value.district_id.value) {
-			value.district_id = value.district_id.value
-		}
-		if (value.sub_spets.value) {
-			value.sub_spets.push(value.sub_spets.value)
-		}
 		// console.log(value);
 		postFetch({path: "user-update", value})
 		.then((res) => {
