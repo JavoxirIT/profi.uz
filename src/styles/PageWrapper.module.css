@@ -182,6 +182,7 @@
         z-index: 1;
         width: 100%;
         height: 60px;
-        padding: 10px 0 !important;
+        padding: 5px 0 !important;
+        background: #001529 !important;
     }
 }

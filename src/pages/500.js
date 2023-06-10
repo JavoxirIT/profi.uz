@@ -1,25 +1,28 @@
 import React from "react";
-import { Button, Result } from "antd";
+import {Button, Result} from "antd";
 import Link from "next/link";
-import { useRouter } from "next/router";
+import {useRouter} from "next/router";
+import PageWrapperAuthorization from "../components/PageWrapperAuthorization";
 
-const Error500 = () => {
-  const router = useRouter();
-  return (
-    <Result
-      status="500"
-      title="500"
-      subTitle="Произошла ошибка на стороне сервера."
-      extra={
-        <>
-          <Button type="primary" onClick={() => router.back()}>
-            Назад
-          </Button>
-          <Link href={"/"}>Главная страница</Link>
-        </>
-      }
-    />
-  );
+const Error500 = ({t}) => {
+	const router = useRouter();
+	return (
+		<PageWrapperAuthorization title={"error 500"}>
+			<Result
+				status="500"
+				title="500"
+				subTitle={<p style={{color: "#001529"}}>{t.subTitle500}</p>}
+				extra={
+					<>
+						<Button type="primary" onClick={() => router.back()}>
+							{t.back}
+						</Button>
+						<Link href={"/"}>{t.linkHome}</Link>
+					</>
+				}
+			/>
+		</PageWrapperAuthorization>
+	);
 };
 
 export default Error500;

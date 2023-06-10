@@ -9,17 +9,13 @@ import {useRouter} from "next/router";
 const {Header, Content} = Layout;
 const {Title} = Typography;
 
-export default function PageWrapperAuthorization({
-	                                                 children,
-	                                                 title,
-	                                                 pageTitle,
-                                                 }) {
+export default function PageWrapperAuthorization({children, title, pageTitle,}) {
 	const {route} = useRouter();
 	let style;
 	if (
 		route === "/authorization" ||
 		route === "/registration" ||
-		route === "/anketa" || route === "/myworks"
+		route === "/anketa" || route === "/myworks" || route === "/404" || route === "/500"
 	) {
 		style = "headerLogo2";
 	} else {
@@ -38,9 +34,9 @@ export default function PageWrapperAuthorization({
 				/>
 				<meta
 					name="description"
-					content="iProfi -Профи — сервис поиска специалистов: мастера по ремонту, репетиторы, тренеры, артисты и музыканты, мастера красоты и другие."
+					content="iProfi — сервис поиска специалистов: мастера по ремонту, репетиторы, тренеры, артисты и музыканты, мастера красоты и другие."
 				/>
-				<meta name="keywords" content="profi, профи, profi.uz, iprofi.uz"/>
+				<meta name="keywords" content="profi, профи, iprofi, iprofi.uz"/>
 				<meta name="viewport" content="width=device-width"/>
 				<meta property="og:type" content="website"/>
 				<meta property="og:title" content="Muammolaringizni hal qilish uchun iprofini tanlang."/>

@@ -12,22 +12,22 @@ function MobileLinks({ t }) {
   const router = useRouter();
   const goBack = (e) => router.back();
   return (
-    <div style={{ display: "flex", justifyContent: "space-around" }}>
+    <div style={{ display: "flex", justifyContent: "space-around"}}>
       <Link className={css.link} href={"/"}>
-        <CgHomeAlt />
-        <p style={{ fontSize: 10 }}>{t.home}</p>
+        <CgHomeAlt style={{color: "#fff"}} />
+        <p style={{ fontSize: 14, color: "#fff" }}>{t.home}</p>
       </Link>
       <Link className={css.link} href={"/likeslist"}>
-        <AiOutlineHeart />
-        <p style={{ fontSize: 10 }}>{t.live}</p>
+        <AiOutlineHeart  style={{color: "#fff"}}/>
+        <p style={{ fontSize: 14, color: "#fff" }}>{t.live}</p>
       </Link>
       <Link className={css.link} href={"/cabinet"}>
-        <FiUser />
-        <p style={{ fontSize: 10 }}>{t.cabinet}</p>
+        <FiUser  style={{color: "#fff"}}/>
+        <p style={{ fontSize: 14, color: "#fff" }}>{t.cabinet}</p>
       </Link>
       <div className={css.link} onClick={goBack}>
         <RiArrowGoBackLine color={"red"}/>
-        <p style={{ fontSize: 10, color: "red" }}>{t.back}</p>
+        <p style={{ fontSize: 14, color: "red" }}>{t.back}</p>
       </div>
     </div>
   );

@@ -46,9 +46,14 @@
 
 .CabinetNavigateBlockList {
     margin: 5px 0 !important;
-    padding: 0 0 0 22px !important;
+    padding: 0 0 0 10px !important;
 }
-
+.CabinetNavigateBlockList:nth-child(6) {
+    background: #ff4d4f !important;
+}
+.CabinetNavigateBlockList:nth-child(6) div a span {
+    color: #fff !important;
+}
 .NavigateLinkBlockItem {
     font-weight: 400;
     font-size: 16px !important;
@@ -87,8 +92,12 @@
         z-index: 1;
         border-radius: 10px;
     }
+
     .cabinetCardUserNavigate {
         min-height: max-content !important;
     }
 
+    .NavigateLinkBlockText {
+        font-size: 18px !important;
+    }
 }

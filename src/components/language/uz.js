@@ -131,6 +131,9 @@ export const uz = {
   subDistrictRequired: "Iltimos tumanni tanlang!",
   modalCancel: "Yopish",
   modalOk: "Qo`shish",
-  modalTitle: "Rasm sozlamalari"
+  modalTitle: "Rasm sozlamalari",
+//   page 404
+  subTitle: "Kechirasiz, siz tashrif buyurgan sahifa mavjud emas.",
+  subTitle500: "Server tomonida xatolik yuz berdi.",
 
 };

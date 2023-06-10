@@ -77,7 +77,7 @@ export const ru = {
   bajarilgan: "Мои работы",
   fikirlar: "Отзывы",
 //   notification
-  fikir: "Спасибо за ваши мнения",
+  fikir: "Спасибо за отзыв!",
   baho: "Оценка принята",
   bajarilmadi: "Не предвиденная ошибка",
   likenotification: "Извините сначала авторизуйтесь",
@@ -130,5 +130,8 @@ export const ru = {
   modalCancel: "Закрыть",
   modalOk: "Добавить",
   modalTitle: "Настройки изоброжения",
+  //   page 404
+  subTitle: "Извините, страница, которую вы посетили, не существует.",
+  subTitle500: "Произошла ошибка на стороне сервера.",
 
 };
