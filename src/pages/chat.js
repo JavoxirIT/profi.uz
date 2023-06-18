@@ -38,7 +38,10 @@ const Chat = ({t, unread}) => {
 		api[type]({
 			message: code,
 			description: message,
-			duration: 2,
+			duration: 10,
+			style: {
+				width: 600,
+			},
 		});
 	}, [api]);
 

@@ -25,7 +25,10 @@ export default function Anketa({lang, t}) {
 	const [api, contextHolder] = notification.useNotification();
 	const openNotificationWithIcon = (type, code, message) => {
 		api[type]({
-			message: code, description: message, duration: 3,
+			message: code, description: message,  duration: 10,
+			style: {
+				width: 600,
+			},
 		});
 	};
 	const [user, setUser] = useState({})

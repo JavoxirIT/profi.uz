@@ -32,7 +32,10 @@ function Authorization({t}) {
 		api[type]({
 			message: code,
 			description: message,
-			duration: 5,
+			duration: 10,
+			style: {
+				width: 600,
+			},
 		});
 	};
 
@@ -59,8 +62,8 @@ function Authorization({t}) {
 						router.push("/cabinet");
 						break;
 					case Number(admin):
-					  router.push("/cabinet");
-					  break;
+						router.push("/cabinet");
+						break;
 					case Number(customer):
 						router.push("/");
 						break;
@@ -71,7 +74,7 @@ function Authorization({t}) {
 			} else if (res.code === "ERR_BAD_REQUEST") {
 				openNotificationWithIcon(
 					"error",
-					`${res.code + " " + res.message}`,
+					// `${res.code + " " + res.message}`,
 					t.noUser
 				);
 			} else {
@@ -157,11 +160,13 @@ function Authorization({t}) {
 							</Form.Item>
 						</Spin>
 					</Form>
-					<div className={style.AuthorizationLinkBlock}>
-						<Link href={"/"}>{t.linkHome}</Link>
-					</div>
-					<div className={style.AuthorizationLinkBlock}>
-						<Link href={"/registration"}>{t.linkRegistration}</Link>
+					<div style={{paddingTop: 20}} >
+						<div className={style.AuthorizationLinkBlock}>
+							<Link href={"/"}><span className={style.AuthorizationLinkSpan} >{t.linkHome}</span></Link>
+						</div>
+						<div className={style.AuthorizationLinkBlock}>
+							<Link href={"/registration"}> <span className={style.AuthorizationLinkSpan} >{t.linkRegistration}</span> </Link>
+						</div>
 					</div>
 				</div>
 

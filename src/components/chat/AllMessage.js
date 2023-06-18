@@ -145,7 +145,10 @@ function AllMessage({userid, queryID, messageLoading, t, name, fetchAllRooms}) {
 		api[type]({
 			message: code,
 			description: message,
-			duration: 2,
+			duration: 10,
+			style: {
+				width: 600,
+			},
 		});
 	};
 	const handleSubmit = (values) => {

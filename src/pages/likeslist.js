@@ -38,7 +38,10 @@ function LikeList({data, t, lang}) {
 	// натификацыя
 	const openNotificationWithIcon = (type, code, message) => {
 		api[type]({
-			message: code, description: message, duration: 5,
+			message: code, description: message,  duration: 10,
+			style: {
+				width: 600,
+			},
 		});
 	};
 

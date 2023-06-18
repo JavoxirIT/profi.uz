@@ -34,7 +34,10 @@ const Master = ({t, data, lang}) => {
 		api[type]({
 			message: code,
 			description: message,
-			duration: 3,
+			duration: 10,
+			style: {
+				width: 600,
+			},
 		});
 	};
 

@@ -10,7 +10,7 @@ const withTheme = (node: JSX.Element) => (
                 // colorPrimaryBg: "#0c0d15;",
                 colorInfoText: "#d0b400",
                 colorInfo: "#ffdd00",
-                colorText: "#ffdd00",
+                // colorText: "#ffdd00",
                 colorTextTertiary: "#ffdd00",
                 // colorBorder: "#334155",
                 // colorBorder: "#c4c4c4",
@@ -42,9 +42,11 @@ const withTheme = (node: JSX.Element) => (
                 },
                 Checkbox: {
                     borderRadiusSM: 5,
-                    controlInteractiveSize: 18,
+                    controlInteractiveSize: 22,
                     colorWhite: "#0c0d15",
                     colorText: "#000",
+                    fontSize: 16,
+                    lineWidth: 2,
                 },
                 // Rate: {
                 //     // colorFillContent: "red"
@@ -88,6 +90,7 @@ const withTheme = (node: JSX.Element) => (
                 Form: {
                     marginLG: 10,
                     colorTextHeading: "#bbbbbb",
+                    fontSize: 18
                 },
                 Input: {
                     colorText: "#000",
@@ -114,6 +117,10 @@ const withTheme = (node: JSX.Element) => (
                 },
                 List: {
                     paddingContentHorizontal: 5,
+                },
+                Notification: {
+                    fontSizeLG: 22,
+                    colorTextHeading: "#001529"
                 },
             },
         }}

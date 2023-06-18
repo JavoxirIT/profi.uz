@@ -79,6 +79,7 @@ export const uz = {
   fikir: "Fikir qo`shganiz uchun raxmat",
   baho: "Baho qabul qilindi",
   bajarilmadi: "Soʻrov bajarilmadi",
+  insertStarError: "Baxo ko`yish uchun avval ro`yxatdan o`ting!",
   likenotification: "Iltimos avval ro'yxatdan o'ting",
   qushildi: "Sevimlilar ro'yxatiga qo'shildi",
   chiqarildi: "Sevimlilar ro'yxatidan chiqarildi",
@@ -91,7 +92,7 @@ export const uz = {
   error302: "Bu telefon raqam orqali ro`yxatdan o`tilgan",
   success: "Tizimga muvaffaqiyatli kirdingiz",
   errorNoUser: "Kechirasiz mutaxasis topilmadi",
-  noUser: "Xatolik faydalanuvchi mavjut emas",
+  noUser: "Faydalanuvchi mavjut emas",
 
   // chat notification
   xabarYuborildi: "Xabar yuborildi",

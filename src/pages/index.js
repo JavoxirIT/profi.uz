@@ -50,11 +50,15 @@ function HomePage({ data, t, lang }) {
   // натификацыя
   const [api, contextHolder] = notification.useNotification();
   const openNotificationWithIcon = useCallback(
-    (type, code, message) => {
+    (type, code, message, placement) => {
       api[type]({
         message: code,
         description: message,
-        duration: 5,
+        duration: 10,
+        style: {
+          width: 600,
+        },
+        placement,
       });
     },
     [api]
@@ -139,7 +143,7 @@ function HomePage({ data, t, lang }) {
             scrollIntoTheView("scroll");
             setOpenModal(false);
             setOpen(false);
-            openNotificationWithIcon("success", t.topildi, res.data.length);
+            openNotificationWithIcon("success", t.topildi);
           } else {
             openNotificationWithIcon("error", t.errorNoUser);
           }
@@ -204,7 +208,7 @@ function HomePage({ data, t, lang }) {
           setUser([...newArrUser, oneUser].sort(userSort).reverse());
           openNotificationWithIcon("success", t.baho);
         } else {
-          openNotificationWithIcon("error", res.code, t.bajarilmadi);
+          openNotificationWithIcon("error", t.insertStarError );
         }
       })
       .catch((err) => {

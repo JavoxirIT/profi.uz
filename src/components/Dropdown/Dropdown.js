@@ -48,7 +48,7 @@ const DropDown = () => {
       menu={{
         items,
       }}
-      placement="bottom"
+      placement="bottomLeft"
     >
       <RiEarthLine
         className={css.NotificationIconBlockIcon}

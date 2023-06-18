@@ -80,7 +80,7 @@
 }
 
 .indexUserRate {
-    font-size: 30px;
+    font-size: 30px !important;
     color: #6e6f91;
     transition: 0.3s linear;
 }
@@ -289,7 +289,7 @@
         padding: 5px 5px 0 0;
     }
     .indexUserRate {
-        font-size: 30px;
+        font-size: 23px !important;
     }
 
     /* .indexCheckBoxBlock {
