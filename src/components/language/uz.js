@@ -92,6 +92,7 @@ export const uz = {
   error302: "Bu telefon raqam orqali ro`yxatdan o`tilgan",
   success: "Tizimga muvaffaqiyatli kirdingiz",
   errorNoUser: "Kechirasiz mutaxasis topilmadi",
+  errorNoUser500: "Kechirasiz sercerda xatolik ro`y berdi",
   noUser: "Faydalanuvchi mavjut emas",
 
   // chat notification

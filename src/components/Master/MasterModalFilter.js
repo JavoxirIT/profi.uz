@@ -57,10 +57,12 @@ const MasterModalFilter = ({special, vil, onFinish, open, setOpen, loading, user
 	} = useStepsForm({
 		async submit(values) {
 			const {region, special} = values;
+			// console.log(user)
 			onFinish(values);
 			setIsPath(pathname)
 			setSpecialValue(null)
 			form.resetFields()
+			gotoStep(current - 3);
 			// setTimeout(() => {
 			// 	gotoStep(current - 3)
 			//
@@ -200,7 +202,7 @@ const MasterModalFilter = ({special, vil, onFinish, open, setOpen, loading, user
 						onClick={() => {
 							// form.resetFields();
 							gotoStep(0);
-							// subArr = Array()
+							subArr = Array()
 						}}
 					>
 						{t.qayta}

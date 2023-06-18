@@ -93,6 +93,7 @@ export const ru = {
   error302: "Этот номер телефона зарегистрирован",
   success: "Вы успешно вошли",
   errorNoUser: "Извините специалист не найден",
+  errorNoUser500: "Извините ошибка на стороне сервера",
   // chat notification
   xabarYuborildi: "Сообщения отправлено",
   avalTanlang: "Сначала выберите пользователя",
