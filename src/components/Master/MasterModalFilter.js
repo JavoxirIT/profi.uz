@@ -10,6 +10,7 @@ import {AiFillHeart} from "react-icons/ai";
 import Link from "next/link";
 import {HiOutlineLocationMarker} from "react-icons/hi";
 import useSessionStorage from "../../hooks/useSessionStorage";
+import {log} from "util";
 
 const imgUrl = process.env.NEXT_PUBLIC_IMG_URL
 const {Text, Title} = Typography;
@@ -39,15 +40,23 @@ const MasterModalFilter = ({special, vil, onFinish, open, setOpen, loading, user
 		setIsPath(pathname)
 	}
 
-	const [specialValue, setSpecialValue] = useState([])
+	// TODO: функцыя для филтера относться к второму блоку формы
 	const [newValue, setNewValue] = useState([])
-	useEffect(() => {
-		special.map((i) => i.subspecial.filter((sub) => sub.p_type_id === specialValue ? subArr.push(sub) : null))
-		setNewValue(Array.from(new Set(subArr)))
-	}, [special, specialValue]);
+	const checkedSpecial = (e) => {
+		if (e.target.checked === true) {
+			special.map((i) => i.subspecial.filter((sub) => sub.p_type_id === e.target.value ? subArr.push(sub) : null))
+			setNewValue(Array.from(new Set(subArr)))
+		} else {
+			const filterArr = newValue.filter((item) => item.p_type_id !== e.target.value)
+			setNewValue(filterArr)
+			if (filterArr.length === 0) {
+				subArr.length = 0
+			}
+		}
+	}
+
 
 	const [checked, setChecked] = useState(null)
-	const [values, setValues] = useState(vil)
 	const onRegionChange = (e) => {
 		setChecked(e.target.value)
 	}
@@ -60,7 +69,7 @@ const MasterModalFilter = ({special, vil, onFinish, open, setOpen, loading, user
 			// console.log(user)
 			onFinish(values);
 			setIsPath(pathname)
-			setSpecialValue(null)
+			setNewValue([])
 			form.resetFields()
 			gotoStep(current - 3);
 			// setTimeout(() => {
@@ -109,76 +118,74 @@ const MasterModalFilter = ({special, vil, onFinish, open, setOpen, loading, user
 		<Form.Item className={css.MasterModalFilterBtn}>
 			<Button type="primary" onClick={() => gotoStep(current + 1)}>{t.qabul}</Button>
 		</Form.Item>
-	</>,
-		<>
-			<Form.Item>
+	</>, <>
+
+		<Form.Item rules={[{required: true, message: 'Please input your username!'}]}>
+			<Checkbox.Group>
+				<div className={css.MasterModalFilterCheckbox}>
+					{special.sort(userSort).map((i, index) => <Checkbox
+						key={i.id}
+						value={i.id}
+						onChange={(e) => checkedSpecial(e)}
+					>
+						{lang === 'ru' ? i.nameru : i.name}
+					</Checkbox>)}
+
+				</div>
+			</Checkbox.Group>
+		</Form.Item>
+		<Form.Item className={css.MasterModalFilterBtn}>
+			<Button
+				style={{marginRight: 10}}
+				type="primary"
+				loading={formLoading}
+				onClick={() => gotoStep(current + 1)}
+			>
+				{t.qabul}
+			</Button>
+			<Button onClick={() => {
+				gotoStep(current - 1);
+				resetArr()
+			}}>{t.qaytish}</Button>
+		</Form.Item>
+	</>, <>
+		<Space direction="vertical">
+			<Form.Item name="special">
 				<Checkbox.Group>
 					<div className={css.MasterModalFilterCheckbox}>
-						{special.sort(userSort).map((i, index) => <Checkbox
+						{newValue.length !== 0 ? newValue.sort(userSort).map((i) => <Checkbox
 							key={i.id}
 							value={i.id}
-							onChange={(e) => setSpecialValue(e.target.value)}
 							// checked={specialValue === i.value}
 						>
 							{lang === 'ru' ? i.nameru : i.name}
-						</Checkbox>)}
+						</Checkbox>) : null}
 
 					</div>
 				</Checkbox.Group>
 			</Form.Item>
-			<Form.Item className={css.MasterModalFilterBtn}>
-				<Button
-					style={{marginRight: 10}}
-					type="primary"
-					loading={formLoading}
-					onClick={() => gotoStep(current + 1)}
-				>
-					{t.qabul}
-				</Button>
-				<Button onClick={() => {
-					gotoStep(current - 1);
-					resetArr()
-				}}>{t.qaytish}</Button>
-			</Form.Item>
-		</>,
-		<>
-			<Space direction="vertical">
-				<Form.Item name="special">
-					<Checkbox.Group>
-						<div className={css.MasterModalFilterCheckbox}>
-							{newValue.length !== 0 ? newValue.sort(userSort).map((i) => <Checkbox
-								key={i.id}
-								value={i.id}
-								// checked={specialValue === i.value}
-							>
-								{lang === 'ru' ? i.nameru : i.name}
-							</Checkbox>) : null}
-
-						</div>
-					</Checkbox.Group>
-				</Form.Item>
-			</Space>
-			<Form.Item className={css.MasterModalFilterBtn}>
-				<Button
-					style={{marginRight: 10}}
-					type="primary"
-					loading={formLoading}
-					onClick={() => {
-						submit().then(result => {
-							if (result === 'ok') {
-								gotoStep(current + 1);
-							}
-						});
-					}}
-				>
-					{t.qabul}
-				</Button>
-				<Button onClick={() => {
-					gotoStep(current - 1);
-					resetArr()
-				}}>{t.qaytish}</Button>
-			</Form.Item>
-		</>];
+		</Space>
+		<Form.Item className={css.MasterModalFilterBtn}>
+			<Button
+				style={{marginRight: 10}}
+				type="primary"
+				loading={formLoading}
+				onClick={() => {
+					submit().then(result => {
+						if (result === 'ok') {
+							gotoStep(current + 1);
+						}
+					});
+				}}
+			>
+				{t.qabul}
+			</Button>
+			<Button onClick={() => {
+				gotoStep(current - 1);
+				resetArr()
+			}}>{t.qaytish}</Button>
+		</Form.Item>
+	</>];
 
 	return (<ModalCenter
 		title={t.modaltitle}
