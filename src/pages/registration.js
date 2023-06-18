@@ -43,10 +43,15 @@ function Registration({t}) {
 				);
 				setCookie("access_token", res.data.access_token, res.data.expires_in);
 				setCookie("access_type", res.data.token_type);
+				setCookie("user_id", res.data.user.id, res.data.expires_in);
 				setUser(res.data.user);
+				console.log("res-data",res.data)
 				//   распридиляем по ролям
 				res.data.user.role_id === Number(spesialist)
-					? router.push("/cabinet")
+					?  router.push({
+						pathname: '/anketa',
+						query: { user_id: res.data.user.id },
+					})
 					: res.data.user.role_id === Number(admin)
 						? router.push("/admin")
 						: res.data.user.role_id === Number(customer)
@@ -74,9 +79,9 @@ function Registration({t}) {
 		openNotificationWithIcon("error", info);
 	};
 
-	useEffect(() => {
+	/*useEffect(() => {
 		router.prefetch("/cabonet");
-	}, [router]);
+	}, [router]);*/
 
 	return (
 		<PageWrapperAuthorization

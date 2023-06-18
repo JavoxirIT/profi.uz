@@ -14,7 +14,7 @@ const url = process.env.NEXT_PUBLIC_ONE_USER;
 const urlImg = process.env.NEXT_PUBLIC_IMG_URL;
 
 export default function Cabinet({user, t, lang}) {
-	// console.log(user)
+	// console.log("router",router)
 	const router = useRouter();
 	const [isChecked, setChecked] = useState(false);
 
@@ -47,6 +47,7 @@ export default function Cabinet({user, t, lang}) {
 									alt="avatar"
 									className={css.UserInfoBodyImg}
 									priority
+									sizes="(max-width: 768px) 100vw"
 								/>
 							) : (
 								<Image
@@ -56,6 +57,7 @@ export default function Cabinet({user, t, lang}) {
 									alt="avatar"
 									className={css.UserInfoBodyImg}
 									priority
+									sizes="(max-width: 768px) 100vw"
 								/>
 							)}
 							<h1 style={{paddingTop: 16, textAlign: "center", color: "#001529"}}>
@@ -79,7 +81,7 @@ export default function Cabinet({user, t, lang}) {
 					</Card>
 					<Card bordered={false} className={css.cabinetCardUserNavigate}>
 						<div className={css.CardUserNavigateLinkBlock}>
-							<CabinetNavigateList t={t} id={user?.id}/>
+							<CabinetNavigateList t={t} id={user.id}/>
 						</div>
 					</Card>
 				</div>
@@ -89,7 +91,7 @@ export default function Cabinet({user, t, lang}) {
 }
 
 export async function getServerSideProps(context) {
-	const {query, req} = context;
+	const {req} = context;
 	const config = {
 		method: "POST",
 		headers: {

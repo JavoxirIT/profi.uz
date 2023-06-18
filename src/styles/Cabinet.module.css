@@ -13,18 +13,21 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 }
 
 .cabinetCardUserInfoBody {
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
+    justify-content: center;
 }
 
 .UserInfoBodyImg {
     width: 250px;
     height: 250px;
     border-radius: 10px;
+    object-fit: contain;
 }
 
 .UserInfoSubSpecial {
@@ -80,14 +83,17 @@
     }
 
     .cabinetCardUserInfo {
-        height: max-content !important;
+        min-height: max-content !important;
     }
 
     .cabinetCardUserInfoBody {
+        min-height: 180px;
         position: relative;
     }
 
     .UserInfoBodyImg {
+        width: 140px;
+        height: 140px;
         position: absolute;
         top: -110px;
         z-index: 1;

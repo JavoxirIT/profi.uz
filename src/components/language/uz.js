@@ -12,7 +12,7 @@ export const uz = {
   formReqMessParol2: "Parol",
   // регистрацыя
   firstname: "Ismingiz",
-  lastname: "Familiyandiz",
+  lastname: "Familiyangiz",
   phone: "Telefon",
   customer: "Buyurtmachi",
   specialist: "Mutaxasis",

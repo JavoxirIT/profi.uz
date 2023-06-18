@@ -58,9 +58,9 @@ function Authorization({t}) {
 					case Number(spesialist):
 						router.push("/cabinet");
 						break;
-					// case Number(admin):
-					//   router.push("/admin");
-					//   break;
+					case Number(admin):
+					  router.push("/cabinet");
+					  break;
 					case Number(customer):
 						router.push("/");
 						break;
@@ -92,11 +92,11 @@ function Authorization({t}) {
 	};
 
 	// заранее загружаем страницы
-	useEffect(() => {
-		router.prefetch("/");
-		router.prefetch("/registration");
-		router.prefetch("/cabinet");
-	}, [router]);
+	// useEffect(() => {
+	// 	router.prefetch("/");
+	// 	router.prefetch("/registration");
+	// 	router.prefetch("/cabinet").then(r => console.log("r",r));
+	// }, [router]);
 
 	return (
 		<PageWrapperAuthorization title="Kirish">

@@ -141,32 +141,36 @@ export default function Anketa({lang, t}) {
 			console.log(err)
 		})
 	}
+	// console.log("1", query)
 	useEffect(() => {
+		// console.log("2", query)
 		const data = {user_id: Number(query.user_id)}
-		postFetch({path: "one-user", value: data}).then((res) => {
-			if (res.status === 200) {
-				setUser(res.data)
-				// console.log(res.data)
-				// const subSpecial = res.data.sub_special.map((i) => ({label: i.name, value: i.id}))
-				form.setFieldsValue({
-					firstname: res.data?.firstname,
-					lastname: res.data?.lastname,
-					spets_id: res.data?.spets_id,
-					sub_spets: res.data.sub_special.map((i) => i.id),
-					region_id: Number(res.data?.distirct.id),
-					// district_id: {
-					// 	label: res.data.tuman.tuman_name, value: Number(res.data.tuman.id)
-					// },
-					district_id: Number(res.data.tuman.id),
-					description: res.data?.description,
-					image: res.data?.image
-				})
-				effectSpecial(res.data?.spets_id)
-				effectProvince(res.data?.distirct.id)
-			}
-		}).catch((err) => {
-			console.error(err)
-		})
+		if (query.user_id) {
+			postFetch({path: "one-user", value: data}).then((res) => {
+				if (res.status === 200) {
+					setUser(res.data)
+					// console.log(res.data)
+					// const subSpecial = res.data.sub_special.map((i) => ({label: i.name, value: i.id}))
+					form.setFieldsValue({
+						firstname: res.data?.firstname,
+						lastname: res.data?.lastname,
+						spets_id: res.data?.spets_id,
+						sub_spets: res.data.sub_special.map((i) => i.id),
+						region_id: Number(res.data?.distirct.id),
+						// district_id: {
+						// 	label: res.data.tuman.tuman_name, value: Number(res.data.tuman.id)
+						// },
+						district_id: Number(res.data.tuman.id),
+						description: res.data?.description,
+						image: res.data?.image
+					})
+					effectSpecial(res.data?.spets_id)
+					effectProvince(res.data?.distirct.id)
+				}
+			}).catch((err) => {
+				console.error(err)
+			})
+		}
 	}, [form, query.id, query.user_id])
 
 //! действия с upload

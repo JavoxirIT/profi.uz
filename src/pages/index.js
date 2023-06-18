@@ -419,7 +419,7 @@ function HomePage({ data, t, lang }) {
                 </p>
                 <div style={{ paddingTop: 16 }}>
                   {i.sub_special?.map((i) => (
-                    <Tag color="default" key={i.id}>
+                    <Tag color="default" key={i.id} style={{marginBlock: 5}} >
                       {lang === "ru" ? i.nameru : i.name}
                     </Tag>
                   ))}
