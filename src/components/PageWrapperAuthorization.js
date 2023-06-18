@@ -32,10 +32,10 @@ export default function PageWrapperAuthorization({children, title, pageTitle,}) 
 					name="description"
 					content="iProfi - mutaxassislarni qidirish xizmati: ta'mirlash ustalari, repetitorlar, murabbiylar, rassomlar va musiqachilar, go'zallik ustalari va boshqalar."
 				/>
-				<meta
-					name="description"
-					content="iProfi — сервис поиска специалистов: мастера по ремонту, репетиторы, тренеры, артисты и музыканты, мастера красоты и другие."
-				/>
+				{/*<meta*/}
+				{/*	name="description"*/}
+				{/*	content="iProfi — сервис поиска специалистов: мастера по ремонту, репетиторы, тренеры, артисты и музыканты, мастера красоты и другие."*/}
+				{/*/>*/}
 				<meta name="keywords" content="profi, профи, iprofi, iprofi.uz"/>
 				<meta name="viewport" content="width=device-width"/>
 				<meta property="og:type" content="website"/>

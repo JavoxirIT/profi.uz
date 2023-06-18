@@ -123,7 +123,7 @@ export default function MasterCard({lang, data, t, user_id, starType, fetchAllKl
 					</div>
 					<div style={{padding: "10px 0"}}>
 						{data.sub_special?.map((i) =>
-							<Tag color="default" key={i.id}>
+							<Tag style={{marginBlock: 5}} color="default" key={i.id}>
 								{lang === "ru" ? i.nameru : i.name}
 							</Tag>
 						)}
