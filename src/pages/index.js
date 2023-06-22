@@ -307,7 +307,7 @@ function HomePage({data, t, lang}) {
 								priority={true}
 							/>)}
 
-							<div style={{padding: "10px 0 0 20px"}}>
+							<div className={css.CardInfo1Child}>
 								<Tag style={{fontSize: 14}} key={i.special?.id || null}>
 									{lang === "ru" ? i.special?.nameru : i.special?.name}
 								</Tag>
