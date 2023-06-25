@@ -94,6 +94,7 @@ export const ru = {
   success: "Вы успешно вошли",
   errorNoUser: "Извините специалист не найден",
   errorNoUser500: "Извините ошибка на стороне сервера",
+  errorImage: "Не удалось загрузить изображение",
   // chat notification
   xabarYuborildi: "Сообщения отправлено",
   avalTanlang: "Сначала выберите пользователя",

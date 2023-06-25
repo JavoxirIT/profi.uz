@@ -94,6 +94,7 @@ export const uz = {
   errorNoUser: "Kechirasiz mutaxasis topilmadi",
   errorNoUser500: "Kechirasiz sercerda xatolik ro`y berdi",
   noUser: "Faydalanuvchi mavjut emas",
+  errorImage: "Rasm yuklanmadi",
 
   // chat notification
   xabarYuborildi: "Xabar yuborildi",

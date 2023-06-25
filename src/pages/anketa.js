@@ -19,6 +19,7 @@ const {Title, Text} = Typography;
 const isType = typeof window !== undefined;
 const url = process.env.NEXT_PUBLIC_ONE_USER;
 const urlImage = process.env.NEXT_PUBLIC_IMG_URL;
+const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
 export default function Anketa({lang, t}) {
 	// сообщение об успешном изминения данных
@@ -339,7 +340,7 @@ export default function Anketa({lang, t}) {
 								}, body: formData,
 							};
 							// console.log(config)
-							fetch("https://4biz.uz/api/profile-img", config)
+							fetch(apiUrl + "profile-img", config)
 							.then((res) => res.json())
 							.then((json) => {
 								// console.log("json", json);
@@ -349,10 +350,10 @@ export default function Anketa({lang, t}) {
 									form.setFieldsValue({
 										image: json.data.image,
 									});
-								}
+								}else openNotificationWithIcon("error", t.errorImage);
 							})
 							.catch((err) => {
-								openNotificationWithIcon("error", err.code, err.message);
+								openNotificationWithIcon("error", t.errorImage);
 							});
 						}}
 					>
