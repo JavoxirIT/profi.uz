@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {Button, Form, Input, notification, Switch, Typography} from "antd";
+import {Button, Form, Input, notification, Row, Switch, Typography} from "antd";
 import {PatternFormat} from "react-number-format";
 import PageWrapperAuthorization from "../components/PageWrapperAuthorization";
 import Link from "next/link";
@@ -128,11 +128,15 @@ function Registration({t}) {
 					<Item
 						valuePropName="checked"
 					>
-						<Switch
-							checkedChildren={t.specialist} unCheckedChildren={t.customer}
-							style={{margin: "20px 20px 0 0 "}}
-							onChange={(e) => setIsSwitch(e.target === false ? 2 : 3)}
-						/>
+						<Row justify="space-between" style={{margin: "30px"}}  >
+							<Text style={{fontSize: 18}} >{t.customer}</Text>
+							<Switch
+								// checkedChildren={t.specialist} unCheckedChildren={t.customer}
+								// style={{margin: "20px 20px 0 0 "}}
+								onChange={(e) => setIsSwitch(e.target === false ? 2 : 3)}
+							/>
+							<Text style={{fontSize: 18}} >{t.specialist}</Text>
+						</Row>
 					</Item>
 					<Item className={style.AuthorizationFormButtonForm}>
 						<Button

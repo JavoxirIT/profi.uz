@@ -121,7 +121,7 @@ export const ru = {
   malumotYuq: "Нет данных.",
 
 //   anketa page
-  mutaxasislig: "Ваще специальность",
+  mutaxasislig: "Ваша специальность",
   mutaxasisligRequired: "Пожалуйста выберите ваще специальность!",
   yunalishRequired: "Выберите ваще направления специальности!",
   yulanishlar: "Направления",

@@ -217,13 +217,13 @@ export default function Anketa({lang, t}) {
 				openNotificationWithIcon("success", res.statusText, t.saqlandi);
 				router.push("/cabinet")
 			} else if (res.code === "ERR_BAD_REQUEST") {
-				openNotificationWithIcon("error", res.code, t.error404);
+				openNotificationWithIcon("error", t.error404);
 			} else {
-				openNotificationWithIcon("error", res.code, res.message);
+				openNotificationWithIcon("error", t.error);
 			}
 		})
 		.catch((err) => {
-			openNotificationWithIcon("error", err.code, err.message);
+			openNotificationWithIcon("error", t.error404);
 		});
 		//  form.resetFields();
 	};
