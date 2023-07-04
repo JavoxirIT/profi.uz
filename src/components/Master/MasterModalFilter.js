@@ -214,67 +214,6 @@ const MasterModalFilter = ({special, vil, onFinish, open, setOpen, loading, user
 					>
 						{t.qayta}
 					</Button>
-					{/*<div className={css.MasterModalFilterUserCard}>*/}
-					{/*	{user.map((i) =>*/}
-					{/*		<div key={i.id}>*/}
-					{/*			<Card className={css.indexUserCardBody} key={i.id}>*/}
-					{/*				<div className={css.indexUserCardHeader} key={i.id}>*/}
-					{/*					{i.image !== null ? (<Image*/}
-					{/*						src={`${imgUrl + i.image}`}*/}
-					{/*						alt="avatar"*/}
-					{/*						width={50}*/}
-					{/*						height={50}*/}
-					{/*						className={css.indexCaruselImage}*/}
-					{/*						priority={true}*/}
-					{/*					/>) : (<Image*/}
-					{/*						src={img}*/}
-					{/*						alt="avatar"*/}
-					{/*						width={50}*/}
-					{/*						height={50}*/}
-					{/*						className={css.indexCaruselImage}*/}
-					{/*						priority={true}*/}
-					{/*					/>)}*/}
-
-					{/*					<div>*/}
-					{/*						<Rate*/}
-					{/*							className={css.indexUserRate}*/}
-					{/*							// onChange={(e) => ratingChange(i.id, e)}*/}
-					{/*							value={i.reyting}*/}
-					{/*							allowHalf*/}
-					{/*							disabled*/}
-					{/*						/> <br/>*/}
-					{/*						<Text>Umumiy reyting: {i.reyting}</Text>*/}
-					{/*					</div>*/}
-					{/*					<AiFillHeart*/}
-					{/*						key={i.like?.id}*/}
-					{/*						aria-labelledby="like"*/}
-					{/*						// onClick={() => ChangeLike({id: i.id, like: i.like?.likes})}*/}
-					{/*						className={i.like?.likes === 0 || i.like === "Unauthorized" ? `${css.indexUserRate}` : `${css.indexUserRateTrue}`}*/}
-					{/*					/>*/}
-					{/*				</div>*/}
-					{/*				<div>*/}
-					{/*					<Text style={{fontSize: 12}} key={i.special?.id || null}>*/}
-					{/*						{i.special?.name}*/}
-					{/*					</Text>*/}
-					{/*					<br/>*/}
-					{/*					<Link href={"/index/[id]"} as={`/index/${i.id}`}>*/}
-					{/*						<Title level={4}>*/}
-					{/*							{i.firstname} {i.lastname}*/}
-					{/*						</Title>*/}
-					{/*					</Link>*/}
-					{/*					<p style={{marginBottom: 5}}>*/}
-					{/*						<HiOutlineLocationMarker/>*/}
-					{/*						<Text style={{paddingLeft: 10}} key={i.distirct?.vil_name}>*/}
-					{/*							{i.distirct?.vil_name}*/}
-					{/*						</Text>*/}
-					{/*					</p>*/}
-
-					{/*					<Tag key={i.sub_special?.id}>{i.sub_special?.name || null}</Tag>*/}
-					{/*				</div>*/}
-					{/*			</Card>*/}
-					{/*		</div>*/}
-					{/*	)}*/}
-					{/*</div>*/}
 				</>}
 			/> : <Result
 				status="error"

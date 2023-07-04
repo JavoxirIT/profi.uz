@@ -160,11 +160,11 @@ export default function Anketa({lang, t}) {
 						lastname: res.data?.lastname,
 						spets_id: res.data?.spets_id,
 						sub_spets: res.data.sub_special.map((i) => i.id),
-						region_id: Number(res.data?.distirct.id),
+						region_id: Number(res.data?.distirct.id) || null ,
 						// district_id: {
 						// 	label: res.data.tuman.tuman_name, value: Number(res.data.tuman.id)
 						// },
-						district_id: Number(res.data.tuman.id),
+						district_id: Number(res.data.tuman.id) || null,
 						description: res.data?.description,
 						image: res.data?.image
 					})
@@ -238,6 +238,10 @@ export default function Anketa({lang, t}) {
 				form={form}
 				layout="vertical"
 				className={css.AnketaForm}
+				initialValues={{
+					district_id: null,
+					region_id: null
+				}}
 			>
 				<Form.Item
 					name="firstname"
@@ -312,7 +316,11 @@ export default function Anketa({lang, t}) {
 						</Option>))}
 					</Select>
 				</Form.Item>
-				<Form.Item name="description" label={t.batafsilMalumot}>
+				<Form.Item name="description" label={t.batafsilMalumot}
+				           rules={[{
+					           required: true, message: t.errDescription,
+				           },]}
+				>
 					<Input.TextArea
 						rows={3}
 						showCount
@@ -322,7 +330,9 @@ export default function Anketa({lang, t}) {
 					/>
 				</Form.Item>
 
-				<Form.Item name="image" label={t.rasm} valuePropName="picture">
+				<Form.Item name="image" label={t.rasm} valuePropName="picture"rules={[{
+					required: true, message: t.errImage,
+				},]}>
 					<ImgCrop
 						showGrid
 						rotationSlider
@@ -358,6 +368,7 @@ export default function Anketa({lang, t}) {
 						}}
 					>
 						<Upload
+
 							style={{width: "100vw"}}
 							action=""
 							listType="picture-card"

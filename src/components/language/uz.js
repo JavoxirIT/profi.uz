@@ -135,6 +135,8 @@ export const uz = {
   modalCancel: "Yopish",
   modalOk: "Qo`shish",
   modalTitle: "Rasm sozlamalari",
+  errImage: "Rasmni yuklash majburiy",
+  errDescription: "Batafsil ma`lumotni qo`shing",
 //   page 404
   subTitle: "Kechirasiz, siz tashrif buyurgan sahifa mavjud emas.",
   subTitle500: "Server tomonida xatolik yuz berdi.",

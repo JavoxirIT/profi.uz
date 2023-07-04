@@ -123,16 +123,18 @@ export const ru = {
 
 //   anketa page
   mutaxasislig: "Ваша специальность",
-  mutaxasisligRequired: "Пожалуйста выберите ваще специальность!",
-  yunalishRequired: "Выберите ваще направления специальности!",
+  mutaxasisligRequired: "Пожалуйста выберите вашу специальность!",
+  yunalishRequired: "Выберите ваше направление специальности!",
   yulanishlar: "Направления",
   district: "Город",
-  districtRequired: "Пожалуйста виберите город!",
+  districtRequired: "Пожалуйста выберите город!",
   subDistrict: "Район",
   subDistrictRequired: "Пожалуйста выберите район!",
   modalCancel: "Закрыть",
   modalOk: "Добавить",
   modalTitle: "Настройки изоброжения",
+  errImage: "Требуеться загрузить изображение",
+  errDescription: "Добавьте информацию",
   //   page 404
   subTitle: "Извините, страница, которую вы посетили, не существует.",
   subTitle500: "Произошла ошибка на стороне сервера.",

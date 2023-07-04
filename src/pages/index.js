@@ -28,7 +28,6 @@ const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 const urlAlUser = process.env.NEXT_PUBLIC_ALL_USER;
 const urlImg = process.env.NEXT_PUBLIC_IMG_URL;
 const {Text, Title} = Typography;
-const isType = typeof window !== undefined;
 
 function HomePage({data, t, lang}) {
 	const router = useRouter();
