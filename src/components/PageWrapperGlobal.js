@@ -16,7 +16,8 @@ export const PageWrapperGlobal = ({
 	                                  children,
 	                                  title = "Профи",
 	                                  pageTitle,
-	                                  t, Search
+	                                  t,
+	                                  Search,
                                   }) => {
 	const router = useRouter();
 	const goBack = (e) => router.back();
@@ -37,7 +38,10 @@ export const PageWrapperGlobal = ({
 				<meta name="keywords" content="profi, профи, profi.uz, iprofi.uz"/>
 				<meta name="viewport" content="width=device-width"/>
 				<meta property="og:type" content="website"/>
-				<meta property="og:title" content="Muammolaringizni hal qilish uchun iprofini tanlang." />
+				<meta
+					property="og:title"
+					content="Muammolaringizni hal qilish uchun iprofini tanlang."
+				/>
 				<meta property="og:url" content="//iprofi.uz"/>
 				<link rel="manifest" href="../../manifest.json"/>
 				<title>{title}</title>
@@ -64,7 +68,17 @@ export const PageWrapperGlobal = ({
 					<div className={css.section}> {children}</div>
 				</div>
 				<Footer className={css.footer}>
-					<FooterMenu t={t}/>
+					<div className={css.footerChildMenu}>
+						<FooterMenu t={t}/>
+					</div>
+					<div className={css.footerChildLink}>
+						<div style={{textAlign: "center", fontWeight: '700'}}>
+							<a href={"https://cyberarea.uz"}>CYBER AREA UZB | STEBIZ</a>
+						</div>
+						<div style={{textAlign: "center", fontWeight: '700', paddingLeft: 80, textTransform: "uppercase"}}>
+							<Link href='/agreements'>{t.agreemetText}</Link>
+						</div>
+					</div>
 				</Footer>
 			</Layout>
 		</>

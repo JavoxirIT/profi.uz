@@ -60,7 +60,17 @@ export const PageWrapperSingle = ({
 					</div>
 				</div>
 				<Footer className={css.footer}>
-					<FooterMenu t={t}/>
+					<div className={css.footerChildMenu}>
+						<FooterMenu t={t}/>
+					</div>
+					<div className={css.footerChildLink} >
+						<div style={{textAlign: "center", fontWeight: '700'}}>
+							<a href={"https://cyberarea.uz"}>CYBER AREA UZB | STEBIZ</a>
+						</div>
+						<div style={{textAlign: "center", fontWeight: '700', paddingLeft: 80, textTransform: "uppercase"}}>
+							<Link href='/agreements'>{t.agreemetText}</Link>
+						</div>
+					</div>
 				</Footer>
 			</Layout>
 		</>

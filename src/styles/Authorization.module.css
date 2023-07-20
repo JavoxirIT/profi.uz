@@ -1,37 +1,45 @@
 .AuthorizationFormBlock {
-  width: 100%;
-  height: calc(100vh - 99px);
-  display: flex;
-  flex-direction: column;
-  justify-content: center !important;
-  align-items: center !important;
-  /* padding: 0 43px; */
+    width: 100%;
+    height: calc(100vh - 99px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center !important;
+    align-items: center !important;
+    /* padding: 0 43px; */
 }
+
 /* .AuthorizationForm {
   width: 500px;
 } */
 .AuthorizationFormInput {
-  height: 46px;
-  font-size: 22px !important;
+    height: 46px;
+    font-size: 22px !important;
 }
+
 /* .AuthorizationFormButtonForm {
   padding: 0 50px !important;
 } */
 .AuthorizationFormButton {
-  width: 100% !important;
-  height: 49px !important;
-  font-size: 20px !important;
-  margin-top: 20px;
+    width: 100% !important;
+    height: 49px !important;
+    font-size: 20px !important;
+    margin-top: 20px;
 }
 
 .AuthorizationLinkBlock {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  padding: 10px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 10px 0;
 }
-.AuthorizationLinkSpan{
-  color: #002140;
-  font-weight: 600;
-  font-size: 18px;
+
+.AuthorizationLinkSpan {
+    color: #002140;
+    font-weight: 600;
+    font-size: 18px;
+    text-transform: uppercase
+}
+
+.AuthorizationLinkSpan:hover {
+    border-bottom: 2px solid red;
 }

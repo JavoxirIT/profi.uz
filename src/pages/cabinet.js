@@ -42,22 +42,22 @@ export default function Cabinet({user, t, lang}) {
 							{!user.image ? (
 								<Image
 									src={userImage}
-									width={90}
-									height={90}
+									width={200}
+									height={200}
 									alt="avatar"
 									className={css.UserInfoBodyImg}
 									priority
-									sizes="(max-width: 768px) 100vw"
+									sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
 								/>
 							) : (
 								<Image
 									src={`${urlImg + user.image}`}
-									width={90}
-									height={90}
+									width={200}
+									height={200}
 									alt="avatar"
 									className={css.UserInfoBodyImg}
 									priority
-									sizes="(max-width: 768px) 100vw"
+									sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
 								/>
 							)}
 							<h1 style={{paddingTop: 16, textAlign: "center", color: "#001529"}}>

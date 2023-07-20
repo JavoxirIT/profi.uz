@@ -1,4 +1,7 @@
 export const ru = {
+  agreemetText: "Правила пользования сайтом",
+  agreemetTextUser: "Принять условия пользовательского соглашения",
+  agreemetAcceptUser: "Вы не приняли условия пользовательского соглашения",
   modaltitleFilter: "Выберите город что-бы найти специалиста",
   reklama: "Реклама",
   reklamaText: "Место для вашей рекламы",
@@ -41,12 +44,12 @@ export const ru = {
   live: "Приоритетные",
   cabinet: "Кабинет",
   back: "Назад",
-//
+  //
   complaint: "максимальная длина 1000 символов",
   complaintButton: "Отправить",
   complaintModalTitle: "Подать жалобу",
 
-//
+  //
   engOmmaboplari: "Самые успешные",
   saralash: "Сортировка",
   qidirish: "Поиск специалиста",
@@ -72,11 +75,11 @@ export const ru = {
   murojaatQilish: "Связаться",
   fikirQoldirish: "Оставить отзыв",
   qushish: "Добавить",
-//   tab card
+  //   tab card
   batafsil: "Информация",
   bajarilgan: "Мои работы",
   fikirlar: "Отзывы",
-//   notification
+  //   notification
   fikir: "Спасибо за отзыв!",
   baho: "Оценка принята",
   bajarilmadi: "Не предвиденная ошибка",
@@ -89,6 +92,7 @@ export const ru = {
   saqlandi: "Данные сохранились",
   saqlanmadi: "Ошибка! данные не сохранились!",
   error: "Ошибка при загрузке данных",
+  errorServer: "Ошибка подключения к базе данных",
   error404: "Запрос не выполнен с кодом состояния 404.",
   error302: "Этот номер телефона зарегистрирован",
   success: "Вы успешно вошли",
@@ -117,11 +121,10 @@ export const ru = {
   boglangan: "Связались",
   bekorqilgan: "Удалено",
 
-
   //   result no data page
   malumotYuq: "Нет данных.",
 
-//   anketa page
+  //   anketa page
   mutaxasislig: "Ваша специальность",
   mutaxasisligRequired: "Пожалуйста выберите вашу специальность!",
   yunalishRequired: "Выберите ваше направление специальности!",
@@ -138,5 +141,4 @@ export const ru = {
   //   page 404
   subTitle: "Извините, страница, которую вы посетили, не существует.",
   subTitle500: "Произошла ошибка на стороне сервера.",
-
 };

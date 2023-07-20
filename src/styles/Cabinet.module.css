@@ -24,8 +24,6 @@
 }
 
 .UserInfoBodyImg {
-    width: 250px;
-    height: 250px;
     border-radius: 10px;
     object-fit: contain;
 }
@@ -74,6 +72,14 @@
         justify-content: center;
     }
 }
+@media (min-width: 1175px) and (max-width: 1450px) {
+    .cabinetCardBlock {
+        display: grid;
+        grid-template-columns: 27% 68%;
+        grid-template-rows: auto;
+        column-gap: 5%;
+    }
+}
 
 @media (min-width: 220px) and (max-width: 1175px) {
     .cabinetCardBlock {
@@ -85,6 +91,7 @@
     }
 
     .cabinetCardUserInfo {
+        margin-top: 50px !important;
         min-height: max-content !important;
     }
 
@@ -94,10 +101,8 @@
     }
 
     .UserInfoBodyImg {
-        width: 140px;
-        height: 140px;
         position: absolute;
-        top: -130px;
+        top: -180px;
         z-index: 1;
         border-radius: 10px;
     }

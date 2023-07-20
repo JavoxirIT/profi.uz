@@ -15,7 +15,7 @@ export default function PageWrapperAuthorization({children, title, pageTitle,}) 
 	if (
 		route === "/authorization" ||
 		route === "/registration" ||
-		route === "/anketa" || route === "/myworks" || route === "/404" || route === "/500"
+		route === "/anketa" || route === "/myworks" || route === "/404" || route === "/500" || route === "/agreements"
 	) {
 		style = "headerLogo2";
 	} else {

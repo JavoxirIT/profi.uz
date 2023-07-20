@@ -1,4 +1,7 @@
 export const uz = {
+  agreemetText: "Saytdan foydalanish shartlari",
+  agreemetTextUser: "Foydalanuvchi shartnomasi shartlarini qabul qilish",
+  agreemetAcceptUser: "Siz foydalanuvchi shartnomasi shartlarini qabul qilmadingiz",
   modaltitleFilter: "Mustaxasisni topish uchun viloyatni tanlang",
   reklama: "Reklama",
   reklamaText: "Reklamangiz uchun joy",
@@ -6,7 +9,7 @@ export const uz = {
   authButtonTitle: "Kirish",
   regButtonTitle: "Ro’yxatdan o’tish",
   formReqMess: "Iltomos telefon raqamizni kiriting!",
-  formReqMessLastName:"Iltomos familiyayizni kiriting!",
+  formReqMessLastName: "Iltomos familiyayizni kiriting!",
   formReqMessFirstName: "Iltomos ismizni kiriting!",
   formReqMessParol: "Iltomos parolni kiriting!",
   formReqMessParol2: "Parol",
@@ -45,14 +48,14 @@ export const uz = {
   complaint: "maksimal uzunligi 1000 belgi",
   complaintButton: "Yuborish",
   complaintModalTitle: "Shikoyat qilish",
-//
+  //
   engOmmaboplari: "Eng ommaboplari",
   saralash: "Saralash",
   qidirish: "Mutaxasisni qidirish",
   viloyatlar: "Viloyatlar",
   muttaxasisliklar: "Mutaxasisliklar",
   umumiyReyting: "Umumiy reyting",
-//   master modal filter
+  //   master modal filter
   modaltitle: "Uch qadamda kerakli mutaxisisni toping",
   viloyatniTanlang: "Viloyatni tanlang",
   yunalish: "Yo`nalishni tanlang",
@@ -64,18 +67,18 @@ export const uz = {
   topildi: "Mutaxasis topildi!",
   topilmadi: "Mutaxasis topilmadi!",
   search: "Kerakli mutaxasisni qidiring...",
-//   one user page
+  //   one user page
   batafsilMalumot: "Ba’tafsil malumotlari",
   tuliqmalumot: "Iltimos ma`lumotlaringizni to`liq kirgizing",
   murojaatQilish: "Murojaat qilish",
   fikirQoldirish: "Fikir qoldirish",
   qushish: "Qo`shish",
-//   tab card
+  //   tab card
   batafsil: "Batafsil",
   bajarilgan: "Bajargan ishlari",
   fikirlar: "Fikirlar",
 
-//   notification
+  //   notification
   fikir: "Fikir qo`shganiz uchun raxmat",
   baho: "Baho qabul qilindi",
   bajarilmadi: "Soʻrov bajarilmadi",
@@ -88,6 +91,7 @@ export const uz = {
   saqlandi: "Malumotlar saqlandi",
   saqlanmadi: "Saqlanmadi",
   error: "Ma'lumotlani olib bo'lmadi",
+  errorServer: "Ma`lumotlar bazasiga ulanib bo'lmadi",
   error404: "404 holat kodi bilan soʻrov bajarilmadi",
   error302: "Bu telefon raqam orqali ro`yxatdan o`tilgan",
   success: "Tizimga muvaffaqiyatli kirdingiz",
@@ -102,9 +106,9 @@ export const uz = {
   xabarYuborilmadi: "Xabar yuborilmadi",
   chatniTanlang: "Kerakli chatni tanlang.",
 
-// like list
+  // like list
   likeNoData: "Sizda sevimlilar ro`yhati mavjut emas",
-//   myWork
+  //   myWork
   format: "Format",
   rasmTanlang: "Rasimni tanlang",
   bajarilganIshlar: "Bajarilgan ishlarni qo`shish",
@@ -113,17 +117,16 @@ export const uz = {
   rasm: "Rasim qo`shing",
   batafsilMalumot2: "To’liqroq yozing...",
 
-//   statistika
+  //   statistika
   kurilgan: "Ko`rilgan",
   saqlangan: "Saqlangan",
   boglangan: "Bo`langan",
   bekorqilgan: "Bekor qilgan",
 
-
-//   result no data page
+  //   result no data page
   malumotYuq: "Ma'lumot yoq.",
 
-//   anketa page
+  //   anketa page
   mutaxasislig: "Mutaxasislig",
   mutaxasisligRequired: "Iltimos mutaxasisligingiz tanlang!",
   yunalishRequired: "Iltimos yo'nalishlarni tanlang!",
@@ -137,8 +140,7 @@ export const uz = {
   modalTitle: "Rasm sozlamalari",
   errImage: "Rasmni yuklash majburiy",
   errDescription: "Batafsil ma`lumotni qo`shing",
-//   page 404
+  //   page 404
   subTitle: "Kechirasiz, siz tashrif buyurgan sahifa mavjud emas.",
   subTitle500: "Server tomonida xatolik yuz berdi.",
-
 };

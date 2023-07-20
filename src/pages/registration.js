@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {Button, Form, Input, notification, Row, Switch, Typography} from "antd";
+import {Button, Checkbox, Form, Input, notification, Row, Switch, Typography} from "antd";
 import {PatternFormat} from "react-number-format";
 import PageWrapperAuthorization from "../components/PageWrapperAuthorization";
 import Link from "next/link";
@@ -17,6 +17,7 @@ const customer = process.env.NEXT_PUBLIC_USER_CUSTOMER;
 const spesialist = process.env.NEXT_PUBLIC_USER_SPECIALIST;
 
 function Registration({t}) {
+	const [agreement, setAgreement] = useState(false)
 	const router = useRouter();
 	const [api, contextHolder] = notification.useNotification();
 
@@ -32,31 +33,41 @@ function Registration({t}) {
 		value.role_id = String(isSwitch);
 		value.phone = NumberStr(value["phone"]);
 		// отправляем запрос для  регистрации
-		postFetch({path: "register", value})
-		.then((res) => {
-			if (res.status === 200) {
-				openNotificationWithIcon("success", t.success);
-				setCookie("access_token", res.data.access_token, res.data.expires_in);
-				setCookie("access_type", res.data.token_type);
-				setCookie("user_id", res.data.user.id, res.data.expires_in);
-				setUser(res.data.user);
-				console.log("res-data", res.data)
-				//   распридиляем по ролям
-				res.data.user.role_id === Number(spesialist) ? router.push({
-					pathname: '/anketa', query: {user_id: res.data.user.id},
-				}) : res.data.user.role_id === Number(admin) ? router.push("/admin") : res.data.user.role_id === Number(customer) ? router.push("/") : null;
-			} else if (res.code === "ERR_BAD_REQUEST") {
-				openNotificationWithIcon("error", `${res.code + " " + res.message}`, t.error);
-			} else if (res.response.status === 302) {
-				openNotificationWithIcon("error", t.error302);
-			}
-		})
-		.catch((err) => openNotificationWithIcon("error", err.code, err.message));
+		if (agreement !== false) {
+			postFetch({path: "register", value})
+			.then((res) => {
+				if (res.status === 200) {
+					openNotificationWithIcon("success", t.success);
+					setCookie("access_token", res.data.access_token, res.data.expires_in);
+					setCookie("access_type", res.data.token_type);
+					setCookie("user_id", res.data.user.id, res.data.expires_in);
+					setUser(res.data.user);
+					console.log("res-data", res.data)
+					//   распридиляем по ролям
+					res.data.user.role_id === Number(spesialist) ? router.push({
+						pathname: '/anketa', query: {user_id: res.data.user.id},
+					}) : res.data.user.role_id === Number(admin) ? router.push("/admin") : res.data.user.role_id === Number(customer) ? router.push("/") : null;
+				} else if (res.code === "ERR_BAD_REQUEST") {
+					openNotificationWithIcon("error", `${res.code + " " + res.message}`, t.error);
+				} else if (res.response.status === 302) {
+					openNotificationWithIcon("error", t.error302);
+				}
+			})
+			.catch((err) => openNotificationWithIcon("error", err.code, err.message));
+		} else {
+			openNotificationWithIcon("error", t.agreemetAcceptUser);
+		}
+
 	};
 	const onFinishFailed = (errorInfo) => {
 		const info = errorInfo.errorFields.map((item) => <p style={{fontSize: 16, color: "#000"}}
 		                                                    key={item.errors}>{item.errors}</p>)
 		openNotificationWithIcon("error", info);
+	};
+
+	const onChange = (e) => {
+		console.log(`checked = ${e.target.checked}`);
+		setAgreement(e.target.checked)
 	};
 
 	/*useEffect(() => {
@@ -128,14 +139,21 @@ function Registration({t}) {
 					<Item
 						valuePropName="checked"
 					>
-						<Row justify="space-between" style={{margin: "30px"}}  >
-							<Text style={{fontSize: 18}} >{t.customer}</Text>
+						<Row justify="space-between" style={{margin: "30px"}}>
+							<Text style={{fontSize: 18}}>{t.customer}</Text>
 							<Switch
 								// checkedChildren={t.specialist} unCheckedChildren={t.customer}
 								// style={{margin: "20px 20px 0 0 "}}
 								onChange={(e) => setIsSwitch(e.target === false ? 2 : 3)}
 							/>
-							<Text style={{fontSize: 18}} >{t.specialist}</Text>
+							<Text style={{fontSize: 18}}>{t.specialist}</Text>
+						</Row>
+					</Item>
+					<Item
+						valuePropName="checked"
+					>
+						<Row justify="space-between" style={{margin: "10px"}}>
+							<Checkbox onChange={onChange}>{t.agreemetTextUser}</Checkbox>
 						</Row>
 					</Item>
 					<Item className={style.AuthorizationFormButtonForm}>
@@ -148,6 +166,9 @@ function Registration({t}) {
 						</Button>
 					</Item>
 				</Form>
+				<div style={{paddingTop: 20}} >
+					<Link href={"/agreements"}><span className={style.AuthorizationLinkSpan} style={{color: "red"}} >{t.agreemetText}</span></Link>
+				</div>
 				<div style={{paddingTop: 20}}>
 					<div className={style.AuthorizationLinkBlock}>
 						<Link href={"/"}><span className={style.AuthorizationLinkSpan}>{t.linkHome}</span></Link>
