@@ -1,0 +1,20 @@
+.agreementsBlock {
+    width: 100%;
+    max-width: calc(100vw - 400px);
+    padding-top: 20px;
+}
+.agreementsBlockText{
+    text-align: justify;
+    line-height: 30px;
+    margin-bottom: 40px;
+}
+
+@media screen  and (min-width: 260px) and (max-width: 1175px) {
+    .agreementsBlock {
+        max-width: calc(100vw - 20px);
+    }
+    .agreementsBlockText{
+        line-height: 24px;
+    }
+
+}

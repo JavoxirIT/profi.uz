@@ -1,11 +1,11 @@
 .AuthorizationFormBlock {
     width: 100%;
-    height: calc(100vh - 99px);
+    min-height: calc(100vh - 99px);
     display: flex;
     flex-direction: column;
     justify-content: center !important;
     align-items: center !important;
-    /* padding: 0 43px; */
+    padding: 15px 0;
 }
 
 /* .AuthorizationForm {
