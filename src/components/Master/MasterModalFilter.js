@@ -1,18 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import {useStepsForm} from 'sunflower-antd';
-import {Steps, Input, Button, Form, Result, Checkbox, Row, Col, Card, Rate, Tag, Typography, Space, Spin} from 'antd';
+import {Steps, Button, Form, Result, Checkbox, Typography, Space, Spin} from 'antd';
 import ModalCenter from "../../Modal/ModalCenter";
 import {useRouter} from "next/router";
 import css from "../../styles/Index.module.css";
-import Image from "next/image";
-import img from "../../img/noimage.png";
-import {AiFillHeart} from "react-icons/ai";
-import Link from "next/link";
-import {HiOutlineLocationMarker} from "react-icons/hi";
 import useSessionStorage from "../../hooks/useSessionStorage";
-import {log} from "util";
 
-const imgUrl = process.env.NEXT_PUBLIC_IMG_URL
+
 const {Text, Title} = Typography;
 
 
@@ -72,11 +66,7 @@ const MasterModalFilter = ({special, vil, onFinish, open, setOpen, loading, user
 			setNewValue([])
 			form.resetFields()
 			gotoStep(current - 3);
-			// setTimeout(() => {
-			// 	gotoStep(current - 3)
-			//
-			// }, 3000)
-			await new Promise(r => setTimeout(r, 500));
+			await new Promise(r => setTimeout(r, 1000));
 			return 'ok';
 		}, total: 4,
 
@@ -200,7 +190,7 @@ const MasterModalFilter = ({special, vil, onFinish, open, setOpen, loading, user
 				</Form>
 			</Spin>
 
-			{current === 3 && (user.length !== 0 ? <Result
+			{current === 3 && (user.length > 0 ? <Result
 				status="success"
 				title={t.topildi}
 				extra={<>

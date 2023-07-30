@@ -4,25 +4,25 @@ import {AiFillHeart, AiOutlineEye} from "react-icons/ai";
 import Link from "next/link";
 import Image from "next/image";
 import {
-	Typography, Card, Tag, Rate, Checkbox, Form, Button, notification, Space, Divider, Tooltip,
+	Typography, Card, Tag, Rate, Checkbox, Form, Button, notification, Divider, Tooltip, Pagination, Row,
 } from "antd";
 import css from "../styles/Index.module.css";
 import React, {
-	useCallback, useEffect, useLayoutEffect, useState,
+	useCallback, useEffect, useState,
 } from "react";
 import {getCookie} from "utils/setCookie";
 import {postFetch} from "../request/Fetch";
 import img from "../img/noimage.png";
 import MasterCarusel from "../components/Master/MasterCarusel";
 import MasterModalFilter from "../components/Master/MasterModalFilter";
-import Preloader from "../components/Preloder/Preloader";
-import {loadGetInitialProps} from "next/dist/shared/lib/utils";
+import {Preloader} from "../utils/Preloader";
 import {IndexTitleFadeEffect} from "../components/Master/IndexTitleFadeEffect";
 import IndexFooterFilter from "../components/Index/IndexFooterFilter";
 import ModalCenter from "../Modal/ModalCenter";
 import {scrollIntoTheView} from "../utils/scrollIntoTheView";
 import {BsChatRightText} from "react-icons/bs";
 import {useRouter} from "next/router";
+import EmptyData from "../components/Preloder/EmptyData";
 
 const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 const urlAlUser = process.env.NEXT_PUBLIC_ALL_USER;
@@ -47,7 +47,28 @@ function HomePage({data, t, lang}) {
 		return a.reyting - b.reyting;
 	}
 
-	// const [user, setUser] = useState(data.sort(userSort).reverse());
+	//TODO пагинация
+	const [current, setCurrent] = useState();
+	const [total, setTotal] = useState();
+	const onPagination = (page) => {
+		setCurrent(page);
+		postFetch({path: `all-user?page=${page}`})
+		.then((res) => {
+			if (res.status === 200) {
+				//  console.log(res.data);
+				setUser(res.data.data);
+				setCaruselUser(res.data.data);
+				setTotal(res.data.total)
+				setCurrent(res.data.current_page)
+
+			}
+		})
+		.catch((err) => {
+			console.error((err))
+		});
+
+	};
+	//
 	const [user, setUser] = useState(data);
 	const [caruselUser, setCaruselUser] = useState(user);
 	// console.log("newData", user);
@@ -57,8 +78,11 @@ function HomePage({data, t, lang}) {
 			.then((res) => {
 				if (res.status === 200) {
 					//  console.log(res.data);
-					setUser(res.data);
-					setCaruselUser(res.data);
+					setUser(res.data.data);
+					setCaruselUser(res.data.data);
+					setTotal(res.data.total)
+					setCurrent(res.data.current_page)
+
 				}
 			})
 			.catch((err) => {
@@ -107,7 +131,7 @@ function HomePage({data, t, lang}) {
 		setOpenModal(false);
 	};
 	const [dataModalFilter, setModalFilter] = useState([]);
-	const onFinish = async (value) => {
+	const sortedUser = async (value) => {
 		setModalFilter([])
 		if (subId !== null) {
 			value.special = Array();
@@ -196,40 +220,33 @@ function HomePage({data, t, lang}) {
 		});
 	};
 
-	const [filtered, setFiltered] = useState([]);
-	useEffect((_) => {
-		setFiltered(user);
-	}, [user]);
-
-	const Search = (val) => {
-		//текущие задачи и новые отфильтрованные задачи
-		let currentTodos = [], newList = [];
-		if (val !== "") {
-			//делаем копию нашего стейта
-			currentTodos = user;
-			//фильтруем стейт в поисках совпадений
-			newList = currentTodos.filter((todo) => {
-				// значение которое пользователь ввел и которое у нас
-				// в стейте делаем строчными буквами чтобы конфликтов не было
-				// мало ли пользователь ввель строчными буквами а у нас заглавные
-				const lc = todo.firstname.toLowerCase();
-				const filter = val.toLowerCase();
-				// проверяем есть ли у нас этот элемент если есть возвращаем его
-				return lc.includes(filter);
-			});
-		} else {
-			// если в input ничего нету то есть пользователь стер то
-			// что ввел тогда возвращаем все задачи
-			newList = user;
+//поиск специалиста на стороне сервера
+	const [loader, setLoader] = useState(false)
+	const Search = async (val) => {
+		setLoader(true)
+		const data = {
+			data: val
 		}
-		setFiltered(newList);
+		await postFetch({path: "search", value: data}).then(res => {
+			if (res.status === 200) {
+				setLoader(false)
+				setUser(res.data)
+				if (res.data.length === 0) {
+					openNotificationWithIcon("error", t.errorNoUser);
+				}
+			}
+		}).catch(err => {
+			setLoader(false)
+			console.log(err)
+		})
 	};
-	// console.log(data)
+
+
 	const [open, setOpen] = useState(false);
 
-	if (!filtered) {
-		return <Preloader/>;
-	}
+	// if (user.length === 0 || loader === true) {
+	// 	return <Preloader/>;
+	// }
 	return (<PageWrapperGlobal
 		title={t.wrapperTitle}
 		pageTitle=""
@@ -237,7 +254,7 @@ function HomePage({data, t, lang}) {
 		setUser={setUser}
 		vil={vil}
 		isSpecial={isSpecial}
-		onFinish={onFinish}
+		onFinish={sortedUser}
 		Search={Search}
 	>
 		{/*для скрола*/}
@@ -246,7 +263,7 @@ function HomePage({data, t, lang}) {
 		<MasterModalFilter
 			vil={vil}
 			special={isSpecial}
-			onFinish={onFinish}
+			onFinish={sortedUser}
 			setOpen={setOpen}
 			open={open}
 			loading={loading}
@@ -282,7 +299,7 @@ function HomePage({data, t, lang}) {
 						{t.qidirish}
 					</Button>
 				</div>
-				{filtered.map((i) => (<Card
+				{user.length === 0 ? <EmptyData t={t}/> : loader === true ? <Preloader/> : user.map((i) => (<Card
 					hoverable
 					bordered={false}
 					key={i.id}
@@ -375,13 +392,20 @@ function HomePage({data, t, lang}) {
 							</Text>
 						</p>
 						<div style={{paddingTop: 16}}>
-							{i.sub_special?.map((i) => (
-								<Tag color="default" key={i.id} style={{marginBlock: 5}}>
-									{lang === "ru" ? i.nameru : i.name}
-								</Tag>))}
+							{i.sub_special?.map((i) => (<Tag color="default" key={i.id} style={{marginBlock: 5}}>
+								{lang === "ru" ? i.nameru : i.name}
+							</Tag>))}
 						</div>
 					</div>
 				</Card>))}
+				<Row justify="center">
+					<Pagination
+						style={{marginTop: 15}}
+						current={current}
+						onChange={onPagination}
+						total={total}
+					/>
+				</Row>
 			</div>
 		</main>
 		<Divider/>
@@ -389,7 +413,7 @@ function HomePage({data, t, lang}) {
 			<IndexFooterFilter
 				vil={vil}
 				special={isSpecial}
-				onFinish={onFinish}
+				onFinish={sortedUser}
 				loading={loading}
 				lang={lang}
 				t={t}
@@ -403,14 +427,14 @@ function HomePage({data, t, lang}) {
 				width={"max-content"}
 			>
 				<Divider/>
-				<Form onFinish={onFinish} form={form}>
+				<Form onFinish={sortedUser} form={form}>
 					<Form.Item name="region">
 						<Checkbox.Group>
 							<div className={css.MasterModalFilterCheckbox}>
 								{vil.map((i, index) => (<Checkbox
 									key={i.id}
 									value={i.id}
-									// onChange={onRegionChange}
+									// onPagination={onRegionChange}
 									// checked={checked === i.id}
 								>
 									{lang === "ru" ? i.vil_name_ru : i.vil_name}
@@ -438,8 +462,8 @@ export async function getServerSideProps(context) {
 	};
 	const response = await fetch(urlAlUser, config);
 	const newData = await response.json();
-	// console.log(newData)
-	const data = newData.filter((i) => i.image !== null);
+
+	const data = newData.data.filter((i) => i.image !== null);
 	return {
 		props: {
 			data,

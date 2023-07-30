@@ -2,7 +2,7 @@ import Head from "next/head";
 import React from "react";
 import Link from "next/link";
 import {RiArrowGoBackLine} from "react-icons/ri";
-import SerchInp from "./SerchInp";
+import SearchInp from "./SearchInp";
 import NotificationIconBlock from "./NotificationIconBlock";
 import css from "../styles/PageWrapper.module.css";
 
@@ -56,8 +56,8 @@ export const PageWrapperGlobal = ({
 							profi.uz
 						</Link>
 						<h1 className={css.headerKondidatText}>{pageTitle}</h1>
-						<div className={css.headerSerchMobile}>
-							<SerchInp Search={Search} t={t}/>
+						<div className={css.headerSearchMobile}>
+							<SearchInp Search={Search} t={t}/>
 						</div>
 						<div className={css.headerNotificationIconBlock}>
 							<NotificationIconBlock t={t}/>

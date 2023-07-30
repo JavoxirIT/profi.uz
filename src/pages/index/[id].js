@@ -16,7 +16,6 @@ const {Title} = Typography;
 const url = process.env.NEXT_PUBLIC_ONE_USER;
 
 const Master = ({t, data, lang}) => {
-	console.log(data)
 	const router = useRouter();
 	const [isChecked, setChecked] = useState(false);
 	useEffect(() => {

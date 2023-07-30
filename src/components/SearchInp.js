@@ -4,22 +4,23 @@ import css from "../styles/SerchInp.module.css";
 import {Input} from "antd";
 
 const {Search} = Input;
-export default function SerchInp(props) {
+export default function SearchInp(props) {
 	// const onSearch = (e) => {
 	// 	// setIsSearch({search: e.target.value});
 	// 	console.log(e.target.value);
 	// };
 
-	return <Input
+	const search = <Search
 		className={css.Search_Inpblock}
-		prefix={<RiSearchLine className={css.Search_BtnIcons}/>}
+		// prefix={<RiSearchLine/>}
 		placeholder={props.t.search}
-		allowClear
-		onChange={({ target: { value } }) => props.Search(value)}
-		onPressEnter={({ target: { value } }) => props.Search(value)}
-		onBlur={({ target: { value } }) => props.Search(value)}
+		onSearch={props.Search}
+		onPressEnter={({target: {value}}) => props.Search(value)}
+		onBlur={({target: {value}}) => props.Search(value)}
 		// suffix={<RiFilterLine className={css.Search_BtnIcons} />}
 		size="large"
-	/>
+		enterButton
+	/>;
+	return search
 
 }

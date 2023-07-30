@@ -91,6 +91,12 @@
     align-items: center;
 }
 
+.headerSearchMobile {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
 @media (min-width: 1176px) and (max-width: 1300px) {
     .header {
         height: max-content !important;
@@ -160,7 +166,7 @@
         color: #ffffff;
     }
 
-    .headerSerchMobile {
+    .headerSearchMobile {
         width: 100%;
         max-width: calc(100vw - 30px);
         grid-column-start: 1;
