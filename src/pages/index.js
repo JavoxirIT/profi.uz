@@ -141,7 +141,7 @@ function HomePage({data, t, lang}) {
 		.then((res) => {
 			if (res.status === 200) {
 				if (res.data.length !== 0) {
-					setUser(res.data);
+					setUser(res.data.data);
 					setModalFilter(res.data);
 					form.resetFields();
 					scrollIntoTheView("scroll");
