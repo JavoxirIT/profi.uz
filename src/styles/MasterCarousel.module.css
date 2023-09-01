@@ -1,0 +1,31 @@
+.carouserWrapper {
+    background: rgba(0, 21, 41, 0.3);
+    padding: 0 !important;
+    margin: 0 !important;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.08), 0 1px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px 0 rgba(0, 0, 0, 0.08);
+    -moz-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.03), 0 1px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px 0 rgba(0, 0, 0, 0.02);
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+}
+.carouserWrapper:hover{
+    box-shadow:0px 0px 8px 1px #001529;
+    -moz-box-shadow:  0px 0px 8px 1px #001529;
+}
+
+.carouselHeader {
+    display: flex;
+    flex-direction: row;
+    /*justify-content: center;*/
+    align-items: center;
+}
+
+.carouselRate {
+    font-size: 20px !important;
+    letter-spacing: 5px !important;
+}
+
+@media (min-width: 220px) and (max-width: 1175px) {
+    .carouselHeader {
+        flex-direction: column;
+    }
+}

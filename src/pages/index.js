@@ -57,7 +57,6 @@ function HomePage({data, t, lang}) {
 			if (res.status === 200) {
 				//  console.log(res.data);
 				setUser(res.data.data);
-				setCaruselUser(res.data.data);
 				setTotal(res.data.total)
 				setCurrent(res.data.current_page)
 
@@ -70,7 +69,7 @@ function HomePage({data, t, lang}) {
 	};
 	//
 	const [user, setUser] = useState(data);
-	const [caruselUser, setCaruselUser] = useState(user);
+
 	// console.log("newData", user);
 	useEffect(() => {
 		if (!data) {
@@ -79,7 +78,6 @@ function HomePage({data, t, lang}) {
 				if (res.status === 200) {
 					//  console.log(res.data);
 					setUser(res.data.data);
-					setCaruselUser(res.data.data);
 					setTotal(res.data.total)
 					setCurrent(res.data.current_page)
 
@@ -273,7 +271,10 @@ function HomePage({data, t, lang}) {
 			form={form}
 		/>
 		<IndexTitleFadeEffect t={t}/>
-		<MasterCarusel caruselUser={caruselUser}/>
+		<div className={css.IndexTopUsers} >
+			<Title level={5} >{t.topSpecial}</Title>
+		</div>
+		<MasterCarusel lang={lang}/>
 		<main className={css.indexContainer}>
 			<div>
 				<Title level={4} className={css.indexTitltFilter}>

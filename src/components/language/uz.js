@@ -1,4 +1,5 @@
 export const uz = {
+  topSpecial:"Top mutaxassislar",
   agreemetText: "Saytdan foydalanish shartlari",
   agreemetTextUser: "Foydalanuvchi shartnomasi shartlarini qabul qilish",
   agreemetAcceptUser: "Siz foydalanuvchi shartnomasi shartlarini qabul qilmadingiz",

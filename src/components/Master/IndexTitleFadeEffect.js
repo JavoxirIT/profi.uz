@@ -1,26 +1,32 @@
-import React, {Component, useEffect, useState} from "react";
+import React from "react";
 import Slider from "react-slick";
 import css from "../../styles/Index.module.css";
+import {Carousel} from "antd"
 
 export const IndexTitleFadeEffect = ({t}) => {
 	const settings = {
-		className: `${css.MasterKaruselTitle}`,
+		className: `${css.KaruselTitle}`,
 		vertical: true,
+		// verticalSwiping: true,
 		dots: false,
 		autoplay: true,
 		// fade: true,
 		infinite: true,
-		speed: 1500,
-		slidesToShow: 1,
-		slidesToScroll: 1,
+		speed: 2000,
+		// slidesToShow: 1,
+		// slidesToScroll: 1,
 		adaptiveHeight: true,
 	};
 
 	return (
-		<div style={{marginTop: 30}}>
+		<div style={{paddingTop: 20}}>
 			<Slider {...settings} >
-				<h1 className={css.IndexTitle}>{t.wrapperTitle}</h1>
-				<h1 className={css.IndexTitle}>{t.modaltitle}</h1>
+				<div className={css.indexTitleBlock}>
+					<h1 className={css.IndexTitle}>{t.wrapperTitle}</h1>
+				</div>
+				<div className={css.indexTitleBlock}>
+					<h2 className={css.IndexTitle}>{t.modaltitle}</h2>
+				</div>
 			</Slider>
 		</div>
 	);

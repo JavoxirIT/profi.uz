@@ -1,4 +1,5 @@
 export const ru = {
+  topSpecial: "Топ специалисты",
   agreemetText: "Правила пользования сайтом",
   agreemetTextUser: "Принять условия пользовательского соглашения",
   agreemetAcceptUser: "Вы не приняли условия пользовательского соглашения",

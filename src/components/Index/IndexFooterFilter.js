@@ -1,4 +1,5 @@
 import React from 'react';
+import {sortFunction} from "../../utils/sortFunction";
 import css from "../../styles/Index.module.css"
 
 function IndexFooterFilter(props) {
@@ -8,23 +9,11 @@ function IndexFooterFilter(props) {
 		setOpenModal(true)
 	}
 
-	function sortData(a, b) {
-		if (lang === "ru") {
-			if (a.nameru > b.nameru) return 1;
-			if (a.nameru === b.nameru) return 0;
-			if (a.nameru < b.nameru) return -1;
-		} else {
-			if (a.name > b.name) return 1;
-			if (a.name === b.name) return 0;
-			if (a.name < b.name) return -1;
-		}
-	}
-
-	const specialData = special.sort(sortData).map((i) =>
-		<div key={i.id}>
+	const specialData = special.sort(sortFunction("name", "nameru")).map((i) =>
+		<div key={i.id} className={css.IndexFooterFilterItemGroup}>
 			<p className={css.IndexFooterFilterItemTitle}>{lang === "ru" ? i.nameru : i.name}</p>
 			<ul>
-				{i.subspecial.sort(sortData).map((item) =>
+				{i.subspecial.sort(sortFunction("name", "nameru")).map((item) =>
 					<li onClick={() => onSubSpecial(item.id)} className={css.IndexFooterFilterItems}
 					    key={item.id}>{lang === "ru" ? item.nameru : item.name}</li>
 				)}

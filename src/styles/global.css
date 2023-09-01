@@ -277,6 +277,15 @@ img {
     left: 50vw;
 }
 
+
+/*slick-list*/
+/*.slick-list{*/
+/*    padding: 30px !important;*/
+/*}*/
+/*slick-list*/
+
+
+
 @media (min-width: 220px) and (max-width: 1175px) {
     h4 {
         font-size: 14px !important;
@@ -372,8 +381,4 @@ img {
     }
 
     /*end chat user modal*/
-}
-
-.slick-arrow {
-    color: crimson !important;
 }
