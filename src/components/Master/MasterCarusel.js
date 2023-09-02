@@ -25,9 +25,9 @@ function MasterCarusel({lang}) {
 		postFetch({path: "topusers", method: "GET"}).then((res) => {
 			if (res.status === 200) {
 				setCaruselUser(res.data.data)
-				console.log("carousel", res.data.data)
+				// console.log("carousel", res.data.data)
 			} else {
-				console.log("warning:", res)
+				console.error("warning:", res)
 			}
 		}).catch((err) => {
 			console.log(err)

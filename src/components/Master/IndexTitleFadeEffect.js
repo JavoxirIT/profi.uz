@@ -6,11 +6,11 @@ import {Carousel} from "antd"
 export const IndexTitleFadeEffect = ({t}) => {
 	const settings = {
 		className: `${css.KaruselTitle}`,
-		vertical: true,
+		// vertical: true,
 		// verticalSwiping: true,
 		dots: false,
 		autoplay: true,
-		// fade: true,
+		fade: true,
 		infinite: true,
 		speed: 2000,
 		// slidesToShow: 1,
