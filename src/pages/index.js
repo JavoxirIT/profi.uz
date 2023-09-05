@@ -98,10 +98,11 @@ function HomePage({data, t, lang}) {
 			if (res.status === 200) {
 				setVil(res.data.viloyat);
 				setLoading(false);
-			}
+			} else setVil([]);
 		})
 		.catch((err) => {
-			openNotificationWithIcon("error", err.code, err.message);
+			setLoading(false);
+			// openNotificationWithIcon("error", t.errorNoUser500);
 		});
 		// 	eslint-disable-next-line
 	}, []);
@@ -117,7 +118,8 @@ function HomePage({data, t, lang}) {
 			}
 		})
 		.catch((err) => {
-			openNotificationWithIcon("error", err.code, err.message);
+			// openNotificationWithIcon("error", err.code, err.message);
+
 		});
 		// 	eslint-disable-next-line
 	}, []);
@@ -191,7 +193,7 @@ function HomePage({data, t, lang}) {
 		})
 		.catch((err) => {
 			// console.log(err)
-			openNotificationWithIcon("error", err.code, err.message);
+			// openNotificationWithIcon("error", err.code, err.message);
 		});
 		// console.log(value);
 	};
@@ -214,7 +216,7 @@ function HomePage({data, t, lang}) {
 			}
 		})
 		.catch((err) => {
-			openNotificationWithIcon("error", err.code, err.message);
+			openNotificationWithIcon("error", t.errorNoUser500);
 		});
 	};
 
