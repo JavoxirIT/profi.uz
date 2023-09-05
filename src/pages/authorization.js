@@ -46,7 +46,7 @@ function Authorization({ t }) {
     await postFetch({ path: "login", value })
       .then((res) => {
         setLoader(false);
-        console.log(res);
+        // console.log(res);
         if (res.status === 200) {
           setCookie("access_token", res.data.access_token, res.data.expires_in);
           setCookie("user_id", res.data.user.id, res.data.expires_in);
@@ -82,9 +82,9 @@ function Authorization({ t }) {
         }
       })
       .catch((err) => {
-        console.error("message:", err);
+        // console.error("message:", err);
         setLoader(false);
-        openNotificationWithIcon("error", err.code, err.message);
+        openNotificationWithIcon("error", t.errorServer);
       });
   };
   const onFinishFailed = (errorInfo) => {

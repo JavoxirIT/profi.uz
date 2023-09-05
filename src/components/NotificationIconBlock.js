@@ -1,3 +1,4 @@
+"use client"
 import React, {useEffect, useState} from "react";
 import Link from "next/link";
 import {AiOutlineHeart} from "react-icons/ai";
@@ -21,19 +22,20 @@ export default function NotificationIconBlock({t}) {
 		localStorage.clear()
 	};
 
-
 	const [unread, setUnread] = useState()
 	useEffect(() => {
-		if (getCookie("access_token")) {
+		if (getCookie("access_token") !== null) {
 			setInterval(() => {
 				postFetch({path: "unread-messages"}).then((res) => {
-					// console.log("unread",res)
-					setUnread(res.data.count)
+					if(!res.code && res.status === 200){
+						setUnread(res.data?.count)
+						// console.log("unread", res)
+					}
 				}).catch((err) => {
-					console.log(err)
+					// console.log(err)
 				})
 			}, 10000)
-		}
+		}else setUnread(0)
 	}, []);
 
 	return (
