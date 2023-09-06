@@ -23,6 +23,7 @@ import {scrollIntoTheView} from "../utils/scrollIntoTheView";
 import {BsChatRightText} from "react-icons/bs";
 import {useRouter} from "next/router";
 import EmptyData from "../components/Preloder/EmptyData";
+import {log} from "util";
 
 const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 const urlAlUser = process.env.NEXT_PUBLIC_ALL_USER;
@@ -140,7 +141,8 @@ function HomePage({data, t, lang}) {
 		postFetch({path: "sorted-user", value: JSON.stringify(value)})
 		.then((res) => {
 			if (res.status === 200) {
-				if (res.data.length !== 0) {
+				if (res.data.data.length !== 0) {
+					// console.log(res.data)
 					setUser(res.data.data);
 					setModalFilter(res.data);
 					form.resetFields();
