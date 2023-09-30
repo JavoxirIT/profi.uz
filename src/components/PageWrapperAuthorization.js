@@ -26,17 +26,19 @@ export default function PageWrapperAuthorization({children, title, pageTitle,}) 
 		<>
 			<Head>
 				<meta charSet="utf-8"/>
-				<meta httpEquiv="Content-Language" content="uz_UZ"/>
+				<meta httpEquiv="Content-Language" content="uz"/>
 				<meta name="theme-color" content="#0c0d15"/>
 				<meta
 					name="description"
+					lang="uz_UZ"
 					content="iProfi - mutaxassislarni qidirish xizmati: ta'mirlash ustalari, repetitorlar, murabbiylar, rassomlar va musiqachilar, go'zallik ustalari va boshqalar."
 				/>
-				{/*<meta*/}
-				{/*	name="description"*/}
-				{/*	content="iProfi — сервис поиска специалистов: мастера по ремонту, репетиторы, тренеры, артисты и музыканты, мастера красоты и другие."*/}
-				{/*/>*/}
-				<meta name="keywords" content="profi, профи, iprofi, iprofi.uz"/>
+				<meta
+				name="description" lang="tu_RU"
+				content="iProfi — сервис поиска специалистов: мастера по ремонту, репетиторы, тренеры, артисты и музыканты, мастера красоты и другие."
+				/>
+				<meta name="keywords" lang="uz_UZ" content="profi, профи, iprofi, ta'mirlash ustalari, repetitorlar, murabbiylar, rassomlar va musiqachilar, go'zallik ustalari"/>
+				<meta name="keywords" lang="ru_RU" content="Профи, мастера, мастера по ремонту, репетиторы, тренеры, артисты и музыканты, мастера красоты"/>
 				<meta name="viewport" content="width=device-width"/>
 				<meta property="og:type" content="website"/>
 				<meta property="og:title" content="Muammolaringizni hal qilish uchun iprofini tanlang."/>

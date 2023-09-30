@@ -18,7 +18,15 @@
     /*justify-content: center;*/
     align-items: center;
 }
-
+.carouselImageBlock{
+    position: relative !important;
+    width: 120px;
+    height: 120px;
+}
+.indexCarouselImage{
+    border-radius: 10px;
+    object-fit: cover;
+}
 .carouselRate {
     font-size: 20px !important;
     letter-spacing: 5px !important;

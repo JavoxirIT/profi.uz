@@ -49,6 +49,9 @@ export const ru = {
   complaint: "максимальная длина 1000 символов",
   complaintButton: "Отправить",
   complaintModalTitle: "Подать жалобу",
+  complaintSuccess: "Жалоба отправлена администратору",
+  complaintWarning: "Извините, ошибка при отправке",
+
 
   //
   engOmmaboplari: "Самые успешные",

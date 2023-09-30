@@ -49,6 +49,9 @@ export const uz = {
   complaint: "maksimal uzunligi 1000 belgi",
   complaintButton: "Yuborish",
   complaintModalTitle: "Shikoyat qilish",
+  complaintSuccess: "Shikoyat adminga yuborildi",
+  complaintWarning: "Kechirasiz shikoyat yuborilmadi",
+
   //
   engOmmaboplari: "Eng ommaboplari",
   saralash: "Saralash",
@@ -97,7 +100,7 @@ export const uz = {
   error302: "Bu telefon raqam orqali ro`yxatdan o`tilgan",
   success: "Tizimga muvaffaqiyatli kirdingiz",
   errorNoUser: "Kechirasiz mutaxasis topilmadi",
-  errorNoUser500: "Kechirasiz sercerda xatolik ro`y berdi",
+  errorNoUser500: "Kechirasiz serverda xatolik ro`y berdi",
   noUser: "Faydalanuvchi mavjut emas",
   errorImage: "Rasm yuklanmadi",
 

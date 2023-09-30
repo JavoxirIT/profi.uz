@@ -14,19 +14,19 @@ function MasterComplaint({t, open, userId, handleCancel, setIsModalOpen, openNot
 		setIsModalOpen(false)
 		if(!getCookie("access_token")){
 			setBtnLoading(false)
-			openNotificationWithIcon("error", "Aval ro'yxatdan o'ting");
+			openNotificationWithIcon("error", t.likenotification);
 			return false
 		}
 		postFetch({path: "insert-complaint", value: val}).then((res)=>{
 			if(res.status === 200){
-				openNotificationWithIcon("success", "Shikoyat adminga yuborildi");
+				openNotificationWithIcon("success", t.complaintSuccess);
 				setBtnLoading(false)
 			}else{
-				openNotificationWithIcon("error", "Kechurasiz xabar yuborilmadi");
+				openNotificationWithIcon("error", t.complaintWarning);
 				setBtnLoading(false)
 			}
 		}).catch((err)=>{
-			openNotificationWithIcon("error", err.code , "Kechirasiz xabar yuborilmadi");
+			openNotificationWithIcon("error", err.code , t.complaintWarning);
 			setBtnLoading(false)
 		})
 	}
